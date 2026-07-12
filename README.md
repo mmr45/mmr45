@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1D5FA3,100:FF6A13&height=200&section=header&text=Osman&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Étudiant%20%26%20Développeur&descAlignY=55&descSize=20" alt="Bannière" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1D5FA3,100:FF6A13&height=200&section=header&text=Osman&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Etudiant%20%7C%20Developpeur&descAlignY=55&descSize=20" alt="Bannière" width="100%" />
 </p>
 
 <h1 align="center">Salut, moi c'est Osman 👋</h1>
