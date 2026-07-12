@@ -5,6 +5,10 @@
 <h1 align="center">Salut, moi c'est Osman 👋</h1>
 
 <p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=1D5FA3&center=true&vCenter=true&width=480&lines=Etudiant+%7C+Developpeur;Fondateur+de+Batipro;JS+%7C+Java+%7C+Lua+%7C+Vue.js" alt="Texte animé" />
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/status-up-brightgreen" alt="status" />
   <img src="https://img.shields.io/badge/étudiant-%26%20dev-blue" alt="étudiant et dev" />
   <img src="https://img.shields.io/badge/location-France-informational" alt="location" />
@@ -67,6 +71,33 @@ Stats & Top langages : instance personnelle auto-hébergée sur Vercel
 (projet "mmr45", domaine mmr45.vercel.app), avec le token GitHub (PAT_1)
 configuré dans les Environment Variables du projet. Contrairement aux
 instances publiques partagées, celle-ci ne dépend d'aucun quota externe.
+-->
+
+---
+
+## 🏆 Trophées
+
+<p align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=mmr45&theme=tokyonight&no-frame=true&row=1&column=6" alt="Trophées GitHub" />
+</p>
+
+## 📈 Graphique d'activité
+
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=mmr45&theme=tokyo-night&hide_border=true&area=true" alt="Graphique d'activité" />
+</p>
+
+## 🐍 Contributions
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mmr45/mmr45/output/github-contribution-grid-snake.svg" alt="Snake animation" />
+</p>
+
+<!--
+La snake animation ne fonctionne PAS toute seule : il faut créer le fichier
+.github/workflows/snake.yml décrit dans les instructions ci-jointes, puis
+attendre que l'Action tourne une première fois (ou la lancer manuellement
+depuis l'onglet "Actions" du dépôt mmr45) pour que l'image apparaisse.
 -->
 
 ---
