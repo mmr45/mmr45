@@ -39,23 +39,19 @@ Salut, je suis **Osman**. Étudiant et développeur. Je bosse actuellement sur *
 ## 📊 Mes stats GitHub
 
 <p align="center">
-  <img src="https://github-readme-stats-eight.vercel.app/api?username=mmr45&show_icons=true&theme=tokyonight&hide_border=true" alt="Stats GitHub" height="165" />
+  <img src="https://mmr45.vercel.app/api?username=mmr45&show_icons=true&theme=tokyonight&hide_border=true" alt="Stats GitHub" height="165" />
   <img src="https://github-readme-streak-stats-eight.vercel.app/?user=mmr45&theme=tokyonight&hide_border=true" alt="Streak GitHub" height="165" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats-eight.vercel.app/api/top-langs/?username=mmr45&layout=compact&theme=tokyonight&hide_border=true" alt="Top langages" />
+  <img src="https://mmr45.vercel.app/api/top-langs/?username=mmr45&layout=compact&theme=tokyonight&hide_border=true" alt="Top langages" />
 </p>
 
 <!--
-Si les images ci-dessus ne s'affichent toujours pas (service tiers instable),
-tu peux :
-1. Réessayer plus tard (rafraîchir la page GitHub).
-2. Héberger ta propre instance sur Vercel :
-   https://github.com/anuraghazra/github-readme-stats#deploy-on-your-own
-   puis remplacer "github-readme-stats-eight.vercel.app" par ton URL perso.
-3. Supprimer purement ce bloc "Mes stats GitHub" si tu préfères un profil
-   sans dépendance à un service externe.
+Stats & Top langages : instance personnelle auto-hébergée sur Vercel
+(projet "mmr45", domaine mmr45.vercel.app), avec le token GitHub (PAT_1)
+configuré dans les Environment Variables du projet. Contrairement aux
+instances publiques partagées, celle-ci ne dépend d'aucun quota externe.
 -->
 
 ---
