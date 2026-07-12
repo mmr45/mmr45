@@ -78,8 +78,18 @@ instances publiques partagées, celle-ci ne dépend d'aucun quota externe.
 ## 🏆 Trophées
 
 <p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=mmr45&theme=tokyonight&no-frame=true&row=1&column=6" alt="Trophées GitHub" />
+  <img src="https://github-profile-trophy-winning.vercel.app/?username=mmr45&theme=tokyonight&no-frame=true&row=1&column=6" alt="Trophées GitHub" />
 </p>
+
+<!--
+Instance miroir communautaire utilisée car l'officielle
+(github-profile-trophy.vercel.app) est souvent surchargée/en panne.
+Si celle-ci tombe aussi en panne un jour, remplace le domaine par un
+des autres miroirs listés sur https://github.com/ryo-ma/github-profile-trophy
+(section "Alternative Vercel deployments"), ex :
+github-profile-trophy-liard-delta.vercel.app
+github-profile-trophy-kannan.vercel.app
+-->
 
 ## 📈 Graphique d'activité
 
