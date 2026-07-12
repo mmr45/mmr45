@@ -1,9 +1,14 @@
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1D5FA3,100:FF6A13&height=200&section=header&text=Osman&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Étudiant%20%26%20Développeur&descAlignY=55&descSize=20" alt="Bannière" width="100%" />
+</p>
+
 <h1 align="center">Salut, moi c'est Osman 👋</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/status-up-brightgreen" alt="status" />
   <img src="https://img.shields.io/badge/étudiant-%26%20dev-blue" alt="étudiant et dev" />
   <img src="https://img.shields.io/badge/location-France-informational" alt="location" />
+  <img src="https://komarev.com/ghpvc/?username=mmr45&label=Visiteurs%20du%20profil&color=1D5FA3&style=flat" alt="Compteur de visites" />
 </p>
 
 ---
@@ -11,6 +16,16 @@
 ## 👋 Introduction
 
 Salut, je suis **Osman**. Étudiant et développeur. Je bosse actuellement sur **Bâtipro**, contacte-moi si tu as des questions !
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=js,java,lua,vue,html,css,nodejs,tailwind" alt="Compétences : JS, Java, Lua, Vue, HTML, CSS, Node.js, Tailwind" />
+</p>
+
+<!--
+Pour changer les icônes ci-dessus, modifie la liste après "i=" avec les codes
+de https://skillicons.dev (ex : python, php, c, react, git, docker, etc.).
+-->
+
 
 ---
 
