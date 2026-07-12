@@ -18,7 +18,7 @@ Salut, je suis **Osman**. Étudiant et développeur. Je bosse actuellement sur *
 
 📧 [Email](mailto:osman874pro@gmail.com) &nbsp;|&nbsp; 💬 [Issue](https://github.com/mmr45/mmr45/issues) moi pour n'importe quoi !
 
-🐦 [@ak_s930](https://x.com/ak_s930) &nbsp;|&nbsp; 🎵 [TikTok](https://www.tiktok.com/@batipro.app?lang=fr) &nbsp;|&nbsp; 🎮 Discord : `ak.s930`
+🐦 [@ak_s930](https://x.com/ak_s930) &nbsp;|&nbsp; 🎵 [TikTok](https://www.tiktok.com/@batipro.app?lang=fr) &nbsp;|&nbsp; 🎮 [Discord](https://discord.com/users/1198589443389542501) : `ak.s930`
 
 ---
 
