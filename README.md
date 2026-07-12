@@ -18,7 +18,7 @@ Salut, je suis **Osman**. Étudiant et développeur. Je bosse actuellement sur *
 
 📧 [Email](mailto:osman874pro@gmail.com) &nbsp;|&nbsp; 💬 [Issue](https://github.com/mmr45/mmr45/issues) moi pour n'importe quoi !
 
-🐦 [@ak_s930](https://x.com/ak_s930) &nbsp;|&nbsp; 🎵 [TikTok](https://www.tiktok.com/@batipro.app?lang=fr) &nbsp;|&nbsp; 🎮 Discord : demande-moi mon pseudo par email !
+🐦 [@ak_s930](https://x.com/ak_s930) &nbsp;|&nbsp; 🎵 [TikTok](https://www.tiktok.com/@batipro.app?lang=fr) &nbsp;|&nbsp; 🎮 Discord : `ak.s930`
 
 ---
 
@@ -39,13 +39,24 @@ Salut, je suis **Osman**. Étudiant et développeur. Je bosse actuellement sur *
 ## 📊 Mes stats GitHub
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=mmr45&show_icons=true&theme=tokyonight&hide_border=true" alt="Stats GitHub" height="165" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=mmr45&theme=tokyonight&hide_border=true" alt="Streak GitHub" height="165" />
+  <img src="https://github-readme-stats-eight.vercel.app/api?username=mmr45&show_icons=true&theme=tokyonight&hide_border=true" alt="Stats GitHub" height="165" />
+  <img src="https://github-readme-streak-stats-eight.vercel.app/?user=mmr45&theme=tokyonight&hide_border=true" alt="Streak GitHub" height="165" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mmr45&layout=compact&theme=tokyonight&hide_border=true" alt="Top langages" />
+  <img src="https://github-readme-stats-eight.vercel.app/api/top-langs/?username=mmr45&layout=compact&theme=tokyonight&hide_border=true" alt="Top langages" />
 </p>
+
+<!--
+Si les images ci-dessus ne s'affichent toujours pas (service tiers instable),
+tu peux :
+1. Réessayer plus tard (rafraîchir la page GitHub).
+2. Héberger ta propre instance sur Vercel :
+   https://github.com/anuraghazra/github-readme-stats#deploy-on-your-own
+   puis remplacer "github-readme-stats-eight.vercel.app" par ton URL perso.
+3. Supprimer purement ce bloc "Mes stats GitHub" si tu préfères un profil
+   sans dépendance à un service externe.
+-->
 
 ---
 
