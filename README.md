@@ -39,6 +39,12 @@ de https://skillicons.dev (ex : python, php, c, react, git, docker, etc.).
 
 🐦 [@ak_s930](https://x.com/ak_s930) &nbsp;|&nbsp; 🎵 [TikTok](https://www.tiktok.com/@batipro.app?lang=fr) &nbsp;|&nbsp; 🎮 [Discord](https://discord.com/users/1198589443389542501) : `ak.s930`
 
+<p align="left">
+  <a href="https://www.linkedin.com/in/osman-undefined-316228420/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+</p>
+
 ---
 
 ## 💡 Projets sur lesquels je bosse
@@ -52,6 +58,10 @@ de https://skillicons.dev (ex : python, php, c, react, git, docker, etc.).
 - 🌱 Je bosse actuellement sur **[Bâtipro](https://batipro-ten.vercel.app)**
 - 📫 Comment me joindre : **osman874pro@gmail.com**
 - 🎓 Étudiant & développeur, toujours en train d'apprendre !
+
+<p align="center">
+  <img src="https://readmeme.eu.cc/api/time.svg?theme=classic&timezone=Europe/Paris&timeFormat=24h&showSeconds=1&showDate=1&showDay=1&label=Heure+locale" alt="Heure locale (France)" />
+</p>
 
 ---
 
