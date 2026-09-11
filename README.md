@@ -13,16 +13,18 @@
   <img src="https://komarev.com/ghpvc/?username=mmr45&label=Visites&color=1D5FA3&style=flat-square" alt="Visites du profil" />
 </p>
 
+<p align="center"><b>Peintre en bâtiment, je conçois et développe seul mes propres applications web.</b></p>
+
 ---
 
 ## 🚀 Mes projets en cours
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
 ### 🏗️ Bâtipro
 **Créer son entreprise du bâtiment, sans se noyer dans la paperasse.**
+
+<p align="center">
+  <a href="https://batipro-ten.vercel.app"><img src="./batipro.png" alt="Page d'accueil de Bâtipro" width="300" /></a>
+</p>
 
 - Qualification du projet
 - Simulation du statut juridique
@@ -37,11 +39,14 @@
 <a href="https://batipro-ten.vercel.app"><img src="https://img.shields.io/badge/Voir_le_site-1D5FA3?style=for-the-badge" alt="Voir le site Bâtipro" /></a>
 <a href="https://github.com/mmr45/Batipro"><img src="https://img.shields.io/badge/Code-24292F?style=for-the-badge&logo=github&logoColor=white" alt="Code de Bâtipro" /></a>
 
-</td>
-<td width="50%" valign="top">
+<br />
 
 ### ⚡ MyWattUp
 **Un coach du quotidien qui croise sommeil, sport et alimentation.**
+
+<p align="center">
+  <a href="https://my-watt-up.vercel.app"><img src="./mywattup.png" alt="Page d'accueil de MyWattUp" width="300" /></a>
+</p>
 
 - Score d'énergie et conseils IA chaque jour
 - Repas du jour selon ton objectif et tes allergies
@@ -54,10 +59,6 @@
 
 <a href="https://my-watt-up.vercel.app"><img src="https://img.shields.io/badge/Voir_le_site-FF6A13?style=for-the-badge" alt="Voir le site MyWattUp" /></a>
 <a href="https://github.com/mmr45/MyWattUp-"><img src="https://img.shields.io/badge/Code-24292F?style=for-the-badge&logo=github&logoColor=white" alt="Code de MyWattUp" /></a>
-
-</td>
-</tr>
-</table>
 
 ---
 
@@ -98,7 +99,20 @@
 <!-- Stats & top langages : instance perso sur Vercel (projet "mmr45", token PAT_1 dans les variables d'env). -->
 
 <p align="center">
-  <img src="https://trophy.benkou.dev/?username=mmr45&theme=tokyonight&no-frame=true&row=1&column=6" alt="Trophées GitHub" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mmr45/mmr45/output/github-contribution-grid-snake-dark.svg" />
+    <img src="https://raw.githubusercontent.com/mmr45/mmr45/output/github-contribution-grid-snake.svg" alt="Snake des contributions" />
+  </picture>
+</p>
+
+<!-- Snake : généré par .github/workflows/snake.yml sur la branche "output". -->
+
+<details>
+<summary><b>Plus de stats</b></summary>
+<br />
+
+<p align="center">
+  <img src="https://trophy.benkou.dev/?username=mmr45&theme=tokyonight&no-frame=true&row=2&column=3" alt="Trophées GitHub" />
 </p>
 
 <!--
@@ -113,13 +127,10 @@ Trophées : miroir communautaire. S'il tombe, autres miroirs :
 </p>
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mmr45/mmr45/output/github-contribution-grid-snake-dark.svg" />
-    <img src="https://raw.githubusercontent.com/mmr45/mmr45/output/github-contribution-grid-snake.svg" alt="Snake des contributions" />
-  </picture>
+  <img src="https://readmeme.eu.cc/api/time.svg?theme=classic&timezone=Europe/Paris&timeFormat=24h&showSeconds=1&showDate=1&showDay=1&label=Heure+chez+moi" alt="Heure locale (France)" />
 </p>
 
-<!-- Snake : généré par .github/workflows/snake.yml sur la branche "output". -->
+</details>
 
 ---
 
@@ -133,10 +144,6 @@ Un retour sur mes projets, une idée, une question sur le bâtiment ou le code :
   <a href="https://www.tiktok.com/@.aks_45"><img src="https://img.shields.io/badge/TikTok-000000?style=for-the-badge&logo=tiktok&logoColor=white" alt="TikTok" /></a>
   <a href="https://x.com/ak_s930"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="X" /></a>
   <a href="https://discord.com/users/1198589443389542501"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord ak.s930" /></a>
-</p>
-
-<p align="center">
-  <img src="https://readmeme.eu.cc/api/time.svg?theme=classic&timezone=Europe/Paris&timeFormat=24h&showSeconds=1&showDate=1&showDay=1&label=Heure+chez+moi" alt="Heure locale (France)" />
 </p>
 
 <p align="center">Ou <a href="https://github.com/mmr45/mmr45/issues">ouvre une issue</a>, je réponds.</p>
