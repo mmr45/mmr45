@@ -1,53 +1,111 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1D5FA3,100:FF6A13&height=200&section=header&text=Osman&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Peintre%20%7C%20Developpeur%20%7C%20Fondateur&descAlignY=55&descSize=20" alt="Bannière Osman" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1D5FA3,100:FF6A13&height=230&section=header&text=Osman%20Fauconnier&fontSize=52&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=Peintre%20en%20b%C3%A2timent%20%26%20d%C3%A9veloppeur&descAlignY=56&descSize=19" alt="Osman Fauconnier, peintre en bâtiment et développeur" width="100%" />
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=1D5FA3&center=true&vCenter=true&width=480&lines=Du+chantier+au+code;Fondateur+de+Batipro;Createur+de+MyWattUp;JS+%7C+Supabase+%7C+Stripe" alt="Du chantier au code" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1200&color=FF6A13&center=true&vCenter=true&width=520&lines=Du+chantier+au+code;Fondateur+de+B%C3%A2tipro;Cr%C3%A9ateur+de+MyWattUp;Pr%C3%A9parer+le+support%2C+soigner+la+finition" alt="Du chantier au code" />
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/status-up-brightgreen?style=flat-square" alt="status" />
   <img src="https://img.shields.io/badge/📍_France-1D5FA3?style=flat-square" alt="France" />
-  <img src="https://img.shields.io/badge/CAP_Peinture-FF6A13?style=flat-square" alt="CAP Peinture" />
+  <img src="https://img.shields.io/badge/🎨_CAP_Peinture-FF6A13?style=flat-square" alt="CAP Peinture" />
   <img src="https://komarev.com/ghpvc/?username=mmr45&label=Visites&color=1D5FA3&style=flat-square" alt="Visites du profil" />
 </p>
 
 ---
 
-## 👋 Salut, moi c'est Osman
+## 👷 Qui je suis
 
-Peintre en bâtiment de formation (CAP), développeur en autodidacte.
-Je connais le terrain, alors je construis les outils qui manquent aux artisans : moins de paperasse, plus de chantier.
+J'ai appris mon métier un rouleau à la main, sur les chantiers. J'y ai vu de près ce qui fait perdre du temps aux artisans : les papiers, les statuts, les devis.
+Alors j'ai pris un clavier, et je code les outils que j'aurais voulu avoir.
 
-Je conçois, code et déploie mes projets seul, de la base de données au paiement.
-
-<p align="center">
-  <img src="https://readmeme.eu.cc/api/time.svg?theme=classic&timezone=Europe/Paris&timeFormat=24h&showSeconds=1&showDate=1&showDay=1&label=Heure+locale" alt="Heure locale (France)" />
-</p>
+```js
+// chantier.js
+const osman = {
+  metier: "Peintre en bâtiment",
+  diplome: "CAP Peinture, obtenu avec mention",
+  outils: {
+    chantier: ["rouleau", "spalter", "enduit", "ponceuse"],
+    code: ["JavaScript", "Supabase", "Stripe", "Vercel"],
+  },
+  chantiersEnCours: ["Bâtipro", "MyWattUp"],
+  methode: "Préparer le support, soigner la finition.",
+};
+```
 
 ---
 
-## 🚀 Mes projets
+## 🧱 Mes chantiers en cours
 
-| Projet | Description | Stack |
-|:--|:--|:--|
-| **[Bâtipro](https://batipro-ten.vercel.app)**<br>[Code](https://github.com/mmr45/Batipro) | Accompagne les artisans du BTP dans leur création d'entreprise : qualification, simulation de statut juridique, dossier INPI, devis conformes. | HTML/JS · Supabase · Stripe · Vercel |
-| **[MyWattUp](https://my-watt-up.vercel.app)**<br>[Code](https://github.com/mmr45/MyWattUp-) | Coach quotidien qui croise sommeil, activité et alimentation : score d'énergie, conseils IA, repas du jour, scanner de produits. | HTML/CSS/JS · Supabase · Vercel |
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🏗️ Bâtipro
+**Créer son entreprise du bâtiment, sans se noyer dans la paperasse.**
+
+- Qualification du projet
+- Simulation du statut juridique
+- Dossier INPI généré automatiquement
+- Devis conformes en quelques clics
+
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
+<img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase" />
+<img src="https://img.shields.io/badge/Stripe-635BFF?style=flat-square&logo=stripe&logoColor=white" alt="Stripe" />
+<img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel" />
+
+<a href="https://batipro-ten.vercel.app"><img src="https://img.shields.io/badge/Voir_le_site-1D5FA3?style=for-the-badge" alt="Voir le site Bâtipro" /></a>
+<a href="https://github.com/mmr45/Batipro"><img src="https://img.shields.io/badge/Code-24292F?style=for-the-badge&logo=github&logoColor=white" alt="Code de Bâtipro" /></a>
+
+</td>
+<td width="50%" valign="top">
+
+### ⚡ MyWattUp
+**Un coach du quotidien qui croise sommeil, sport et alimentation.**
+
+- Score d'énergie et conseils IA chaque jour
+- Repas du jour selon ton objectif et tes allergies
+- Scanner de produits par code-barres
+- Offre gratuite et offre Pro
+
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
+<img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase" />
+<img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel" />
+
+<a href="https://my-watt-up.vercel.app"><img src="https://img.shields.io/badge/Voir_le_site-FF6A13?style=for-the-badge" alt="Voir le site MyWattUp" /></a>
+<a href="https://github.com/mmr45/MyWattUp-"><img src="https://img.shields.io/badge/Code-24292F?style=for-the-badge&logo=github&logoColor=white" alt="Code de MyWattUp" /></a>
+
+</td>
+</tr>
+</table>
 
 ---
 
-## 🛠️ Stack
+## 🧰 Ma caisse à outils
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=js,html,css,nodejs,supabase,vercel,git,github,tailwind,vue,java,lua&perline=6" alt="JS, HTML, CSS, Node.js, Supabase, Vercel, Git, GitHub, Tailwind, Vue, Java, Lua" />
-</p>
+| | |
+|:--|:--|
+| **Front** | <img src="https://skillicons.dev/icons?i=js,html,css,tailwind,vue" alt="JS, HTML, CSS, Tailwind, Vue" /> |
+| **Back & données** | <img src="https://skillicons.dev/icons?i=nodejs,supabase,postgres" alt="Node.js, Supabase, PostgreSQL" /> |
+| **Mise en ligne** | <img src="https://skillicons.dev/icons?i=vercel,git,github" alt="Vercel, Git, GitHub" /> |
+| **Paiement** | <img src="https://img.shields.io/badge/Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white" alt="Stripe" /> |
+| **Aussi** | <img src="https://skillicons.dev/icons?i=java,lua" alt="Java, Lua" /> |
 
 <!-- Codes des icônes : https://skillicons.dev -->
 
 ---
 
-## 📊 Stats
+## 🪜 Mon parcours
+
+1. **2024 → 2026** : apprenti peintre en bâtiment, formé au BTP CFA Centre-Val de Loire
+2. **2026** : CAP Peinture obtenu avec mention
+3. **Juillet 2026** : je lance Bâtipro, seul, du premier fichier au paiement Stripe
+4. **Septembre 2026** : je lance MyWattUp
+
+---
+
+## 📊 Sur le chantier GitHub
 
 <p align="center">
   <img src="https://mmr45.vercel.app/api?username=mmr45&show_icons=true&theme=tokyonight&hide_border=true" alt="Stats GitHub" height="165" />
@@ -86,17 +144,23 @@ Trophées : miroir communautaire. S'il tombe, autres miroirs :
 
 ---
 
-## 📬 Me contacter
+## 📬 On en parle ?
+
+Un retour sur mes projets, une idée, une question sur le bâtiment ou le code : écris-moi.
 
 <p align="center">
   <a href="mailto:osman874pro@gmail.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" /></a>
-  <a href="https://www.linkedin.com/in/osman-undefined-316228420/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="https://www.linkedin.com/in/osman-fauconnier"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="https://www.tiktok.com/@.aks_45"><img src="https://img.shields.io/badge/TikTok-000000?style=for-the-badge&logo=tiktok&logoColor=white" alt="TikTok" /></a>
   <a href="https://x.com/ak_s930"><img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" alt="X" /></a>
-  <a href="https://www.tiktok.com/@batipro.app"><img src="https://img.shields.io/badge/TikTok_Bâtipro-000000?style=for-the-badge&logo=tiktok&logoColor=white" alt="TikTok Bâtipro" /></a>
   <a href="https://discord.com/users/1198589443389542501"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord ak.s930" /></a>
 </p>
 
-<p align="center">Une question, une idée ? <a href="https://github.com/mmr45/mmr45/issues">Ouvre une issue</a>.</p>
+<p align="center">
+  <img src="https://readmeme.eu.cc/api/time.svg?theme=classic&timezone=Europe/Paris&timeFormat=24h&showSeconds=1&showDate=1&showDay=1&label=Heure+chez+moi" alt="Heure locale (France)" />
+</p>
+
+<p align="center">Ou <a href="https://github.com/mmr45/mmr45/issues">ouvre une issue</a>, je réponds.</p>
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1D5FA3,100:FF6A13&height=120&section=footer" alt="" width="100%" />
