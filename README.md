@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1D5FA3,100:FF6A13&height=230&section=header&text=Osman%20Fauconnier&fontSize=52&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=Peintre%20en%20b%C3%A2timent%20%26%20d%C3%A9veloppeur&descAlignY=56&descSize=19" alt="Osman Fauconnier, peintre en bâtiment et développeur" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1D5FA3,100:FF6A13&height=200&section=header&text=Osman%20Fauconnier&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Peintre%20%7C%20Developpeur%20%7C%20Fondateur&descAlignY=55&descSize=20" alt="Osman Fauconnier" width="100%" />
 </p>
 
 <p align="center">
@@ -15,28 +15,7 @@
 
 ---
 
-## 👷 Qui je suis
-
-J'ai appris mon métier un rouleau à la main, sur les chantiers. J'y ai vu de près ce qui fait perdre du temps aux artisans : les papiers, les statuts, les devis.
-Alors j'ai pris un clavier, et je code les outils que j'aurais voulu avoir.
-
-```js
-// chantier.js
-const osman = {
-  metier: "Peintre en bâtiment",
-  diplome: "CAP Peinture, obtenu avec mention",
-  outils: {
-    chantier: ["rouleau", "spalter", "enduit", "ponceuse"],
-    code: ["JavaScript", "Supabase", "Stripe", "Vercel"],
-  },
-  chantiersEnCours: ["Bâtipro", "MyWattUp"],
-  methode: "Préparer le support, soigner la finition.",
-};
-```
-
----
-
-## 🧱 Mes chantiers en cours
+## 🚀 Mes projets en cours
 
 <table>
 <tr>
@@ -105,7 +84,7 @@ const osman = {
 
 ---
 
-## 📊 Sur le chantier GitHub
+## 📊 Mes stats GitHub
 
 <p align="center">
   <img src="https://mmr45.vercel.app/api?username=mmr45&show_icons=true&theme=tokyonight&hide_border=true" alt="Stats GitHub" height="165" />
