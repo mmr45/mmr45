@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1D5FA3,100:FF6A13&height=200&section=header&text=Osman%20Fauconnier&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Peintre%20%7C%20Developpeur%20%7C%20Fondateur&descAlignY=55&descSize=20" alt="Osman Fauconnier" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1D5FA3,100:FF6A13&height=200&section=header&text=Osman%20&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Peintre%20%7C%20Developpeur%20%7C%20Fondateur&descAlignY=55&descSize=20" alt="Osman Fauconnier" width="100%" />
 </p>
 
 <p align="center">
