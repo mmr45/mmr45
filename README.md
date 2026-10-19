@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/badge/status-up-brightgreen?style=flat-square" alt="status" />
   <img src="https://img.shields.io/badge/📍_France-1D5FA3?style=flat-square" alt="France" />
   <img src="https://img.shields.io/badge/🎨_CAP_Peinture-FF6A13?style=flat-square" alt="CAP Peinture" />
-  <img src="https://komarev.com/ghpvc/?username=mmr45&label=Visites&color=1D5FA3&style=flat-square" alt="Visites du profil" />
+  <img src="https://komarev.com/ghpvc/?username=mmr45&base=2917&label=Visites&color=1D5FA3&style=flat-square" alt="Visites du profil" />
 </p>
 
 <p align="center"><b>Peintre en bâtiment, je conçois et développe seul mes propres applications web.</b></p>
