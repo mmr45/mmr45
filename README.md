@@ -73,8 +73,6 @@
 | **Paiement** | <img src="https://img.shields.io/badge/Stripe-635BFF?style=for-the-badge&logo=stripe&logoColor=white" alt="Stripe" /> |
 | **Aussi** | <img src="https://skillicons.dev/icons?i=java,lua" alt="Java, Lua" /> |
 
-<!-- Codes des icônes : https://skillicons.dev -->
-
 ---
 
 ## 🪜 Mon parcours
@@ -97,16 +95,12 @@
   <img src="https://github-readme-streak-stats-eight.vercel.app/?user=mmr45&theme=tokyonight&hide_border=true" alt="Streak GitHub" />
 </p>
 
-<!-- Stats & top langages : instance perso sur Vercel (projet "mmr45", token PAT_1 dans les variables d'env). -->
-
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mmr45/mmr45/output/github-contribution-grid-snake-dark.svg" />
     <img src="https://raw.githubusercontent.com/mmr45/mmr45/output/github-contribution-grid-snake.svg" alt="Snake des contributions" />
   </picture>
 </p>
-
-<!-- Snake : généré par .github/workflows/snake.yml sur la branche "output". -->
 
 <details>
 <summary><b>Plus de stats</b></summary>
@@ -115,13 +109,6 @@
 <p align="center">
   <img src="https://trophy.benkou.dev/?username=mmr45&theme=tokyonight&no-frame=true&row=2&column=3" alt="Trophées GitHub" />
 </p>
-
-<!--
-Trophées : miroir communautaire. S'il tombe, autres miroirs :
-- https://gh-trophy.cdnsoft.net
-- https://github-profile-trophy-kannan.vercel.app
-- https://github-trophies.devomb.com
--->
 
 <p align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=mmr45&theme=tokyo-night&hide_border=true&area=true" alt="Graphique d'activité" />
