@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="110" viewBox="0 0 1200 110" role="img" aria-label="Préparer le support, soigner la finition.">
+  <title>Préparer le support, soigner la finition.</title>
+  <style>
+    .s{stroke-dasharray:1000;stroke-dashoffset:1000;animation:d 1.6s .2s cubic-bezier(.6,0,.2,1) forwards}
+    @keyframes d{to{stroke-dashoffset:0}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}}
+  </style>
+  <path class="s" pathLength="1000" d="M120 58 C 340 46, 560 66, 780 54 C 900 48, 1000 56, 1080 54" fill="none" stroke="#F0600F" stroke-width="6" stroke-linecap="round" opacity=".85"/>
+  <rect x="395" y="36" width="410" height="40" rx="20" fill="#F7F4EE" stroke="#E3DCCF"/>
+  <text x="600" y="61" text-anchor="middle" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="13" fill="#5B6B85" letter-spacing=".4">préparer le support · soigner la finition</text>
+</svg>
