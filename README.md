@@ -8,7 +8,7 @@
 <p align="center">
   <a href="https://www.linkedin.com/in/osman-fauconnier"><img src="https://img.shields.io/badge/LinkedIn-osman--fauconnier-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <a href="mailto:osman874pro@gmail.com"><img src="https://img.shields.io/badge/Email-osman874pro-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
-  <img src="https://komarev.com/ghpvc/?username=mmr45&label=Visites&color=1D5FA3&style=flat-square" alt="Visites du profil" />
+  <img src="https://komarev.com/ghpvc/?username=mmr45&label=Visites&color=1D5FA3&style=flat-square&base=4999" alt="Visites du profil" />
 </p>
 
 <br />
