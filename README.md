@@ -6,14 +6,19 @@
 </p>
 
 <p align="center">
-  <a href="https://www.linkedin.com/in/osman-fauconnier"><img src="https://img.shields.io/badge/LinkedIn-osman--fauconnier-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-  <a href="mailto:osman874pro@gmail.com"><img src="https://img.shields.io/badge/Email-osman874pro-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
+  <img src="https://img.shields.io/badge/status-up-brightgreen?style=flat-square" alt="status" />
+  <img src="https://img.shields.io/badge/📍_France-1D5FA3?style=flat-square" alt="France" />
+  <img src="https://img.shields.io/badge/🎨_CAP_Peinture-FF6A13?style=flat-square" alt="CAP Peinture" />
+  <img src="https://img.shields.io/badge/🚀_2_SaaS_lancés-111A2E?style=flat-square" alt="2 SaaS lancés" />
   <img src="https://komarev.com/ghpvc/?username=mmr45&label=Visites&color=1D5FA3&style=flat-square&base=4999" alt="Visites du profil" />
 </p>
 
 <br />
 
-## Ce que je construis
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/s-projets-dark.svg" />
+  <img src="./assets/s-projets-light.svg" alt="Ce que je construis" width="100%" />
+</picture>
 
 <p align="center">
   <a href="https://batipro-ten.vercel.app"><picture>
@@ -26,36 +31,33 @@
   </picture></a>
 </p>
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
-**Bâtipro** accompagne les artisans qui lancent leur entreprise : test de qualification, simulation du statut juridique, dossier INPI généré automatiquement et devis BTP conformes en PDF.
-
-</td>
-<td width="50%" valign="top">
-
-**MyWattUp** calcule chaque jour un score d'énergie à partir du sommeil, du sport et de l'alimentation, propose des repas adaptés à l'objectif et aux allergies, et scanne les produits par code-barres.
-
-</td>
-</tr>
-</table>
 
 <br />
 
-## Ma caisse à outils
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/s-outils-dark.svg" />
+  <img src="./assets/s-outils-light.svg" alt="Ma caisse à outils" width="100%" />
+</picture>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=js,ts,html,css,tailwind,vue,nodejs,supabase,postgres,vercel,git,github,java,lua&perline=14&theme=dark" />
-    <img src="https://skillicons.dev/icons?i=js,ts,html,css,tailwind,vue,nodejs,supabase,postgres,vercel,git,github,java,lua&perline=14&theme=light" alt="JavaScript, TypeScript, HTML, CSS, Tailwind, Vue, Node.js, Supabase, PostgreSQL, Vercel, Git, GitHub, Java, Lua" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=js%2Cts%2Chtml%2Ccss%2Ctailwind%2Cvue%2Cnodejs%2Csupabase%2Cpostgres%2Cvercel%2Cgit%2Cgithub%2Cjava%2Clua&perline=14&theme=dark" />
+    <img src="https://skillicons.dev/icons?i=js%2Cts%2Chtml%2Ccss%2Ctailwind%2Cvue%2Cnodejs%2Csupabase%2Cpostgres%2Cvercel%2Cgit%2Cgithub%2Cjava%2Clua&perline=14&theme=light" alt="JavaScript, TypeScript, HTML, CSS, Tailwind, Vue, Node.js, Supabase, PostgreSQL, Vercel, Git, GitHub, Java, Lua" />
   </picture>
 </p>
-<p align="center"><sub>+ Stripe pour les paiements · Supabase Edge Functions pour tout ce qui doit rester côté serveur</sub></p>
+<p align="center">
+  <img src="https://img.shields.io/badge/Stripe-635BFF?style=flat-square&logo=stripe&logoColor=white" alt="Stripe" />
+  <img src="https://img.shields.io/badge/Supabase_Edge_Functions-3FCF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase Edge Functions" />
+  <img src="https://img.shields.io/badge/Deno-111111?style=flat-square&logo=deno&logoColor=white" alt="Deno" />
+  <img src="https://img.shields.io/badge/PWA-5A0FC8?style=flat-square&logo=pwa&logoColor=white" alt="PWA" />
+</p>
 
 <br />
 
-## Mon parcours
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/s-parcours-dark.svg" />
+  <img src="./assets/s-parcours-light.svg" alt="Mon parcours" width="100%" />
+</picture>
 
 <p align="center">
   <picture>
@@ -66,7 +68,10 @@
 
 <br />
 
-## Activité
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/s-activite-dark.svg" />
+  <img src="./assets/s-activite-light.svg" alt="Activité" width="100%" />
+</picture>
 
 <p align="center">
   <picture>
@@ -95,7 +100,10 @@
 
 <br />
 
-## On en parle ?
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/s-contact-dark.svg" />
+  <img src="./assets/s-contact-light.svg" alt="On en parle ?" width="100%" />
+</picture>
 
 Un retour sur mes projets, une question sur le bâtiment ou sur le code : écris-moi, je réponds.
 

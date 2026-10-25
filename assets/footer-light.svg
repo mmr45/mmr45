@@ -1,11 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="110" viewBox="0 0 1200 110" role="img" aria-label="Préparer le support, soigner la finition.">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="130" viewBox="0 0 1200 130" role="img" aria-label="Préparer le support, soigner la finition.">
   <title>Préparer le support, soigner la finition.</title>
   <style>
-    .s{stroke-dasharray:1000;stroke-dashoffset:1000;animation:d 1.6s .2s cubic-bezier(.6,0,.2,1) forwards}
-    @keyframes d{to{stroke-dashoffset:0}}
+    .paint{stroke-dasharray:1000;stroke-dashoffset:1000;animation:p 2.2s .3s cubic-bezier(.45,0,.55,1) forwards}
+    @keyframes p{to{stroke-dashoffset:0}}
+    .roller{animation:r 2.2s .3s cubic-bezier(.45,0,.55,1) forwards, out .5s 2.60s ease forwards}
+    @keyframes r{from{transform:translateX(0)}to{transform:translateX(960px)}}
+    @keyframes out{to{opacity:0}}
+    .spin{transform-box:fill-box;transform-origin:center;animation:spin .35s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .pill{opacity:0;animation:pill .7s 2.40s cubic-bezier(.2,.8,.2,1) forwards}
+    @keyframes pill{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
     @media (prefers-reduced-motion: reduce){*{animation:none!important}}
   </style>
-  <path class="s" pathLength="1000" d="M120 58 C 340 46, 560 66, 780 54 C 900 48, 1000 56, 1080 54" fill="none" stroke="#F0600F" stroke-width="6" stroke-linecap="round" opacity=".85"/>
-  <rect x="395" y="36" width="410" height="40" rx="20" fill="#F7F4EE" stroke="#E3DCCF"/>
-  <text x="600" y="61" text-anchor="middle" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="13" fill="#5B6B85" letter-spacing=".4">préparer le support · soigner la finition</text>
+  <path class="paint" pathLength="1000" d="M120 72 C 340 66, 560 78, 780 70 C 900 66, 1000 74, 1080 70" fill="none" stroke="#F0600F" stroke-width="14" stroke-linecap="round" opacity=".9"/>
+  <path class="paint" pathLength="1000" d="M120 67 C 340 61, 560 73, 780 65 C 900 61, 1000 69, 1080 65" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".25"/>
+  <g class="roller">
+    <path d="M122 40 V22 H150 V44" fill="none" stroke="#5B6B85" stroke-width="3" stroke-linejoin="round"/>
+    <rect x="146" y="44" width="8" height="26" rx="4" fill="#97A3B6"/>
+    <g class="spin"><rect x="108" y="58" width="28" height="28" rx="14" fill="#F0600F"/><path d="M114 72H130" stroke="#fff" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/></g>
+  </g>
+  <g class="pill">
+    <rect x="395" y="50" width="410" height="42" rx="21" fill="#F7F4EE" stroke="#E3DCCF"/>
+    <text x="600" y="76" text-anchor="middle" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="13" fill="#5B6B85" letter-spacing=".4">préparer le support · soigner la finition</text>
+  </g>
 </svg>

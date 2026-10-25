@@ -1,54 +1,91 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="250" viewBox="0 0 1200 250" role="img" aria-label="Parcours : apprenti peintre 2024-2026, CAP Peinture avec mention en 2026, lancement de Bâtipro en juillet 2026, lancement de MyWattUp en septembre 2026.">
   <title>Mon parcours</title>
   <defs>
-    <linearGradient id="ln" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="1050" y2="0">
+    <linearGradient id="ln" gradientUnits="userSpaceOnUse" x1="150" y1="0" x2="990" y2="0">
       <stop offset="0" stop-color="#1D5FA3"/>
       <stop offset="1" stop-color="#F0600F"/>
     </linearGradient>
+    <linearGradient id="tail" gradientUnits="userSpaceOnUse" x1="990" y1="0" x2="1130" y2="0">
+      <stop offset="0" stop-color="#F0600F" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#F0600F" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="spark">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".35" stop-color="#F0600F"/>
+      <stop offset="1" stop-color="#F0600F" stop-opacity="0"/>
+    </radialGradient>
   </defs>
   <style>
-    .line{stroke-dasharray:1000;stroke-dashoffset:1000;animation:draw 1.4s .2s cubic-bezier(.6,0,.2,1) forwards}
+    .line{stroke-dasharray:1000;stroke-dashoffset:1000;animation:draw 2.6s 0.3s linear forwards}
     @keyframes draw{to{stroke-dashoffset:0}}
-    .pop{animation:pop .6s cubic-bezier(.2,.8,.2,1) both}
-    @keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-    .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2s 2s ease-out infinite}
-    @keyframes pulse{from{transform:scale(1);opacity:.9}to{transform:scale(2.4);opacity:0}}
+    .node{transform-box:fill-box;transform-origin:center;animation:node .55s cubic-bezier(.3,1.6,.5,1) both}
+    @keyframes node{from{transform:scale(0)}to{transform:scale(1)}}
+    .ring{transform-box:fill-box;transform-origin:center;opacity:0;animation:ring .9s ease-out forwards}
+    @keyframes ring{from{transform:scale(.6);opacity:.9}to{transform:scale(2.6);opacity:0}}
+    .pulse{transform-box:fill-box;transform-origin:center;opacity:0;animation:pulse 3.8s 3.50s ease-out infinite}
+    @keyframes pulse{0%{transform:scale(1);opacity:.8}60%,100%{transform:scale(2.6);opacity:0}}
+    .txt{animation:txt .6s cubic-bezier(.2,.8,.2,1) both}
+    @keyframes txt{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    .spark{opacity:0;animation:spark 4.5s 3.70s cubic-bezier(.45,0,.55,1) infinite}
+    @keyframes spark{0%{transform:translateX(0);opacity:0}8%{opacity:1}62%{opacity:1}70%,100%{transform:translateX(840px);opacity:0}}
+    .tail{stroke-dasharray:4 8;animation:tail 1.2s linear infinite,show .6s 2.90s both}
+    @keyframes tail{to{stroke-dashoffset:-12}}
+    @keyframes show{from{opacity:0}to{opacity:1}}
     @media (prefers-reduced-motion: reduce){*{animation:none!important}}
   </style>
   <rect x=".5" y=".5" width="1199" height="249" rx="18" fill="#F7F4EE" stroke="#E3DCCF"/>
-  <path d="M150 104H1050" stroke="#E3DCCF" stroke-width="3" stroke-linecap="round"/>
-  <path class="line" d="M150 104H1050" stroke="url(#ln)" stroke-width="3" stroke-linecap="round" pathLength="1000"/>
+  <path d="M150 108H990" stroke="#E3DCCF" stroke-width="3" stroke-linecap="round"/>
+  <path class="line" d="M150 108H990" stroke="url(#ln)" stroke-width="3" stroke-linecap="round" pathLength="1000"/>
+  <path class="tail" d="M1002 108H1130" stroke="url(#tail)" stroke-width="3" stroke-linecap="round"/>
+  <circle class="spark" cx="150" cy="108" r="9" fill="url(#spark)"/>
   
-    <g class="pop" style="animation-delay:0.35s">
-      <text x="150" y="70" text-anchor="middle" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="12.5" fill="#1D5FA3" letter-spacing="1">2024 → 2026</text>
-      
-      <circle cx="150" cy="104" r="8" fill="#F7F4EE" stroke="#1D5FA3" stroke-width="3"/>
-      <circle cx="150" cy="104" r="3" fill="#1D5FA3"/>
-      <text x="150" y="150" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#14213D">Apprenti peintre</text>
-      <text x="150" y="180" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">BTP CFA</text><text x="150" y="201" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">Centre-Val de Loire</text>
+    <circle cx="150" cy="108" r="10" fill="none" stroke="#1D5FA3" stroke-width="2" class="ring" style="animation-delay:0.30s"/>
+    
+    <g class="node" style="animation-delay:0.30s">
+      <circle cx="150" cy="108" r="9" fill="#F7F4EE" stroke="#1D5FA3" stroke-width="3"/>
+      <circle cx="150" cy="108" r="3.5" fill="#1D5FA3"/>
     </g>
-    <g class="pop" style="animation-delay:0.63s">
-      <text x="450" y="70" text-anchor="middle" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="12.5" fill="#1D5FA3" letter-spacing="1">2026</text>
-      
-      <circle cx="450" cy="104" r="8" fill="#F7F4EE" stroke="#1D5FA3" stroke-width="3"/>
-      <circle cx="450" cy="104" r="3" fill="#1D5FA3"/>
-      <text x="450" y="150" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#14213D">CAP Peinture</text>
-      <text x="450" y="180" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">obtenu avec mention</text>
+    <g class="txt" style="animation-delay:0.40s">
+      <rect x="90" y="56" width="121" height="24" rx="12" fill="#1D5FA3" opacity=".12"/>
+      <text x="150" y="73" text-anchor="middle" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="12" font-weight="700" fill="#1D5FA3" letter-spacing="1">2024 → 2026</text>
+      <text x="150" y="154" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#14213D">Apprenti peintre</text>
+      <text x="150" y="184" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">BTP CFA</text><text x="150" y="205" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">Centre-Val de Loire</text>
     </g>
-    <g class="pop" style="animation-delay:0.91s">
-      <text x="750" y="70" text-anchor="middle" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="12.5" fill="#1D5FA3" letter-spacing="1">JUILLET 2026</text>
-      
-      <circle cx="750" cy="104" r="8" fill="#F7F4EE" stroke="#1D5FA3" stroke-width="3"/>
-      <circle cx="750" cy="104" r="3" fill="#1D5FA3"/>
-      <text x="750" y="150" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#14213D">Lancement de Bâtipro</text>
-      <text x="750" y="180" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">seul, du premier fichier</text><text x="750" y="201" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">au paiement Stripe</text>
+    <circle cx="430" cy="108" r="10" fill="none" stroke="#1D5FA3" stroke-width="2" class="ring" style="animation-delay:1.17s"/>
+    
+    <g class="node" style="animation-delay:1.17s">
+      <circle cx="430" cy="108" r="9" fill="#F7F4EE" stroke="#1D5FA3" stroke-width="3"/>
+      <circle cx="430" cy="108" r="3.5" fill="#1D5FA3"/>
     </g>
-    <g class="pop" style="animation-delay:1.19s">
-      <text x="1050" y="70" text-anchor="middle" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="12.5" fill="#F0600F" letter-spacing="1">SEPTEMBRE 2026</text>
-      <circle cx="1050" cy="104" r="9" fill="none" stroke="#F0600F" stroke-width="2" class="pulse"/>
-      <circle cx="1050" cy="104" r="8" fill="#F7F4EE" stroke="#F0600F" stroke-width="3"/>
-      <circle cx="1050" cy="104" r="3" fill="#F0600F"/>
-      <text x="1050" y="150" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#14213D">Lancement de MyWattUp</text>
-      <text x="1050" y="180" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">coach énergie :</text><text x="1050" y="201" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">sommeil, sport, nutrition</text>
+    <g class="txt" style="animation-delay:1.27s">
+      <rect x="400" y="56" width="59" height="24" rx="12" fill="#1D5FA3" opacity=".12"/>
+      <text x="430" y="73" text-anchor="middle" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="12" font-weight="700" fill="#1D5FA3" letter-spacing="1">2026</text>
+      <text x="430" y="154" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#14213D">CAP Peinture</text>
+      <text x="430" y="184" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">obtenu avec mention</text>
     </g>
+    <circle cx="710" cy="108" r="10" fill="none" stroke="#1D5FA3" stroke-width="2" class="ring" style="animation-delay:2.03s"/>
+    
+    <g class="node" style="animation-delay:2.03s">
+      <circle cx="710" cy="108" r="9" fill="#F7F4EE" stroke="#1D5FA3" stroke-width="3"/>
+      <circle cx="710" cy="108" r="3.5" fill="#1D5FA3"/>
+    </g>
+    <g class="txt" style="animation-delay:2.13s">
+      <rect x="645" y="56" width="130" height="24" rx="12" fill="#1D5FA3" opacity=".12"/>
+      <text x="710" y="73" text-anchor="middle" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="12" font-weight="700" fill="#1D5FA3" letter-spacing="1">JUILLET 2026</text>
+      <text x="710" y="154" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#14213D">Lancement de Bâtipro</text>
+      <text x="710" y="184" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">seul, du premier fichier</text><text x="710" y="205" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">au paiement Stripe</text>
+    </g>
+    <circle cx="990" cy="108" r="10" fill="none" stroke="#F0600F" stroke-width="2" class="ring" style="animation-delay:2.90s"/>
+    <circle cx="990" cy="108" r="10" fill="none" stroke="#F0600F" stroke-width="2" class="pulse"/><circle cx="990" cy="108" r="10" fill="none" stroke="#F0600F" stroke-width="2" class="pulse" style="animation-delay:4.80s"/>
+    <g class="node" style="animation-delay:2.90s">
+      <circle cx="990" cy="108" r="9" fill="#F7F4EE" stroke="#F0600F" stroke-width="3"/>
+      <circle cx="990" cy="108" r="3.5" fill="#F0600F"/>
+    </g>
+    <g class="txt" style="animation-delay:3.00s">
+      <rect x="916" y="56" width="147" height="24" rx="12" fill="#F0600F" opacity=".12"/>
+      <text x="990" y="73" text-anchor="middle" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="12" font-weight="700" fill="#F0600F" letter-spacing="1">SEPTEMBRE 2026</text>
+      <text x="990" y="154" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#14213D">Lancement de MyWattUp</text>
+      <text x="990" y="184" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">coach énergie :</text><text x="990" y="205" text-anchor="middle" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14.5" fill="#5B6B85">sommeil, sport, nutrition</text>
+    </g>
+  <text class="txt" style="animation-delay:3.20s" x="1130" y="134" text-anchor="end" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="12" fill="#97A3B6">la suite…</text>
 </svg>
