@@ -1,0 +1,37 @@
+name: Génère la carte Activité
+
+on:
+  schedule:
+    - cron: "17 3 * * *" # tous les jours vers 4h17 (heure de Paris en hiver)
+  workflow_dispatch: {} # permet de la lancer à la main depuis l'onglet Actions
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/scripts/activite.py"
+      - ".github/workflows/activite.yml"
+
+jobs:
+  generate:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Calcule les stats et dessine la carte
+        # STATS_TOKEN (token avec les droits repo + read:user) permet de compter
+        # les dépôts privés. Sans lui, seules les données publiques sont lues.
+        env:
+          GH_TOKEN: ${{ secrets.STATS_TOKEN || secrets.GITHUB_TOKEN }}
+          GH_LOGIN: mmr45
+        run: python3 .github/scripts/activite.py dist
+
+      - name: Publie sur la branche "stats"
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: stats
+          build_dir: dist
+          commit_message: "Carte Activité mise à jour"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

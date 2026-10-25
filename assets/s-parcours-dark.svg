@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="96" viewBox="0 0 1200 96" role="img" aria-label="Mon parcours">
+  <title>Mon parcours</title>
+  <style>
+    .u{stroke-dasharray:200;stroke-dashoffset:200;animation:u .8s .3s cubic-bezier(.6,0,.2,1) forwards}
+    @keyframes u{to{stroke-dashoffset:0}}
+    .in{animation:in .7s cubic-bezier(.2,.8,.2,1) both}
+    @keyframes in{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+    .l{transform-box:fill-box;transform-origin:left;animation:l 1.2s .2s cubic-bezier(.6,0,.2,1) both}
+    @keyframes l{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+    @media (prefers-reduced-motion: reduce){*{animation:none!important}}
+  </style>
+  <g class="in">
+    <text x="4" y="54" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="17" font-weight="700" fill="#FF6A13">03</text>
+    <text x="44" y="57" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="36" font-weight="800" fill="#EEF3FA" letter-spacing="-.5">Mon parcours</text>
+  </g>
+  <path class="u" pathLength="200" d="M46 73 C 90 68, 140 76, 200 70" fill="none" stroke="#FF6A13" stroke-width="5" stroke-linecap="round"/>
+  <rect class="l" x="44" y="90" width="1156" height="1" fill="#22304D"/>
+  <text x="1196" y="55" text-anchor="end" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="15" fill="#5C6E8F">// du chantier au code</text>
+</svg>

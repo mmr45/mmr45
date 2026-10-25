@@ -22,6 +22,12 @@
     @keyframes paint{to{stroke-dashoffset:0}}
     .up{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
     @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    .t{animation:cyc 12s cubic-bezier(.4,0,.2,1) infinite both}
+    @keyframes cyc{0%{opacity:0;transform:translateY(14px)}4%,30%{opacity:1;transform:none}34%,100%{opacity:0;transform:translateY(-14px)}}
+    .sway{transform-box:view-box;transform-origin:960px 330px;animation:sway 7s 1.6s ease-in-out infinite alternate}
+    @keyframes sway{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}
+    .drop{animation:drop 5s ease-in infinite}
+    @keyframes drop{0%{transform:translateY(0);opacity:0}10%{opacity:.9}70%{opacity:.9}100%{transform:translateY(46px);opacity:0}}
     .blink{animation:blink 1.1s steps(2,start) infinite}
     @keyframes blink{to{visibility:hidden}}
     @media (prefers-reduced-motion: reduce){*{animation:none!important}}
@@ -42,15 +48,19 @@
       <text x="62" y="176" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="64" font-weight="800" fill="#14213D" letter-spacing="-1.5">Osman Fauconnier</text>
     </g>
 
-    <path class="stroke" pathLength="330" d="M276 246 C 310 240, 360 249, 432 242" fill="none" stroke="#F0600F" stroke-width="13" stroke-linecap="round" opacity="0.75"/>
-    <g class="up" style="animation-delay:.12s" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="38" font-weight="700" fill="#14213D" letter-spacing="-.5">
-      <text x="64" y="238">Du chantier</text>
-      <text x="282" y="238">au code<tspan fill="#F0600F">.</tspan></text>
+    <g font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="38" font-weight="700" fill="#14213D" letter-spacing="-.5">
+      <g class="t" style="animation-delay:-.6s">
+        <path class="stroke" pathLength="330" d="M276 246 C 310 240, 360 249, 432 242" fill="none" stroke="#F0600F" stroke-width="13" stroke-linecap="round" opacity="0.75"/>
+        <text x="64" y="238">Du chantier</text>
+        <text x="282" y="238">au code<tspan fill="#F0600F">.</tspan></text>
+      </g>
+      <g class="t" style="animation-delay:3.4s"><text x="64" y="238">Préparer le support<tspan fill="#F0600F">.</tspan></text></g>
+      <g class="t" style="animation-delay:7.4s"><text x="64" y="238">Soigner la finition<tspan fill="#F0600F">.</tspan></text></g>
     </g>
 
-    <g class="up" style="animation-delay:.22s" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="17" fill="#5B6B85">
-      <text x="64" y="284">Peintre en bâtiment, je conçois et développe seul</text>
-      <text x="64" y="308">mes propres applications web.</text>
+    <g class="up" style="animation-delay:.22s" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="19" fill="#5B6B85">
+      <text x="64" y="286">Peintre en bâtiment, je conçois et développe seul</text>
+      <text x="64" y="313">mes propres applications web.</text>
     </g>
 
     <g class="up" style="animation-delay:.32s" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="11.5" fill="#97A3B6">
@@ -59,7 +69,7 @@
       <text x="446" y="350">FR<tspan class="blink" fill="#F0600F">_</tspan></text>
     </g>
 
-    
+    <g class="sway">
     <g class="sw" style="--a:-30deg;animation-delay:0.15s">
       <rect x="902" y="92" width="116" height="236" rx="12" fill="#8A7A5C" opacity="0.12" transform="translate(3 6)"/>
       <rect x="902" y="92" width="116" height="236" rx="12" fill="#FFFFFF" stroke="#E3DCCF"/>
@@ -99,7 +109,9 @@
       <text x="914" y="282" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#14213D">Orange finition</text>
       <text x="914" y="302" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="12" fill="#5B6B85">#FF6A13</text>
       <circle cx="960" cy="316" r="3.5" fill="none" stroke="#C9C1B2" stroke-width="1.5"/>
-    </g>
+    </g></g>
+    <circle class="drop" cx="1052" cy="318" r="4" fill="#FF6A13" style="animation-delay:2.2s"/>
+    <circle class="drop" cx="866" cy="292" r="3" fill="#1D5FA3" style="animation-delay:4.1s"/>
   </g>
   <rect x=".5" y=".5" width="1199" height="399" rx="19.5" fill="none" stroke="#E3DCCF"/>
 </svg>
