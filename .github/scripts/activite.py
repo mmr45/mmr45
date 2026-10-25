@@ -121,6 +121,10 @@ def level(c, mx):
     return 1 if r <= .25 else 2 if r <= .5 else 3 if r <= .8 else 4
 
 
+def jours(n):
+    return f"{n} jour" if n <= 1 else f"{n} jours"
+
+
 def fmt(n):
     return f"{n:,}".replace(",", " ")
 
@@ -183,7 +187,7 @@ def render(stats, mode, today):
         f'<text x="{48 + i * 140}" y="226" font-family="{SANS}" font-size="26" font-weight="800" fill="{p["text"]}">{v}</text>'
         f'<text x="{48 + i * 140}" y="248" font-family="{SANS}" font-size="13.5" fill="{p["muted"]}">{k}</text></g>'
         for i, (k, v) in enumerate(big))
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="{H}" viewBox="0 0 1200 {H}" role="img" aria-label="Activité GitHub : {stats['total']} contributions sur 12 mois, série actuelle de {stats['current']} jours, meilleure série de {stats['longest']} jours.">
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="{H}" viewBox="0 0 1200 {H}" role="img" aria-label="Activité GitHub : {stats['total']} contributions sur 12 mois, série actuelle de {jours(stats['current'])}, meilleure série de {jours(stats['longest'])}.">
   <title>Activité GitHub</title>
   <defs>
     <pattern id="g" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="{p['grid']}"/></pattern>
