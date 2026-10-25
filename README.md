@@ -36,7 +36,7 @@
 </p>
 
 <p>
-  <a href="https://batipro-ten.vercel.app"><img src="https://img.shields.io/badge/Voir_le_site-1D5FA3?style=for-the-badge" alt="Voir le site Bâtipro" /></a> <a href="https://github.com/mmr45/Batipro"><img src="https://img.shields.io/badge/Code-24292F?style=for-the-badge&logo=github&logoColor=white" alt="Code de Bâtipro" /></a>
+  <a href="https://batipro-ten.vercel.app"><img src="https://img.shields.io/badge/Voir_le_site-1D5FA3?style=for-the-badge" alt="Voir le site Bâtipro" /></a>
 </p>
 
 <br />
@@ -58,7 +58,7 @@
 </p>
 
 <p>
-  <a href="https://my-watt-up.vercel.app"><img src="https://img.shields.io/badge/Voir_le_site-FF6A13?style=for-the-badge" alt="Voir le site MyWattUp" /></a> <a href="https://github.com/mmr45/MyWattUp-"><img src="https://img.shields.io/badge/Code-24292F?style=for-the-badge&logo=github&logoColor=white" alt="Code de MyWattUp" /></a>
+  <a href="https://my-watt-up.vercel.app"><img src="https://img.shields.io/badge/Voir_le_site-FF6A13?style=for-the-badge" alt="Voir le site MyWattUp" /></a>
 </p>
 
 ---
@@ -87,12 +87,12 @@
 ## 📊 Mes stats GitHub
 
 <p align="center">
-  <img src="https://mmr45.vercel.app/api?username=mmr45&show_icons=true&theme=tokyonight&hide_border=true" alt="Stats GitHub" height="165" />
-  <img src="https://mmr45.vercel.app/api/top-langs/?username=mmr45&layout=compact&theme=tokyonight&hide_border=true" alt="Top langages" height="165" />
+  <img src="https://mmr45.vercel.app/api?username=mmr45&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&include_all_commits=true&cache_seconds=14400&v=2" alt="Stats GitHub" height="165" />
+  <img src="https://mmr45.vercel.app/api/top-langs/?username=mmr45&layout=compact&theme=tokyonight&hide_border=true&langs_count=6&cache_seconds=14400&v=2" alt="Top langages" height="165" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats-eight.vercel.app/?user=mmr45&theme=tokyonight&hide_border=true" alt="Streak GitHub" />
+  <img src="https://github-readme-streak-stats-eight.vercel.app/?user=mmr45&theme=tokyonight&hide_border=true&v=2" alt="Streak GitHub" />
 </p>
 
 <p align="center">
@@ -111,7 +111,7 @@
 </p>
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=mmr45&theme=tokyo-night&hide_border=true&area=true" alt="Graphique d'activité" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=mmr45&theme=tokyo-night&hide_border=true&area=true&v=2" alt="Graphique d'activité" />
 </p>
 
 <p align="center">
