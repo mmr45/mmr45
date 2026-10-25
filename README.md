@@ -23,13 +23,20 @@
 <p align="center">
   <a href="https://batipro-ten.vercel.app"><picture>
     <source media="(prefers-color-scheme: dark)" srcset="./assets/batipro-dark.svg" />
-    <img src="./assets/batipro-light.svg" alt="Bâtipro — Créer son entreprise du bâtiment, sans paperasse. Voir le site." width="49%" />
-  </picture></a>
-  <a href="https://my-watt-up.vercel.app"><picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/mywattup-dark.svg" />
-    <img src="./assets/mywattup-light.svg" alt="MyWattUp — Le coach qui croise sommeil, sport et alimentation. Voir le site." width="49%" />
+    <img src="./assets/batipro-light.svg" alt="Bâtipro — Créer son entreprise du bâtiment, sans se noyer dans la paperasse. Voir le site." width="100%" />
   </picture></a>
 </p>
+<p align="center"><b>Bâtipro</b> · qualification, statut juridique, dossier INPI et devis BTP conformes · <a href="https://batipro-ten.vercel.app">voir le site</a></p>
+
+<br />
+
+<p align="center">
+  <a href="https://my-watt-up.vercel.app"><picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/mywattup-dark.svg" />
+    <img src="./assets/mywattup-light.svg" alt="MyWattUp — Le coach du quotidien qui croise sommeil, sport et alimentation. Voir le site." width="100%" />
+  </picture></a>
+</p>
+<p align="center"><b>MyWattUp</b> · score d'énergie, repas adaptés et scanner de produits · <a href="https://my-watt-up.vercel.app">voir le site</a></p>
 
 
 <br />
@@ -75,19 +82,8 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45.vercel.app/api?username=mmr45&show_icons=true&hide_border=true&border_radius=16&locale=fr&count_private=true&include_all_commits=true&custom_title=Activit%C3%A9%20GitHub&hide_rank=true&card_width=420&bg_color=111A2E&title_color=FF6A13&text_color=C9D4E5&icon_color=4A92FF" />
-    <img src="https://mmr45.vercel.app/api?username=mmr45&show_icons=true&hide_border=true&border_radius=16&locale=fr&count_private=true&include_all_commits=true&custom_title=Activit%C3%A9%20GitHub&hide_rank=true&card_width=420&bg_color=FFFFFF&title_color=F0600F&text_color=14213D&icon_color=1D5FA3" alt="Activité GitHub" height="170" />
-  </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45.vercel.app/api/top-langs/?username=mmr45&layout=compact&hide_border=true&border_radius=16&locale=fr&langs_count=6&card_width=360&custom_title=Langages&bg_color=111A2E&title_color=FF6A13&text_color=C9D4E5&icon_color=4A92FF" />
-    <img src="https://mmr45.vercel.app/api/top-langs/?username=mmr45&layout=compact&hide_border=true&border_radius=16&locale=fr&langs_count=6&card_width=360&custom_title=Langages&bg_color=FFFFFF&title_color=F0600F&text_color=14213D&icon_color=1D5FA3" alt="Langages les plus utilisés" height="170" />
-  </picture>
-</p>
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-streak-stats-eight.vercel.app/?user=mmr45&hide_border=true&border_radius=16&locale=fr&background=111A2E&ring=FF6A13&fire=FF6A13&currStreakNum=EEF3FA&sideNums=EEF3FA&currStreakLabel=FF6A13&sideLabels=8A9BB8&dates=5C6E8F&stroke=22304D" />
-    <img src="https://github-readme-streak-stats-eight.vercel.app/?user=mmr45&hide_border=true&border_radius=16&locale=fr&background=FFFFFF&ring=F0600F&fire=F0600F&currStreakNum=14213D&sideNums=14213D&currStreakLabel=F0600F&sideLabels=5B6B85&dates=97A3B6&stroke=E3DCCF" alt="Série de contributions" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mmr45/mmr45/stats/activite-dark.svg" />
+    <img src="https://raw.githubusercontent.com/mmr45/mmr45/stats/activite-light.svg" alt="Activité GitHub sur les 12 derniers mois" width="100%" />
   </picture>
 </p>
 
