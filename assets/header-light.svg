@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-label="Osman Fauconnier — Peintre en bâtiment, développeur et fondateur. Du chantier au code.">
-  <title>Osman Fauconnier — Du chantier au code</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-label="Osman — Peintre en bâtiment, développeur et fondateur. Du chantier au code.">
+  <title>Osman — Du chantier au code</title>
   <defs>
     <pattern id="g" width="32" height="32" patternUnits="userSpaceOnUse">
       <path d="M32 0H0V32" fill="none" stroke="#E9E3D8" stroke-width="1"/>
@@ -45,7 +45,7 @@
 
     <g class="up">
       <text x="64" y="104" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="15" fill="#F0600F" letter-spacing=".5">// peintre · développeur · fondateur</text>
-      <text x="62" y="176" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="64" font-weight="800" fill="#14213D" letter-spacing="-1.5">Osman Fauconnier</text>
+      <text x="62" y="176" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="64" font-weight="800" fill="#14213D" letter-spacing="-1.5">Osman</text>
     </g>
 
     <g font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="38" font-weight="700" fill="#14213D" letter-spacing="-.5">
