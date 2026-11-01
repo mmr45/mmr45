@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./assets/header-dark.svg" />
-    <img src="./assets/header-light.svg" alt="Osman Fauconnier — Peintre en bâtiment, développeur et fondateur. Du chantier au code." width="100%" />
+    <img src="./assets/header-light.svg" alt="Osman — Peintre en bâtiment, développeur et fondateur. Du chantier au code." width="100%" />
   </picture>
 </p>
 
