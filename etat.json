@@ -1,5 +1,12 @@
 {
  "couche": 1,
- "total": 0,
- "cases": []
+ "total": 1,
+ "cases": [
+  {
+   "case": 131,
+   "couleur": "bleu",
+   "par": "mmr45",
+   "le": "2026-11-03T23:41:36+00:00"
+  }
+ ]
 }
