@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/peindre/:couleur", "destination": "/api/peindre?c=:couleur" },
+    { "source": "/mur.svg", "destination": "/api/mur" },
+    { "source": "/terminal.svg", "destination": "/api/terminal" }
+  ]
+}

@@ -1,0 +1,23 @@
+// GET /peindre/<couleur> : pose une touche sur le mur puis renvoie vers la page « merci ».
+import { COULEURS } from '../lib/rendu.js';
+import { charge, peindre, sauve } from '../lib/etat.js';
+
+const ROBOT = /bot|crawl|spider|preview|slurp|facebookexternalhit|camo/i;
+
+export default async function handler(req, res) {
+  const couleur = String(req.query.c || '').toLowerCase();
+  const merci = (q) => { res.setHeader('Cache-Control', 'no-store'); res.redirect(302, `/merci?${new URLSearchParams(q)}`); };
+  if (!COULEURS[couleur]) return merci({ erreur: 'couleur' });
+  if (ROBOT.test(req.headers['user-agent'] || '')) return merci({ c: couleur, erreur: 'robot' });
+  const ip = String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '').split(',')[0].trim();
+  try {
+    const etat = await charge();
+    const r = peindre(etat, couleur, ip);
+    if (!r.ok) return merci({ c: couleur, erreur: r.raison });
+    await sauve(etat);
+    return merci({ c: couleur, n: r.numero, ...(r.nouvelleCouche ? { couche: etat.couche } : {}) });
+  } catch (e) {
+    console.error('[peindre]', e);
+    return merci({ c: couleur, erreur: 'serveur' });
+  }
+}

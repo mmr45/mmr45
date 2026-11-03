@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Merci pour ta touche de peinture</title>
+<meta name="robots" content="noindex" />
+<style>
+  :root { --bg:#0B1220; --panel:#0F1729; --line:#22304D; --text:#EEF3FA; --muted:#8A9BB8; --orange:#FF6A13; --c:#FF6A13; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif; }
+  body { display: grid; place-items: center; min-height: 100vh; padding: 24px 16px; overflow-x: hidden;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px; background-position: center; }
+  body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(circle at 50% 30%, transparent, var(--bg) 70%); pointer-events: none; }
+  main { position: relative; width: min(960px, 100%); text-align: center; }
+  .splash { width: 160px; height: 160px; margin: 0 auto 8px; }
+  .splash path { fill: var(--c); transform-origin: 80px 80px; animation: splash .7s cubic-bezier(.3,1.6,.5,1) both; }
+  @keyframes splash { from { transform: scale(0) rotate(-40deg); } to { transform: scale(1) rotate(0); } }
+  h1 { font-size: clamp(30px, 6vw, 52px); margin: 8px 0; letter-spacing: -1px; }
+  h1 span { color: var(--c); }
+  p.sous { color: var(--muted); font-size: 18px; margin: 0 0 24px; }
+  .mur { width: 100%; border-radius: 22px; box-shadow: 0 30px 80px -30px #000; }
+  .pots { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 22px 0; }
+  .pots a { width: 46px; height: 46px; border-radius: 50%; border: 3px solid var(--panel); outline: 2px solid var(--line);
+    transition: transform .15s; display: block; }
+  .pots a:hover, .pots a:focus-visible { transform: translateY(-4px) scale(1.08); outline-color: var(--text); }
+  .retour { display: inline-flex; gap: 10px; align-items: center; background: var(--orange); color: #fff; text-decoration: none;
+    font-weight: 700; padding: 14px 24px; border-radius: 999px; font-size: 17px; }
+  .compte { color: var(--muted); font-family: 'SFMono-Regular', Consolas, monospace; font-size: 14px; margin-top: 12px; }
+  .compte button { background: none; border: 0; color: var(--muted); text-decoration: underline; cursor: pointer; font: inherit; }
+  canvas { position: fixed; inset: 0; pointer-events: none; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<main>
+  <svg class="splash" viewBox="0 0 160 160" aria-hidden="true"><path d="M80 18c10 0 12 18 22 20s22-12 28-4-8 20-2 30 24 6 24 18-20 10-24 20 10 22 2 28-20-6-28 0-6 24-20 24-12-18-22-20-22 12-28 4 8-20 2-30-24-6-24-18 20-10 24-20-10-22-2-28 20 6 28 0 6-24 20-24z"/></svg>
+  <h1 id="titre">C'est peint !</h1>
+  <p class="sous" id="sous">Ta couleur est sur le mur du profil.</p>
+  <img class="mur" id="mur" alt="Le mur de peinture en direct" />
+  <div class="pots" id="pots" aria-label="Peindre encore"></div>
+  <a class="retour" id="retour" href="https://github.com/mmr45">← Retour au profil</a>
+  <div class="compte" id="compte"></div>
+</main>
+<script>
+  const COULEURS = { orange:'#FF6A13', bleu:'#2F7BEA', vert:'#3FB950', jaune:'#F2CC60', rose:'#F778BA', violet:'#A371F7', blanc:'#EFE9DD' };
+  const q = new URLSearchParams(location.search);
+  const c = q.get('c'), err = q.get('erreur'), n = q.get('n');
+  const hex = COULEURS[c] || '#FF6A13';
+  document.documentElement.style.setProperty('--c', hex);
+  const titre = document.getElementById('titre'), sous = document.getElementById('sous');
+  if (err === 'limite') { titre.textContent = 'Pinceau au repos'; sous.textContent = 'Tu as déjà donné 10 coups de pinceau aujourd’hui. Reviens demain !'; }
+  else if (err) { titre.textContent = 'Oups'; sous.textContent = 'La peinture n’a pas pris. Réessaie dans un instant.'; }
+  else if (c) {
+    titre.innerHTML = 'Touche <span></span> posée !';
+    titre.querySelector('span').textContent = c;
+    sous.textContent = (n ? `Coup de pinceau n°${n}. ` : '') + (q.get('couche') ? `Tu viens d’attaquer la couche n°${q.get('couche')} !` : 'Il apparaît déjà sur le profil.');
+  }
+  const dark = !matchMedia('(prefers-color-scheme: light)').matches;
+  const mur = document.getElementById('mur');
+  const recharge = () => { mur.src = `/mur.svg?theme=${dark ? 'dark' : 'light'}&t=${Date.now()}`; };
+  recharge();
+  const pots = document.getElementById('pots');
+  for (const [nom, h] of Object.entries(COULEURS)) {
+    const a = document.createElement('a');
+    a.href = `/peindre/${nom}`; a.title = `Peindre en ${nom}`; a.style.background = h; a.setAttribute('aria-label', `Peindre en ${nom}`);
+    pots.append(a);
+  }
+  // retour automatique au profil, annulable
+  let s = 8;
+  const compte = document.getElementById('compte');
+  const tick = () => {
+    compte.innerHTML = `Retour automatique au profil dans ${s} s · <button type="button">rester ici</button>`;
+    compte.querySelector('button').onclick = () => { clearInterval(iv); compte.textContent = 'Reste autant que tu veux, et peins encore.'; };
+  };
+  tick();
+  const iv = setInterval(() => { s -= 1; if (s <= 0) { clearInterval(iv); location.href = 'https://github.com/mmr45'; } else tick(); }, 1000);
+  // confettis de peinture
+  if (!err && c && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const cv = document.getElementById('confetti'), ctx = cv.getContext('2d');
+    const fit = () => { cv.width = innerWidth; cv.height = innerHeight; }; fit(); addEventListener('resize', fit);
+    const P = Array.from({ length: 140 }, () => ({ x: innerWidth / 2, y: innerHeight * .25, vx: (Math.random() - .5) * 14, vy: -Math.random() * 12 - 4,
+      r: Math.random() * 6 + 3, col: Math.random() < .6 ? hex : Object.values(COULEURS)[Math.floor(Math.random() * 7)] }));
+    let f = 0;
+    (function loop() {
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      for (const p of P) { p.vy += .35; p.x += p.vx; p.y += p.vy; p.vx *= .99; ctx.fillStyle = p.col; ctx.beginPath(); ctx.ellipse(p.x, p.y, p.r, p.r * 1.3, 0, 0, 7); ctx.fill(); }
+      if (++f < 180) requestAnimationFrame(loop); else ctx.clearRect(0, 0, cv.width, cv.height);
+    })();
+  }
+</script>
+</body>
+</html>
