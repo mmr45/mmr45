@@ -71,6 +71,8 @@ def peindre(etat, titre, login, maintenant):
     etat["cases"].append({"case": ORDRE[len(etat["cases"])], "couleur": couleur, "par": login,
                           "le": maintenant.isoformat(timespec="seconds")})
     etat["total"] += 1
+    peintres = etat.setdefault("peintres", {})
+    peintres[login] = peintres.get(login, 0) + 1
     reste = CASES - len(etat["cases"])
     msg = (f"Merci @{login} ! Ta touche **{couleur}** est sur le mur "
            f"(coup de pinceau n°{etat['total']}, couche n°{etat['couche']}). "
@@ -121,6 +123,13 @@ def rendu(etat, mode):
                f'en <tspan fill="{COULEURS[derniere["couleur"]]}" font-weight="700">{esc(derniere["couleur"])}</tspan>')
     else:
         bas = f'Le mur est vierge. <tspan fill="{p["text"]}" font-weight="700">Sois le premier à peindre</tspan>'
+    top = sorted(etat.get("peintres", {}).items(), key=lambda kv: (-kv[1], kv[0]))[:3]
+    if top:
+        medailles = [p["orange"], p["muted"], p["faint"]]
+        podium = "top : " + " ".join(
+            f'<tspan fill="{medailles[i]}" font-weight="700">@{esc(l)}</tspan><tspan> ×{c}</tspan>' for i, (l, c) in enumerate(top))
+    else:
+        podium = "choisis ta couleur ↓"
     defs += f"""
   <linearGradient id="lu" x1="0" x2="1" y1="0" y2=".3"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
   <clipPath id="zone"><rect x="{x0}" y="{y0}" width="{COLS * (cell + gap) - gap}" height="{gy - y0}"/></clipPath>"""
@@ -128,7 +137,7 @@ def rendu(etat, mode):
 <g class="up">
   <circle class="pulse" cx="{x0 + 6}" cy="50" r="6" fill="{p['orange']}"/>
   {t(x0 + 22, 56, f"LE MUR · COUCHE N°{etat['couche']}", 17, p['faint'], 400, MONO, extra=' letter-spacing="2"')}
-  {t(W - x0, 56, f"{etat['total']} coup{'s' if etat['total'] > 1 else ''} de pinceau", 20, p['text'], 700, MONO, "end")}
+  {t(W - x0, 56, f"{etat['total']} coup{'s' if etat['total'] > 1 else ''} de pinceau · {n}/{CASES}", 20, p['text'], 700, MONO, "end")}
 </g>
 {''.join(cases)}
 <g clip-path="url(#zone)"><rect class="lustre rm" x="{x0 - 400}" y="{y0}" width="300" height="{gy - y0}" fill="url(#lu)"/></g>
@@ -136,7 +145,7 @@ def rendu(etat, mode):
 <rect class="jauge" x="{x0}" y="{gy + 26}" width="{max((W - 2 * x0) * pct, 6):.0f}" height="6" rx="3" fill="{p['orange']}"/>
 <g class="up" style="animation-delay:.5s">
   <text x="{x0}" y="{gy + 70}" font-family="{SANS}" font-size="22" fill="{p['muted']}">{bas}</text>
-  {t(W - x0, gy + 70, f"{n}/{CASES} cases · choisis ta couleur ↓", 19, p['faint'], 400, MONO, "end")}
+  <text x="{W - x0}" y="{gy + 70}" text-anchor="end" font-family="{MONO}" font-size="19" fill="{p['faint']}">{podium}</text>
 </g>"""
     style = BASE_CSS + f"""
 .vide{{animation:vide 4s ease-in-out infinite}}
