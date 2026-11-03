@@ -6,8 +6,6 @@
 </p>
 
 <p align="center">
-  <a href="https://batipro-ten.vercel.app"><img src="https://img.shields.io/website?url=https%3A%2F%2Fbatipro-ten.vercel.app&label=B%C3%A2tipro&up_message=en%20ligne&down_message=hors%20ligne&style=flat-square" alt="Bâtipro : statut en direct" /></a>
-  <a href="https://my-watt-up.vercel.app"><img src="https://img.shields.io/website?url=https%3A%2F%2Fmy-watt-up.vercel.app&label=MyWattUp&up_message=en%20ligne&down_message=hors%20ligne&style=flat-square" alt="MyWattUp : statut en direct" /></a>
   <img src="https://komarev.com/ghpvc/?username=mmr45&label=Visites&color=1D5FA3&style=flat-square&base=4999" alt="Visites du profil" />
 </p>
 
@@ -32,6 +30,15 @@
   <source media="(prefers-color-scheme: dark)" srcset="./assets/projet-mywattup-dark.svg" />
   <img src="./assets/projet-mywattup-light.svg" alt="MyWattUp — le coach qui croise sommeil, sport et alimentation : score d'énergie, repas adaptés, scanner de produits." width="100%" />
 </picture></a>
+</p>
+
+<br />
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mmr45/mmr45/live/live-dark.svg" />
+    <img src="https://raw.githubusercontent.com/mmr45/mmr45/live/live-light.svg" alt="En direct : disponibilité et temps de réponse de Bâtipro et MyWattUp, mesurés toutes les 30 minutes" width="100%" />
+  </picture>
 </p>
 
 <br />

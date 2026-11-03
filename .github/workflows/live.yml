@@ -1,0 +1,51 @@
+name: Carte En direct
+
+# Mesure réellement Bâtipro et MyWattUp (code HTTP + temps de réponse) toutes les
+# 30 minutes, garde 24 h d'historique et redessine la carte sur la branche « live ».
+
+on:
+  schedule:
+    - cron: "7,37 * * * *"
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/scripts/live.py"
+      - ".github/workflows/live.yml"
+
+concurrency:
+  group: live
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  mesure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: code
+
+      - uses: actions/checkout@v4
+        with:
+          ref: live
+          path: live
+
+      - name: Mesure les sites et redessine la carte
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_LOGIN: mmr45
+        run: python3 code/.github/scripts/live.py live
+
+      - name: Publie sur la branche « live »
+        working-directory: live
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Carte En direct mise à jour"
+          git push origin HEAD:live
