@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="250" viewBox="0 0 1200 250" role="img" aria-label="Préparer le support, soigner la finition — au chantier comme dans le code.">
+<title>Préparer le support, soigner la finition — au chantier comme dans le code.</title>
+<defs></defs>
+<style>
+.up{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+
+.flow{transform-origin:top;animation:flow 1.6s cubic-bezier(.3,0,.2,1) both}
+@keyframes flow{from{transform:scaleY(.15)}to{transform:scaleY(1)}}
+.drop{opacity:0;animation:drop 5.4s ease-in infinite}
+@keyframes drop{0%{opacity:0;transform:translateY(0)}12%{opacity:1}75%{opacity:1}100%{opacity:0;transform:translateY(34px)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important}.rm{display:none}}</style>
+
+<path class="flow" d="M0 0H1200V10H1073C1073 23 1069 36 1060 36S1047 23 1047 10H918C918 33 914 56 905 56S892 33 892 10H713C713 25 709 40 700 40S687 25 687 10H533C533 38 529 66 520 66S507 38 507 10H323C323 21 319 32 310 32S297 21 297 10H153C153 29 149 48 140 48S127 29 127 10H0z" fill="#F0600F"/>
+<ellipse class="drop rm" style="animation-delay:1.0s" cx="140" cy="52" rx="6" ry="8" fill="#F0600F"/><ellipse class="drop rm" style="animation-delay:1.9s" cx="310" cy="36" rx="6" ry="8" fill="#F0600F"/><ellipse class="drop rm" style="animation-delay:2.8s" cx="520" cy="70" rx="6" ry="8" fill="#F0600F"/><ellipse class="drop rm" style="animation-delay:3.7s" cx="700" cy="44" rx="6" ry="8" fill="#F0600F"/><ellipse class="drop rm" style="animation-delay:4.6s" cx="905" cy="60" rx="6" ry="8" fill="#F0600F"/><ellipse class="drop rm" style="animation-delay:5.5s" cx="1060" cy="40" rx="6" ry="8" fill="#F0600F"/>
+<g class="up" style="animation-delay:.6s">
+  <text x="600.0" y="170" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="40" font-weight="800" fill="#14213D" text-anchor="middle" letter-spacing="-.6">Préparer le support, soigner la finition.</text>
+  <text x="600.0" y="214" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="21" font-weight="400" fill="#97A3B6" text-anchor="middle">— au chantier comme dans le code</text>
+</g>
+</svg>
