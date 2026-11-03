@@ -94,7 +94,35 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/titre-05-dark.svg" />
-  <img src="./assets/titre-05-light.svg" alt="On en parle ?" width="100%" />
+  <img src="./assets/titre-05-light.svg" alt="Laisse ta trace" width="100%" />
+</picture>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mmr45/mmr45/mur/mur-dark.svg" />
+    <img src="https://raw.githubusercontent.com/mmr45/mmr45/mur/mur-light.svg" alt="Mur de peinture collectif, repeint par les visiteurs" width="100%" />
+  </picture>
+</p>
+
+<p align="center">
+  <b>Clique sur un pot</b> : ta couleur part sur le mur, posée par une GitHub Action, avec ton pseudo.
+</p>
+
+<p align="center">
+  <a href="https://github.com/mmr45/mmr45/issues/new?title=peindre%3A%20orange&body=Clique%20simplement%20sur%20%2A%2ACreate%2A%2A%20%28ne%20touche%20pas%20au%20titre%29%20%3A%20une%20GitHub%20Action%20va%20poser%20ta%20couleur%20sur%20le%20mur%20de%20mon%20profil%2C%20puis%20te%20r%C3%A9pondre%20ici.%20%C3%87a%20prend%20une%20%C3%A0%20deux%20minutes.%20%F0%9F%8E%A8"><img src="./assets/pot-orange.svg" width="72" alt="Peindre en orange" /></a>
+  <a href="https://github.com/mmr45/mmr45/issues/new?title=peindre%3A%20bleu&body=Clique%20simplement%20sur%20%2A%2ACreate%2A%2A%20%28ne%20touche%20pas%20au%20titre%29%20%3A%20une%20GitHub%20Action%20va%20poser%20ta%20couleur%20sur%20le%20mur%20de%20mon%20profil%2C%20puis%20te%20r%C3%A9pondre%20ici.%20%C3%87a%20prend%20une%20%C3%A0%20deux%20minutes.%20%F0%9F%8E%A8"><img src="./assets/pot-bleu.svg" width="72" alt="Peindre en bleu" /></a>
+  <a href="https://github.com/mmr45/mmr45/issues/new?title=peindre%3A%20vert&body=Clique%20simplement%20sur%20%2A%2ACreate%2A%2A%20%28ne%20touche%20pas%20au%20titre%29%20%3A%20une%20GitHub%20Action%20va%20poser%20ta%20couleur%20sur%20le%20mur%20de%20mon%20profil%2C%20puis%20te%20r%C3%A9pondre%20ici.%20%C3%87a%20prend%20une%20%C3%A0%20deux%20minutes.%20%F0%9F%8E%A8"><img src="./assets/pot-vert.svg" width="72" alt="Peindre en vert" /></a>
+  <a href="https://github.com/mmr45/mmr45/issues/new?title=peindre%3A%20jaune&body=Clique%20simplement%20sur%20%2A%2ACreate%2A%2A%20%28ne%20touche%20pas%20au%20titre%29%20%3A%20une%20GitHub%20Action%20va%20poser%20ta%20couleur%20sur%20le%20mur%20de%20mon%20profil%2C%20puis%20te%20r%C3%A9pondre%20ici.%20%C3%87a%20prend%20une%20%C3%A0%20deux%20minutes.%20%F0%9F%8E%A8"><img src="./assets/pot-jaune.svg" width="72" alt="Peindre en jaune" /></a>
+  <a href="https://github.com/mmr45/mmr45/issues/new?title=peindre%3A%20rose&body=Clique%20simplement%20sur%20%2A%2ACreate%2A%2A%20%28ne%20touche%20pas%20au%20titre%29%20%3A%20une%20GitHub%20Action%20va%20poser%20ta%20couleur%20sur%20le%20mur%20de%20mon%20profil%2C%20puis%20te%20r%C3%A9pondre%20ici.%20%C3%87a%20prend%20une%20%C3%A0%20deux%20minutes.%20%F0%9F%8E%A8"><img src="./assets/pot-rose.svg" width="72" alt="Peindre en rose" /></a>
+  <a href="https://github.com/mmr45/mmr45/issues/new?title=peindre%3A%20violet&body=Clique%20simplement%20sur%20%2A%2ACreate%2A%2A%20%28ne%20touche%20pas%20au%20titre%29%20%3A%20une%20GitHub%20Action%20va%20poser%20ta%20couleur%20sur%20le%20mur%20de%20mon%20profil%2C%20puis%20te%20r%C3%A9pondre%20ici.%20%C3%87a%20prend%20une%20%C3%A0%20deux%20minutes.%20%F0%9F%8E%A8"><img src="./assets/pot-violet.svg" width="72" alt="Peindre en violet" /></a>
+  <a href="https://github.com/mmr45/mmr45/issues/new?title=peindre%3A%20blanc&body=Clique%20simplement%20sur%20%2A%2ACreate%2A%2A%20%28ne%20touche%20pas%20au%20titre%29%20%3A%20une%20GitHub%20Action%20va%20poser%20ta%20couleur%20sur%20le%20mur%20de%20mon%20profil%2C%20puis%20te%20r%C3%A9pondre%20ici.%20%C3%87a%20prend%20une%20%C3%A0%20deux%20minutes.%20%F0%9F%8E%A8"><img src="./assets/pot-blanc.svg" width="72" alt="Peindre en blanc" /></a>
+</p>
+
+<br />
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/titre-06-dark.svg" />
+  <img src="./assets/titre-06-light.svg" alt="On en parle ?" width="100%" />
 </picture>
 
 <p align="center">

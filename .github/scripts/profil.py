@@ -101,8 +101,14 @@ def hero(mode):
     fs, lh, cw = 19, 31, 11.45          # taille, interligne, largeur d'un caractère mono
     gx = ex + 52                        # début du code (après les numéros de ligne)
     y0 = ey + 92
-    lines, covers = [], []
+    C = 16.0                            # durée d'un cycle complet (s)
+
+    def pc(sec):
+        return f"{min(max(sec / C * 100, 0), 100):.2f}%"
+
+    lines, covers, kf = [], [], []
     delay = 0.9
+    N = len(CODE)
     for i, toks in enumerate(CODE):
         y = y0 + i * lh
         spans = "".join(f'<tspan fill="{p[k]}">{esc(s)}</tspan>' for k, s in toks)
@@ -111,22 +117,33 @@ def hero(mode):
         lines.append(t(ex + 34, y, str(i + 1), fs - 3, p["faint"], font=MONO, anchor="end"))
         lines.append(f'<text x="{gx}" y="{y}" font-family="{MONO}" font-size="{fs}" xml:space="preserve">{spans}</text>')
         dist = n * cw + 14
+        s0, s1 = delay, delay + dur
+        e0 = C * .9 + (N - 1 - i) * .09     # effacement de bas en haut, façon retour arrière
         covers.append(
-            f'<g class="rm" style="--d:{dist:.0f}px;animation:type {dur:.2f}s {delay:.2f}s steps({n}) both">'
+            f'<g class="rm" style="animation:ty{i} {C}s linear infinite">'
             f'<rect x="{gx - 2}" y="{y - 22}" width="{ew - (gx - ex) + 2}" height="{lh}" fill="{p["panel"]}"/>'
-            f'<rect class="cur" style="animation:on {dur:.2f}s {delay:.2f}s linear" x="{gx - 1}" y="{y - 19}" width="2.5" height="24" fill="{p["orange"]}" opacity="0"/></g>')
+            f'<rect style="animation:cu{i} {C}s linear infinite" x="{gx - 1}" y="{y - 19}" width="2.5" height="24" fill="{p["orange"]}" opacity="0"/></g>')
+        kf.append(f"@keyframes ty{i}{{0%,{pc(s0)}{{transform:translateX(0);animation-timing-function:steps({n},end)}}"
+                  f"{pc(s1)},{pc(e0)}{{transform:translateX({dist:.0f}px);animation-timing-function:ease-in}}"
+                  f"{pc(e0 + .3)},100%{{transform:translateX(0)}}}}")
+        kf.append(f"@keyframes cu{i}{{0%,{pc(s0 - .01)}{{opacity:0}}{pc(s0)},{pc(s1)}{{opacity:1}}{pc(s1 + .01)},100%{{opacity:0}}}}")
         delay += dur + 0.08
     type_end = delay
     last_y = y0 + (len(CODE) - 1) * lh
     last_n = sum(len(s) for _, s in CODE[-1])
-    cursor = (f'<rect class="rm" style="animation:blink 1.1s {type_end:.2f}s steps(1) infinite" x="{gx + last_n * cw + 3:.0f}" '
-              f'y="{last_y - 19}" width="2.5" height="24" fill="{p["orange"]}" opacity="0"/>')
+    hold_end = C * .9
+    cursor = (f'<g class="rm" style="animation:hold {C}s linear infinite" opacity="0"><rect style="animation:blink 1.1s steps(1) infinite" '
+              f'x="{gx + last_n * cw + 3:.0f}" y="{last_y - 19}" width="2.5" height="24" fill="{p["orange"]}"/></g>')
+    kf.append(f"@keyframes hold{{0%,{pc(type_end - .01)}{{opacity:0}}{pc(type_end)},{pc(hold_end)}{{opacity:1}}{pc(hold_end + .01)},100%{{opacity:0}}}}")
+    for nm, st in (("tm", type_end + .2), ("ok", type_end + .9)):
+        kf.append(f"@keyframes {nm}{{0%,{pc(st)}{{opacity:0;transform:translateY(8px)}}{pc(st + .5)},{pc(C * .89)}{{opacity:1;transform:none}}"
+                  f"{pc(C * .91)},100%{{opacity:0;transform:none}}}}")
     term_y = ey + eh - 44
     term = f"""
-  <g class="up" style="animation-delay:{type_end + .2:.2f}s">
+  <g class="lp" style="animation:tm {C}s infinite">
     <rect x="{ex}" y="{term_y - 4}" width="{ew}" height="1" fill="{p['line']}"/>
     {t(ex + 22, term_y + 28, "$ git push", 18, p['muted'], font=MONO)}
-    <g class="up" style="animation-delay:{type_end + .9:.2f}s">
+    <g class="lp" style="animation:ok {C}s infinite">
       <circle cx="{ex + 168}" cy="{term_y + 22}" r="9" fill="{p['green']}"/>
       <path d="M{ex + 163.5} {term_y + 22.5}l3 3 6-6.5" fill="none" stroke="{p['panel']}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
       {t(ex + 186, term_y + 28, "en ligne · 2 apps", 18, p['green'], 600, MONO)}
@@ -154,10 +171,10 @@ def hero(mode):
     name_w = 368
     roll = f"""
 <clipPath id="paint"><rect class="reveal" x="{nx - 8}" y="{ny - 110}" width="{name_w + 30}" height="160"/></clipPath>
-<g clip-path="url(#paint)">
+<g clip-path="url(#paint)"><g class="nm">
   <path d="M{nx - 4} {ny + 18}c60-5 140 4 200-1s110 3 {name_w - 196} -1v14c-70 4-130-3-200 1s-140-4-{name_w - 4} 0z" fill="{p['orange']}"/>
   {t(nx - 4, ny, "Osman", 112, p['text'], 800, extra=' letter-spacing="-3"')}
-</g>
+</g></g>
 <g class="roller rm">
   <g transform="translate({nx - 8} 0)">
     <path d="M18 {ny - 92}V{ny - 112}H62V{ny - 150}" fill="none" stroke="{p['muted']}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -202,23 +219,27 @@ def hero(mode):
 <g class="up" style="animation-delay:.3s">{''.join(parts)}</g>"""
 
     style = BASE_CSS + f"""
-@keyframes type{{from{{transform:translateX(0)}}to{{transform:translateX(var(--d))}}}}
-@keyframes on{{from,to{{opacity:1}}}}
 @keyframes blink{{0%{{opacity:1}}50%{{opacity:0}}}}
-.reveal{{animation:reveal 1.3s .35s cubic-bezier(.65,0,.35,1) both}}
-@keyframes reveal{{from{{transform:scaleX(0)}}to{{transform:scaleX(1)}}}}
-.reveal{{transform-box:fill-box;transform-origin:left}}
-.roller{{animation:roll 1.3s .35s cubic-bezier(.65,0,.35,1) both,lift .5s 1.65s ease-in forwards}}
-@keyframes roll{{from{{transform:translateX(0)}}to{{transform:translateX({name_w + 14}px)}}}}
-@keyframes lift{{from{{opacity:1}}to{{opacity:0;translate:0 -30px}}}}
+.reveal{{transform-box:fill-box;transform-origin:left;animation:reveal {C}s infinite}}
+@keyframes reveal{{0%,{pc(.35)}{{transform:scaleX(0);animation-timing-function:cubic-bezier(.65,0,.35,1)}}{pc(1.65)},100%{{transform:scaleX(1)}}}}
+.nm{{animation:nm {C}s infinite}}
+@keyframes nm{{0%,{pc(C * .9)}{{opacity:1}}{pc(C * .96)},100%{{opacity:0}}}}
+.roller{{animation:roll {C}s infinite}}
+@keyframes roll{{0%{{opacity:0;transform:translate(0,0)}}{pc(.3)}{{opacity:1;transform:translate(0,0);animation-timing-function:cubic-bezier(.65,0,.35,1)}}{pc(1.65)}{{opacity:1;transform:translate({name_w + 14}px,0);animation-timing-function:ease-in}}{pc(2.1)},100%{{opacity:0;transform:translate({name_w + 14}px,-30px)}}}}
+.lp{{opacity:0}}
+.scan{{animation:scan 7s linear infinite}}
+@keyframes scan{{from{{transform:translateY(-10px)}}to{{transform:translateY({H}px)}}}}
 .cyc{{opacity:0;animation:cyc 12s cubic-bezier(.4,0,.2,1) infinite}}
 @keyframes cyc{{0%{{opacity:0;transform:translateY(16px)}}4%,30%{{opacity:1;transform:none}}34%,100%{{opacity:0;transform:translateY(-16px)}}}}
 .stat0{{opacity:0}}
-@media (prefers-reduced-motion: reduce){{.stat0{{opacity:1}}.cyc{{display:none}}}}
+@media (prefers-reduced-motion: reduce){{.stat0,.lp{{opacity:1}}.cyc{{display:none}}}}
 """
+    style += "\n".join(kf)
+    defs += f'<linearGradient id="sc" x1="0" x2="1"><stop offset="0" stop-color="{p["orange"]}" stop-opacity="0"/><stop offset=".75" stop-color="{p["orange"]}" stop-opacity=".5"/><stop offset="1" stop-color="{p["orange"]}" stop-opacity="0"/></linearGradient>'
+    scan = f'<g clip-path="url(#card)"><rect class="scan rm" x="0" y="0" width="{W}" height="1.5" fill="url(#sc)"/></g>'
     defs += f'<clipPath id="ed"><rect x="{ex}" y="{ey}" width="{ew}" height="{eh}" rx="16"/></clipPath>'
     return svg(W, H, "Osman — peintre en bâtiment, développeur et fondateur de deux SaaS en production. Du chantier au code.",
-               bg + left + editor + status, style, defs)
+               bg + scan + left + editor + status, style, defs)
 
 
 # ──────────────────────────────────────────────────────── titres de section ──
@@ -228,7 +249,7 @@ def titre(mode, num, title, comment):
     uw = min(len(title) * 10, 230)
     body = f"""
 <g class="in">
-  <rect x="2" y="26" width="58" height="38" rx="10" fill="none" stroke="{p['orange']}" stroke-width="2"/>
+  <rect class="bx" x="2" y="26" width="58" height="38" rx="10" fill="{p['orange']}" fill-opacity="0" stroke="{p['orange']}" stroke-width="2"/>
   {t(31, 52, num, 19, p['orange'], 700, MONO, "middle")}
   {t(80, 60, title, 42, p['text'], 800, extra=' letter-spacing="-.6"')}
 </g>
@@ -238,8 +259,10 @@ def titre(mode, num, title, comment):
     style = """
 .in{animation:in .7s cubic-bezier(.2,.8,.2,1) both}
 @keyframes in{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
-.u{stroke-dasharray:100;animation:u .9s .3s cubic-bezier(.6,0,.2,1) both}
-@keyframes u{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+.u{stroke-dasharray:100 100;animation:u 9s .3s cubic-bezier(.6,0,.2,1) infinite both}
+@keyframes u{0%{stroke-dashoffset:100}10%,80%{stroke-dashoffset:0}92%,100%{stroke-dashoffset:-100}}
+.bx{animation:bx 9s .3s ease-in-out infinite}
+@keyframes bx{0%,8%,100%{fill-opacity:0}4%{fill-opacity:.25}}
 .l{transform-box:fill-box;transform-origin:left;animation:l 1.2s .2s cubic-bezier(.6,0,.2,1) both}
 @keyframes l{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 """
@@ -266,6 +289,7 @@ PROJETS = {
         feats=["Test de qualification du projet", "Simulation du statut juridique",
                "Dossier INPI généré tout seul", "Devis BTP conformes en PDF"],
         stack=["JavaScript", "Supabase", "Stripe", "Vercel"],
+        clics=[(.12, .70), (.30, .33), (.70, .45), (.80, .90)],
     ),
     "mywattup": dict(
         nom="MyWattUp", tag="SAAS · SANTÉ", url="my-watt-up.vercel.app", img="mywattup.png",
@@ -273,6 +297,7 @@ PROJETS = {
         feats=["Score d'énergie + conseil IA du jour", "Repas selon objectif et allergies",
                "Scanner de produits (code-barres)", "Offre gratuite et offre Pro"],
         stack=["JavaScript", "Supabase", "IA", "PWA"],
+        clics=[(.62, .27), (.20, .67), (.86, .50), (.58, .76)],
     ),
 }
 
@@ -291,6 +316,19 @@ def projet(mode, key, flip=False):
     defs += f"""
   <clipPath id="shot"><path d="M{bx} {by + 44}h{bw}v{bh - 44 - 14}a14 14 0 0 1-14 14H{bx + 14}a14 14 0 0 1-14-14z"/></clipPath>
   <linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>"""
+    # curseur de souris qui « teste » l'appli en boucle, synchronisé avec la liste
+    pts = [(bx + fx * bw, by + 44 + fy * (bh - 44)) for fx, fy in d["clics"]]
+    seq = [pts[-1]] + [q for pt in pts for q in (pt, pt)]
+    vals = ";".join(f"{x:.0f},{y_:.0f}" for x, y_ in seq)
+    souris = f"""<g class="rm">
+    <circle r="0" fill="none" stroke="{p['orange']}" stroke-width="3">
+      <animate attributeName="r" values="4;24;24" keyTimes="0;.3;1" dur="2s" begin=".6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".95;0;0" keyTimes="0;.3;1" dur="2s" begin=".6s" repeatCount="indefinite"/>
+    </circle>
+    <path d="M0 0V24l6.5-5.5 4.5 9.5 4.5-2-4.5-9.5H19z" fill="#fff" stroke="#0B1220" stroke-width="1.6" stroke-linejoin="round"/>
+    <animateMotion dur="8s" repeatCount="indefinite" values="{vals}" keyTimes="0;.075;.25;.325;.5;.575;.75;.825;1"
+      calcMode="spline" keySplines="{';'.join(['.5 0 .2 1', '0 0 1 1'] * 4)}"/>
+  </g>"""
     browser = f"""
 <g class="float">
   <rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="14" fill="{p['panel']}" stroke="{p['line']}"/>
@@ -302,6 +340,7 @@ def projet(mode, key, flip=False):
     <image x="{bx}" y="{by + 44}" width="{bw}" height="{bh - 44}" preserveAspectRatio="xMidYMid slice" xlink:href="{img}"/>
     <rect class="shine rm" x="{bx - 300}" y="{by + 44}" width="260" height="{bh}" fill="url(#sh)" transform="skewX(-18)"/>
   </g>
+  {souris}
 </g>"""
     y = 92
     chips, cx = [], tx
@@ -330,6 +369,7 @@ def projet(mode, key, flip=False):
   {t(tx, y + 92, d['pitch'][0], 23, p['muted'])}
   {t(tx, y + 122, d['pitch'][1], 23, p['muted'])}
 </g>
+<rect class="hl rm" x="{tx - 10}" y="{y + 157}" width="{W - tx - 30 if not flip else bx - tx - 30}" height="38" rx="10" fill="{p['orange']}" fill-opacity=".1" stroke="{p['orange']}" stroke-opacity=".35"/>
 {feats}
 <g class="up" style="animation-delay:1.1s">{''.join(chips)}</g>
 <g class="up" style="animation-delay:1.25s">{t(tx, y + 420, d['url'] + "  ↗", 21, p['orange'], 700, MONO)}</g>"""
@@ -338,6 +378,8 @@ def projet(mode, key, flip=False):
 @keyframes float{from{transform:translateY(-4px)}to{transform:translateY(4px)}}
 .shine{animation:shine 6s 1.2s ease-in-out infinite}
 @keyframes shine{0%{transform:skewX(-18deg) translateX(0)}35%,100%{transform:skewX(-18deg) translateX(1300px)}}
+.hl{animation:hl 8s infinite}
+@keyframes hl{0%{transform:translateY(120px)}7.5%,25%{transform:translateY(0)}32.5%,50%{transform:translateY(40px)}57.5%,75%{transform:translateY(80px)}82.5%,100%{transform:translateY(120px)}}
 """
     label = f"{d['nom']} — {' '.join(d['pitch'])} " + ", ".join(d['feats']) + f". En ligne sur {d['url']}."
     return svg(W, H, label, bg + browser + text, style, defs)
@@ -363,6 +405,7 @@ def archi(mode):
 <g class="up" style="animation-delay:{.15 + i * .15:.2f}s">
   <rect x="{x}" y="{ny}" width="{nw}" height="{nh}" rx="16" fill="{p['panel']}" stroke="{p['line']}"/>
   <rect x="{x}" y="{ny}" width="{nw}" height="5" rx="2.5" fill="{c}"/>
+  <rect class="act rm" style="animation-delay:{1 + i * .35:.2f}s" x="{x}" y="{ny}" width="{nw}" height="{nh}" rx="16" fill="none" stroke="{c}" stroke-width="2" opacity="0"/>
   {t(x + 22, ny + 44, k, 15, p['faint'], 400, MONO, extra=' letter-spacing="2"')}
   {t(x + 22, ny + 90, name, 33, p['text'], 800, extra=' letter-spacing="-.5"')}
   {t(x + 22, ny + 132, sub[0], 20, p['muted'])}
@@ -400,6 +443,7 @@ def archi(mode):
         last = i == len(steps) - 1
         c = p['green'] if last else p['orange']
         pipe.append(f"""
+{f'<circle class="glow rm" cx="{cx}" cy="{py + 74}" r="17" fill="none" stroke="{c}" stroke-width="2" opacity="0"/>' if last else ''}
 <g class="pop" style="animation-delay:{1 + i * .7:.2f}s">
   <circle cx="{cx}" cy="{py + 74}" r="17" fill="{p['bg']}" stroke="{c}" stroke-width="3"/>
   <path d="M{cx - 6} {py + 74.5}l4 4 8-8.5" fill="none" stroke="{c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -412,10 +456,14 @@ def archi(mode):
   {t(W / 2, py + 196, "Je code, je pousse, c'est en ligne : chaque modification part en production en quelques minutes.", 21, p['muted'], 400, SANS, "middle")}
 </g>""")
     style = BASE_CSS + """
-.fill{transform-box:fill-box;transform-origin:left;animation:fill 2.4s 1s cubic-bezier(.6,0,.3,1) both}
-@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-.pop{transform-box:fill-box;transform-origin:center;animation:pop .5s cubic-bezier(.3,1.6,.5,1) both}
-@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.fill{transform-box:fill-box;transform-origin:left;animation:fill 8s infinite}
+@keyframes fill{0%,10%{transform:scaleX(0);opacity:1;animation-timing-function:cubic-bezier(.6,0,.3,1)}42%,86%{transform:scaleX(1);opacity:1}94%,100%{transform:scaleX(1);opacity:0}}
+.pop{transform-box:fill-box;transform-origin:center;animation:pop 8s infinite}
+@keyframes pop{0%{transform:scale(0)}5%{transform:scale(1.25)}8%,86%{transform:scale(1)}94%,100%{transform:scale(0)}}
+.act{animation:act 2s infinite}
+@keyframes act{0%,100%{opacity:0}15%{opacity:.85}45%{opacity:0}}
+.glow{transform-box:fill-box;transform-origin:center;animation:glow 8s 3.6s infinite}
+@keyframes glow{0%{transform:scale(1);opacity:.9}12%,100%{transform:scale(2.6);opacity:0}}
 """
     return svg(W, H, "Comment je construis mes SaaS : interface en JavaScript/TypeScript, hébergée sur Vercel, "
                      "backend Supabase (Auth, Postgres, Edge Functions), paiements Stripe et IA ; chaque git push part en production.",
@@ -462,10 +510,10 @@ def parcours(mode):
   {t(x, ly + 128, sub[1], 21, p['muted'], 400, SANS, "middle")}
 </g>""")
     style = BASE_CSS + """
-.draw{stroke-dasharray:100;animation:draw 2s .2s cubic-bezier(.6,0,.3,1) both}
-@keyframes draw{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
-.pop{transform-box:fill-box;transform-origin:center;animation:pop .5s cubic-bezier(.3,1.6,.5,1) both}
-@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.draw{stroke-dasharray:100 100;animation:draw 10s .2s infinite both}
+@keyframes draw{0%{stroke-dashoffset:100;animation-timing-function:cubic-bezier(.6,0,.3,1)}22%,88%{stroke-dashoffset:0}97%,100%{stroke-dashoffset:-100}}
+.pop{transform-box:fill-box;transform-origin:center;animation:pop 10s infinite}
+@keyframes pop{0%{transform:scale(0)}4%{transform:scale(1.3)}6%,88%{transform:scale(1)}95%,100%{transform:scale(0)}}
 .ring{transform-box:fill-box;transform-origin:center;animation:ring 2s 2.4s ease-out infinite}
 @keyframes ring{from{transform:scale(1);opacity:.8}to{transform:scale(2.4);opacity:0}}
 """
@@ -508,7 +556,8 @@ def main():
               ("02", "Comment je construis", "// sous le capot"),
               ("03", "D'où je viens", "// du chantier au code"),
               ("04", "Activité", "// données réelles"),
-              ("05", "On en parle ?", "// réponse rapide")]
+              ("05", "Laisse ta trace", "// mur interactif"),
+              ("06", "On en parle ?", "// réponse rapide")]
     files = {}
     for mode in PAL:
         files[f"hero-{mode}.svg"] = hero(mode)
@@ -522,7 +571,9 @@ def main():
     for name, content in files.items():
         with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
             f.write(content)
-    print(f"{len(files)} fichiers écrits dans {OUT}")
+    from mur import ecrit_pots
+    ecrit_pots(OUT)
+    print(f"{len(files)} fichiers écrits dans {OUT} (+ pots de peinture)")
 
 
 if __name__ == "__main__":

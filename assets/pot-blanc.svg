@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="120" height="150" viewBox="0 0 120 150" role="img" aria-label="Peindre en blanc">
+<title>Peindre en blanc</title>
+<defs></defs>
+<style>
+.bob{transform-origin:60px 120px;animation:bob 3s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+.goutte{animation:goutte 3s ease-in infinite}
+@keyframes goutte{0%,40%{transform:translateY(0);opacity:0}50%{opacity:1}100%{transform:translateY(52px);opacity:0}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important}.rm{display:none}}</style>
+
+<g class="bob">
+  <path d="M26 52C26 18 94 18 94 52" fill="none" stroke="#8A9BB8" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M28 52h64v64a10 10 0 0 1-10 10H38a10 10 0 0 1-10-10z" fill="#D5DDEA"/>
+  <path d="M28 60h64v4H28z" fill="#000" fill-opacity=".06"/>
+  <rect x="40" y="84" width="40" height="26" rx="5" fill="#fff" fill-opacity=".85"/>
+  <circle cx="60" cy="97" r="7" fill="#EFE9DD"/>
+  <path d="M33 54v20a5.5 5.5 0 0 0 11 0V56zM74 55v11a4.5 4.5 0 0 0 9 0V56z" fill="#EFE9DD"/>
+  <ellipse cx="60" cy="52" rx="33" ry="9" fill="#EFE9DD" stroke="#B8C3D6" stroke-width="4"/>
+  <ellipse cx="52" cy="50" rx="12" ry="3" fill="#fff" fill-opacity=".35"/>
+  <ellipse class="goutte" cx="38.5" cy="80" rx="3.5" ry="5" fill="#EFE9DD"/>
+</g>
+<text x="60" y="146" text-anchor="middle" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="17" font-weight="700" fill="#8A9BB8">blanc</text>
+</svg>
