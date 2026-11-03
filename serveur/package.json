@@ -1,0 +1,9 @@
+{
+  "name": "mmr45-profil",
+  "private": true,
+  "type": "module",
+  "description": "Petit serveur du profil GitHub : mur de peinture en un clic et terminal en direct.",
+  "dependencies": {
+    "@vercel/blob": "1.1.1"
+  }
+}
