@@ -44,9 +44,14 @@ random.Random(45).shuffle(ORDRE)
 def charge(dossier):
     try:
         with open(os.path.join(dossier, "etat.json"), encoding="utf-8") as f:
-            return json.load(f)
+            etat = json.load(f)
     except FileNotFoundError:
-        return {"couche": 1, "total": 0, "cases": []}
+        return {"couche": 1, "total": 0, "cases": [], "peintres": {}}
+    if "peintres" not in etat:  # anciens états : on reconstruit le classement depuis les cases
+        etat["peintres"] = {}
+        for c in etat["cases"]:
+            etat["peintres"][c["par"]] = etat["peintres"].get(c["par"], 0) + 1
+    return etat
 
 
 def peindre(etat, titre, login, maintenant):
