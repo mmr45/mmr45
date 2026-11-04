@@ -36,6 +36,10 @@
     {
       "source": "/live.svg",
       "destination": "/api/live"
+    },
+    {
+      "source": "/theme-actuel.svg",
+      "destination": "/api/theme?svg=1"
     }
   ],
   "headers": [

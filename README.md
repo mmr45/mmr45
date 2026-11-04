@@ -21,14 +21,24 @@
   </a>
 </p>
 
+<details>
+<summary><img src="https://mmr45-profil.vercel.app/theme-actuel.svg" alt="Thème actuel du profil. Clique pour ouvrir le menu et en choisir un autre, pour tous les visiteurs." width="100%" /></summary>
+<br />
 <p align="center">
-  <b>🎨 Choisis le thème du profil, pour tous les visiteurs :</b><br /><br />
   <a href="https://mmr45-profil.vercel.app/theme/chantier"><img src="./assets/theme-chantier.svg" width="170" alt="Thème Chantier" /></a>
   <a href="https://mmr45-profil.vercel.app/theme/neon"><img src="./assets/theme-neon.svg" width="170" alt="Thème Néon" /></a>
   <a href="https://mmr45-profil.vercel.app/theme/ocean"><img src="./assets/theme-ocean.svg" width="170" alt="Thème Océan" /></a>
   <a href="https://mmr45-profil.vercel.app/theme/matrix"><img src="./assets/theme-matrix.svg" width="170" alt="Thème Matrix" /></a>
   <a href="https://mmr45-profil.vercel.app/theme/sunset"><img src="./assets/theme-sunset.svg" width="170" alt="Thème Coucher de soleil" /></a>
+  <a href="https://mmr45-profil.vercel.app/theme/nord"><img src="./assets/theme-nord.svg" width="170" alt="Thème Nord" /></a>
+  <a href="https://mmr45-profil.vercel.app/theme/or"><img src="./assets/theme-or.svg" width="170" alt="Thème Or &amp; noir" /></a>
+  <a href="https://mmr45-profil.vercel.app/theme/sakura"><img src="./assets/theme-sakura.svg" width="170" alt="Thème Sakura" /></a>
+  <a href="https://mmr45-profil.vercel.app/theme/cyber"><img src="./assets/theme-cyber.svg" width="170" alt="Thème Cyberpunk" /></a>
+  <a href="https://mmr45-profil.vercel.app/theme/foret"><img src="./assets/theme-foret.svg" width="170" alt="Thème Forêt" /></a>
+  <a href="https://mmr45-profil.vercel.app/theme/lavande"><img src="./assets/theme-lavande.svg" width="170" alt="Thème Lavande" /></a>
 </p>
+<p align="center"><sub>Un clic change les couleurs de tout le profil, pour tout le monde. Recharge la page pour voir le résultat.</sub></p>
+</details>
 
 
 <br />

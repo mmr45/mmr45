@@ -195,3 +195,32 @@ ${rows}
   }).join(' ; ') + '.';
   return svg(W, H, label, body, style, defs);
 }
+
+// ──────────────────────────────────────────── bouton du menu des thèmes ──
+export function renderThemeActuel(th, themes, ordre, now = new Date()) {
+  const id = themes[th.theme] ? th.theme : 'chantier';
+  const p = palette('dark', id);
+  const W = 1200, H = 112;
+  const [defs, bg] = cardBg(p, W, H, '12%', '50%');
+  const dots = ['orange', 'blue', 'green', 'text'].map((k, i) => `<circle cx="${318 + i * 26}" cy="56" r="9" fill="${p[k]}"/>`).join('');
+  const mini = ordre.map((k, i) => {
+    const q = palette('dark', k);
+    return `<circle cx="${W - 330 + i * 18}" cy="78" r="6" fill="${q.orange}"${k === id ? ` stroke="${p.text}" stroke-width="2"` : ''}/>`;
+  }).join('');
+  const n = th.changements || 0;
+  const info = th.le ? `choisi ${relatif(th.le, now)} · ${n} changement${n > 1 ? 's' : ''}` : 'il s’applique à tout le profil';
+  const body = `${bg}
+<g class="up">
+  ${t(36, 44, '🎨 THÈME DU PROFIL', 14, p.orange, 800, MONO, 'start', ' letter-spacing="1.5"')}
+  ${t(36, 84, themes[id].nom, 34, p.text, 800, SANS, 'start', ' letter-spacing="-.5"')}
+  ${dots}
+  ${t(440, 62, info, 15, p.faint, 400, MONO)}
+</g>
+<g class="up" style="animation-delay:.2s">
+  <rect x="${W - 344}" y="22" width="312" height="36" rx="18" fill="${p.orange}" fill-opacity=".14" stroke="${p.orange}" stroke-opacity=".5"/>
+  <g class="nudge">${t(W - 188, 46, `▾ ouvrir le menu · ${ordre.length} thèmes`, 15, p.orange, 800, MONO, 'middle')}</g>
+  ${mini}
+</g>`;
+  const style = `.nudge{animation:nudge 2.4s ease-in-out infinite}@keyframes nudge{0%,60%,100%{transform:none}75%{transform:translateY(3px)}}`;
+  return svg(W, H, `Thème actuel du profil : ${themes[id].nom}. Ouvre le menu pour en choisir un autre.`, body, style, defs);
+}
