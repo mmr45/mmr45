@@ -25,7 +25,9 @@ export default async function handler(req, res) {
     res.setHeader('X-Theme', theme);
     return res.status(200).send(Buffer.from(await r.arrayBuffer()));
   } catch (err) {
+    // jamais de redirection ici : camo garderait la cible (cache d'un an) et l'image resterait
+    // bloquée sur l'ancien thème. On renvoie une erreur non mise en cache, camo réessaiera.
     console.error('[img]', err);
-    return res.redirect(302, chemin);
+    return res.status(503).send('image momentanément indisponible');
   }
 }
