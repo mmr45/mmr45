@@ -11,9 +11,11 @@ import { renderPartage } from '../../serveur/lib/extras.js';
 const racine = new URL('../../', import.meta.url).pathname;
 const tmp = mkdtempSync(join(tmpdir(), 'partage-'));
 for (const id of Object.keys(themes.themes)) {
+  if (themes.themes[id].gabarit) continue;
   const svg = join(tmp, `${id}.svg`);
   writeFileSync(svg, renderPartage(id));
   execFileSync('rsvg-convert', ['-w', '1280', '-h', '640', '-o', join(racine, 'serveur/themes', id, 'partage.png'), svg]);
   console.log(id);
 }
 copyFileSync(join(racine, 'serveur/themes/chantier/partage.png'), join(racine, 'assets/partage.png'));
+

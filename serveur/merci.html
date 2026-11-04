@@ -70,6 +70,8 @@
       if (!t) return;
       const r = document.documentElement.style;
       const pal = t.dark;
+      const nomTheme = titre.querySelector('span');
+      if (nomTheme) nomTheme.textContent = t.nom;
       r.setProperty('--bg', pal.bg); r.setProperty('--panel', pal.panel); r.setProperty('--line', pal.line);
       r.setProperty('--text', pal.text); r.setProperty('--muted', pal.muted); r.setProperty('--orange', pal.orange); r.setProperty('--c', pal.orange);
     }).catch(() => {});
@@ -137,3 +139,4 @@
 </script>
 </body>
 </html>
+

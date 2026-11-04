@@ -10,6 +10,42 @@ import re
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 TEXTES = [
+    ('>Aurore boréale</a>', '>Northern Lights</a>'),
+    ('>Volcan</a>', '>Volcano</a>'),
+    ('>Abysses</a>', '>Abyss</a>'),
+    ('>Glacier</a>', '>Glacier</a>'),
+    ('>Désert</a>', '>Desert</a>'),
+    ('>Terracotta</a>', '>Terracotta</a>'),
+    ('>Cuivre</a>', '>Copper</a>'),
+    ('>Cobalt</a>', '>Cobalt</a>'),
+    ('>Émeraude</a>', '>Emerald</a>'),
+    ('>Rubis</a>', '>Ruby</a>'),
+    ('>Améthyste</a>', '>Amethyst</a>'),
+    ('>Menthe</a>', '>Mint</a>'),
+    ('>Citron</a>', '>Lemon</a>'),
+    ('>Café crème</a>', '>Cream Coffee</a>'),
+    ('>Papier & encre</a>', '>Paper & Ink</a>'),
+    ('>Graphite</a>', '>Graphite</a>'),
+    ('>Arcade rétro</a>', '>Retro Arcade</a>'),
+    ('>Synthwave</a>', '>Synthwave</a>'),
+    ('>Rose poudré</a>', '>Powder Pink</a>'),
+    ('>Lagon</a>', '>Lagoon</a>'),
+    ('>Prune</a>', '>Plum</a>'),
+    ('>Cosmos</a>', '>Cosmos</a>'),
+    ('>Ardoise</a>', '>Slate</a>'),
+    ('>Contraste net</a>', '>High Contrast</a>'),
+
+    ('Lire dans ta langue / Read in your language — 190 langues et variantes', 'Read in your language — 190 languages and variants'),
+    ('Menu avec recherche et liste défilante. Traduction automatique de la version textuelle du profil ; les images restent en français ou en anglais.', 'Searchable, scrollable language menu. Automatic translation of the text version; image artwork stays in French or English.'),
+    ('Explorer les 36 ambiances — aperçu clair / sombre avant activation', 'Explore all 36 themes — preview light / dark before applying'),
+    ('24 nouveaux univers · activation pour tous les visiteurs', '24 new worlds · applies to all visitors'),
+    ('Comparer toutes les ambiances avant de choisir →', 'Compare all themes before choosing →'),
+
+    ('Découvrir Bâtipro', 'Discover Bâtipro'), ('Tester MyWattUp', 'Try MyWattUp'),
+    ('Explorer le tableau de bord', 'Explore the dashboard'), ('Peindre la fresque', 'Paint the mural'),
+    ('Fresque collective animée : 144 cases, une seule image. Ouvre la fresque pour choisir une case et la peindre.',
+     'Animated community mural: 144 squares in one image. Open the mural to choose a square and paint it.'),
+
     ('<p align="center"><a href="https://github.com/mmr45"><img src="https://img.shields.io/badge/Fran%C3%A7ais-%E2%9C%93-E8B04B?style=for-the-badge" alt="Français (langue actuelle)" /></a> <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md"><img src="https://img.shields.io/badge/English-version-2F81F7?style=for-the-badge" alt="English version" /></a></p>',
      '<p align="center"><a href="https://github.com/mmr45"><img src="https://img.shields.io/badge/Version-fran%C3%A7aise-2F81F7?style=for-the-badge" alt="Version française" /></a> <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md"><img src="https://img.shields.io/badge/English-%E2%9C%93-E8B04B?style=for-the-badge" alt="English (current language)" /></a></p>'),
     ("Osman — peintre en bâtiment, développeur et fondateur de deux SaaS en production. Du chantier au code.",
@@ -19,8 +55,8 @@ TEXTES = [
     ("Visites du profil en direct : ton numéro de visite, les 30 derniers jours et les dernières visites. Clique pour le tableau de bord complet.",
      "Live profile visits: your visitor number, the last 30 days and the latest visits. Click for the full dashboard."),
     ("Thème actuel du profil.", "Current profile theme."),
-    ("<b>🎨 Changer le thème du profil</b> : clique ici pour ouvrir le menu (12 thèmes, dont un automatique)",
-     "<b>🎨 Change the profile theme</b>: click here to open the menu (12 themes, including an automatic one)"),
+    ("<b>🎨 Changer le thème du profil</b> : 36 choix : classiques, nouveaux univers et mode automatique",
+     "<b>🎨 Change the profile theme</b>: 36 choices: classics, new worlds and automatic mode"),
     ("Thème automatique : suit l'heure et la saison", "Automatic theme: follows the time and season"),
     ('alt="Thème ', 'alt="Theme '),
     ('Theme Néon"', 'Theme Neon"'), ('Theme Océan"', 'Theme Ocean"'), ('Theme Forêt"', 'Theme Forest"'),
@@ -47,8 +83,7 @@ TEXTES = [
      "Roadmap: my latest releases on Bâtipro and MyWattUp, and what is in progress, collected every night"),
     ("Succès débloqués : ils s'allument tout seuls quand je passe un cap (commits, contributions, visites, coups de pinceau…)",
      "Achievements: they light up on their own when I reach a milestone (commits, contributions, visits, brush strokes…)"),
-    ('<b>La fresque : clique une case, choisis ta couleur.</b> Ou clique un pot pour peindre une case au hasard. Pas de compte, tout se met à jour en direct.', '<b>The mural: click a square, pick your colour.</b> Or click a paint can to paint a random square. No account, everything updates live.'),
-    ('alt="Case ', 'alt="Square '),
+    ('<b>La fresque : ouvre le mur, choisis une case et ta couleur.</b> Ou clique un pot pour peindre la prochaine case libre. Pas de compte ; le mur est partagé entre tous les visiteurs.', '<b>The mural: open the wall, choose a square and your colour.</b> Or click a paint can to paint the next empty square. No account; everyone shares the wall.'),
     ("Mon mur de code : un rouleau de peinture repeint mes contributions des 12 derniers mois, une case par jour",
      "My code wall: a paint roller repaints my contributions of the last 12 months, one square per day"),
     ("Mes contributions des 12 derniers mois en ville 3D animée : une tour par jour, plus elle est haute, plus j'ai codé",
@@ -86,3 +121,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
