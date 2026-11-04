@@ -3,6 +3,7 @@
 // proxy (camo) : on ne voit ni l'IP ni le compte du visiteur, seulement l'heure
 // et le thème (clair/sombre) choisi par son navigateur. Tout est donc anonyme.
 import { readFile, writeFile } from 'node:fs/promises';
+import { REDIS, rget, rset } from './store.js';
 
 const CHEMIN = 'stats/vues.json';
 const LOCAL = !process.env.BLOB_READ_WRITE_TOKEN;
@@ -48,6 +49,7 @@ async function seedKomarev() {
 }
 
 async function lit() {
+  if (REDIS) return rget('vues');
   if (LOCAL) {
     try { return JSON.parse(await readFile(FICHIER_LOCAL, 'utf8')); } catch { return null; }
   }
@@ -63,6 +65,7 @@ async function lit() {
 }
 
 async function ecrit(e) {
+  if (REDIS) return rset('vues', e);
   const json = JSON.stringify(e);
   if (LOCAL) return writeFile(FICHIER_LOCAL, json);
   const { put } = await import('@vercel/blob');
