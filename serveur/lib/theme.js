@@ -5,6 +5,18 @@ import { ecritVersion, litVersion } from './versions.js';
 
 export const THEMES = cfg.themes;
 export const ORDRE = cfg.ordre;
+export const AUTO = 'auto';
+
+// Thème automatique : la saison le jour, coucher de soleil le soir, néon la nuit (heure de Paris).
+const SAISONS = ['nord', 'nord', 'sakura', 'sakura', 'sakura', 'ocean', 'ocean', 'ocean', 'foret', 'foret', 'foret', 'nord'];
+const PARIS = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', month: 'numeric', hour: 'numeric', hourCycle: 'h23' });
+export function themeAuto(now = new Date()) {
+  const o = Object.fromEntries(PARIS.formatToParts(now).map((x) => [x.type, x.value]));
+  const h = Number(o.hour), m = Number(o.month) - 1;
+  if (h >= 22 || h < 6) return { id: 'neon', moment: 'nuit' };
+  if (h >= 18) return { id: 'sunset', moment: 'soir' };
+  return { id: SAISONS[m], moment: ['hiver', 'hiver', 'printemps', 'printemps', 'printemps', 'été', 'été', 'été', 'automne', 'automne', 'automne', 'hiver'][m] };
+}
 const CHEMIN = 'stats/theme.json'; // ancien emplacement, relu une fois
 const PREFIXE = 'stats/theme/v-';
 const MAX_PAR_JOUR = 20;
@@ -24,17 +36,19 @@ export async function etatTheme() {
     console.error('[theme]', e);
     memo = memo || defaut();
   }
-  if (!THEMES[memo.theme]) memo.theme = 'chantier';
+  if (!THEMES[memo.theme] && memo.theme !== AUTO) memo.theme = 'chantier';
   memoAt = Date.now();
   return memo;
 }
 
-export async function themeActuel() {
-  return (await etatTheme()).theme;
+// thème réellement affiché (le mode auto est résolu à chaque affichage)
+export async function themeActuel(now = new Date()) {
+  const t = (await etatTheme()).theme;
+  return t === AUTO ? themeAuto(now).id : t;
 }
 
 export async function choisir(id, ip, now = new Date()) {
-  if (!THEMES[id]) return { ok: false, raison: 'theme' };
+  if (!THEMES[id] && id !== AUTO) return { ok: false, raison: 'theme' };
   memoAt = 0;
   const e = { ...defaut(), ...(await lit()) };
   const jour = now.toISOString().slice(0, 10);

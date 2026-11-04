@@ -197,30 +197,47 @@ ${rows}
 }
 
 // ──────────────────────────────────────────── bouton du menu des thèmes ──
-export function renderThemeActuel(th, themes, ordre, now = new Date()) {
+export function renderThemeActuel(th, themes, ordre, now = new Date(), lang = 'fr') {
+  const en = lang === 'en';
   const id = themes[th.theme] ? th.theme : 'chantier';
   const p = palette('dark', id);
   const W = 1200, H = 112;
   const [defs, bg] = cardBg(p, W, H, '12%', '50%');
-  const dots = ['orange', 'blue', 'green', 'text'].map((k, i) => `<circle cx="${318 + i * 26}" cy="56" r="9" fill="${p[k]}"/>`).join('');
+  const nomTheme = (k) => (en ? ({ neon: 'Neon', ocean: 'Ocean', sunset: 'Sunset', nord: 'Nord', or: 'Gold & black', foret: 'Forest', lavande: 'Lavender' })[k] || themes[k].nom : themes[k].nom);
+  const MOMENTS_EN = { nuit: 'night', soir: 'evening', hiver: 'winter', printemps: 'spring', 'été': 'summer', automne: 'autumn' };
+  const nom = th.auto ? `Auto · ${nomTheme(id)}` : nomTheme(id);
+  const dots = ['orange', 'blue', 'green', 'text'].map((k, i) => `<circle cx="${(th.auto ? 400 : 318) + i * 26}" cy="56" r="9" fill="${p[k]}"/>`).join('');
   const mini = ordre.map((k, i) => {
     const q = palette('dark', k);
     return `<circle cx="${W - 330 + i * 18}" cy="78" r="6" fill="${q.orange}"${k === id ? ` stroke="${p.text}" stroke-width="2"` : ''}/>`;
   }).join('');
   const n = th.changements || 0;
-  const info = th.le ? `choisi ${relatif(th.le, now)} · ${n} changement${n > 1 ? 's' : ''}` : 'il s’applique à tout le profil';
+  let info;
+  if (th.auto) info = en ? `follows the time and season (${MOMENTS_EN[th.auto.moment] || th.auto.moment})` : `suit l’heure et la saison (${th.auto.moment})`;
+  else if (en) info = th.le ? `picked ${relatifEn(th.le, now)} · ${n} change${n > 1 ? 's' : ''}` : 'applies to the whole profile';
+  else info = th.le ? `choisi ${relatif(th.le, now)} · ${n} changement${n > 1 ? 's' : ''}` : 'il s’applique à tout le profil';
   const body = `${bg}
 <g class="up">
-  ${t(36, 44, '🎨 THÈME DU PROFIL', 14, p.orange, 800, MONO, 'start', ' letter-spacing="1.5"')}
-  ${t(36, 84, themes[id].nom, 34, p.text, 800, SANS, 'start', ' letter-spacing="-.5"')}
+  ${t(36, 44, en ? '🎨 PROFILE THEME' : '🎨 THÈME DU PROFIL', 14, p.orange, 800, MONO, 'start', ' letter-spacing="1.5"')}
+  ${t(36, 84, nom, 34, p.text, 800, SANS, 'start', ' letter-spacing="-.5"')}
   ${dots}
-  ${t(440, 62, info, 15, p.faint, 400, MONO)}
+  ${t(th.auto ? 522 : 440, 62, info, 15, p.faint, 400, MONO)}
 </g>
 <g class="up" style="animation-delay:.2s">
   <rect x="${W - 344}" y="22" width="312" height="36" rx="18" fill="${p.orange}" fill-opacity=".14" stroke="${p.orange}" stroke-opacity=".5"/>
-  <g class="nudge">${t(W - 188, 46, `${ordre.length} thèmes · menu en dessous ▾`, 15, p.orange, 800, MONO, 'middle')}</g>
+  <g class="nudge">${t(W - 188, 46, en ? `${ordre.length + 1} themes · menu below ▾` : `${ordre.length + 1} thèmes · menu en dessous ▾`, 15, p.orange, 800, MONO, 'middle')}</g>
   ${mini}
 </g>`;
   const style = `.nudge{animation:nudge 2.4s ease-in-out infinite}@keyframes nudge{0%,60%,100%{transform:none}75%{transform:translateY(3px)}}`;
-  return svg(W, H, `Thème actuel du profil : ${themes[id].nom}. Le menu juste en dessous permet d’en choisir un autre.`, body, style, defs);
+  return svg(W, H, en ? `Current profile theme: ${nom}. The menu just below lets you pick another one.` : `Thème actuel du profil : ${nom}. Le menu juste en dessous permet d’en choisir un autre.`, body, style, defs);
+}
+
+function relatifEn(iso, now) {
+  const m = Math.floor((now - new Date(iso)) / 60000);
+  if (m < 1) return 'just now';
+  if (m < 60) return `${m} min ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h} h ago`;
+  const j = Math.floor(h / 24);
+  return `${j} day${j > 1 ? 's' : ''} ago`;
 }

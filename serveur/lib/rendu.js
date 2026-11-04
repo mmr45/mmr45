@@ -1,5 +1,6 @@
 // Rendu SVG côté serveur : mêmes couleurs, polices et règles que .github/scripts/profil.py.
 import themes from './themes.json' with { type: 'json' };
+import { traduitSvg } from './langue.js';
 export const SANS = "'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif";
 export const MONO = "'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace";
 
@@ -37,8 +38,8 @@ export const BASE_CSS = `.up{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
 .pulse{animation:pulse 2s ease-in-out infinite}@keyframes pulse{50%{opacity:.25}}`;
 
 export function svg(w, h, label, body, style = '', defs = '') {
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(label)}">
-<title>${esc(label)}</title><defs>${defs}</defs><style>${BASE_CSS}${style}${REDUCED}</style>${body}</svg>`;
+  return traduitSvg(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(label)}">
+<title>${esc(label)}</title><defs>${defs}</defs><style>${BASE_CSS}${style}${REDUCED}</style>${body}</svg>`);
 }
 
 export function cardBg(p, w, h, gx = '50%', gy = '50%') {

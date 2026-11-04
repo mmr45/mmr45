@@ -5,8 +5,6 @@ on:
     - cron: "17 3 * * *" # tous les jours vers 4h17 (heure de Paris en hiver)
   workflow_dispatch: {} # permet de la lancer à la main depuis l'onglet Actions
   push:
-    branches:
-      - main
     paths:
       - ".github/scripts/activite.py"
       - ".github/workflows/activite.yml"

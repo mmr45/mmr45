@@ -1,5 +1,6 @@
 // GET /mur.svg?theme=dark|light : le mur, redessiné à chaque affichage.
 import { themeActuel } from '../lib/theme.js';
+import { avecLangue } from '../lib/langue.js';
 import { renderMur } from '../lib/rendu.js';
 import { charge } from '../lib/etat.js';
 
@@ -9,5 +10,6 @@ export default async function handler(req, res) {
   // court cache CDN : le mur reste « en direct » sans relire le stockage à chaque vue
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0'); // camo de GitHub garde sinon une vieille couleur
   res.setHeader('Vercel-CDN-Cache-Control', 'max-age=15');
-  res.status(200).send(renderMur(etat, req.query.theme === 'light' ? 'light' : 'dark', new Date(), await themeActuel().catch(() => 'chantier')));
+  const themeA = await themeActuel().catch(() => 'chantier');
+  res.status(200).send(avecLangue(req.query.lang, () => renderMur(etat, req.query.theme === 'light' ? 'light' : 'dark', new Date(), themeA)));
 }

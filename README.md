@@ -1,3 +1,5 @@
+<p align="right"><sub><b>🇫🇷 Français</b> · <a href="./README.en.md">🇬🇧 English version</a></sub></p>
+
 <p align="center">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/hero.svg?mode=dark&amp;v=4" />
@@ -24,9 +26,10 @@
 <a href="https://mmr45-profil.vercel.app/dashboard"><img src="https://mmr45-profil.vercel.app/theme-actuel.svg?v=4" alt="Thème actuel du profil." width="100%" /></a>
 
 <details>
-<summary><b>🎨 Changer le thème du profil</b> : clique ici pour ouvrir le menu (11 thèmes)</summary>
+<summary><b>🎨 Changer le thème du profil</b> : clique ici pour ouvrir le menu (12 thèmes, dont un automatique)</summary>
 <br />
 <p align="center">
+  <a href="https://mmr45-profil.vercel.app/theme/auto"><img src="./assets/theme-auto.svg" width="170" alt="Thème automatique : suit l'heure et la saison" /></a>
   <a href="https://mmr45-profil.vercel.app/theme/chantier"><img src="./assets/theme-chantier.svg" width="170" alt="Thème Chantier" /></a>
   <a href="https://mmr45-profil.vercel.app/theme/neon"><img src="./assets/theme-neon.svg" width="170" alt="Thème Néon" /></a>
   <a href="https://mmr45-profil.vercel.app/theme/ocean"><img src="./assets/theme-ocean.svg" width="170" alt="Thème Océan" /></a>
@@ -39,7 +42,7 @@
   <a href="https://mmr45-profil.vercel.app/theme/foret"><img src="./assets/theme-foret.svg" width="170" alt="Thème Forêt" /></a>
   <a href="https://mmr45-profil.vercel.app/theme/lavande"><img src="./assets/theme-lavande.svg" width="170" alt="Thème Lavande" /></a>
 </p>
-<p align="center"><sub>Un clic change les couleurs de tout le profil, pour tout le monde. Recharge la page pour voir le résultat.</sub></p>
+<p align="center"><sub>Un clic change les couleurs de tout le profil, pour tout le monde. « Auto » suit l'heure et la saison : printemps sakura, été océan, automne forêt, hiver nord, coucher de soleil le soir et néon la nuit. Recharge la page pour voir le résultat.</sub></p>
 </details>
 
 
@@ -119,15 +122,15 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mmr45/mmr45/stats/activite-dark.svg" />
-    <img src="https://raw.githubusercontent.com/mmr45/mmr45/stats/activite-light.svg" alt="Activité GitHub sur les 12 derniers mois" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/stats.svg?mode=dark" />
+    <img src="https://mmr45-profil.vercel.app/img/stats.svg?mode=light" alt="Mes stats GitHub sur 12 mois : contributions, commits, pull requests, jours actifs, série de jours et langages, aux couleurs du thème" width="100%" />
   </picture>
 </p>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mmr45/mmr45/output/github-contribution-grid-snake-dark.svg" />
-    <img src="https://raw.githubusercontent.com/mmr45/mmr45/output/github-contribution-grid-snake.svg" alt="Snake qui mange la grille des contributions" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/ville.svg?mode=dark" />
+    <img src="https://mmr45-profil.vercel.app/img/ville.svg?mode=light" alt="Mes contributions des 12 derniers mois en ville 3D animée : une tour par jour, plus elle est haute, plus j'ai codé" width="100%" />
   </picture>
 </p>
 
