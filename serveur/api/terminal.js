@@ -1,5 +1,6 @@
 // GET /terminal.svg?theme=dark|light : heure de Paris et ping réel des deux SaaS, à chaque affichage.
 import { themeActuel } from '../lib/theme.js';
+import { avecLangue } from '../lib/langue.js';
 import { renderTerminal } from '../lib/rendu.js';
 
 const SITES = ['https://batipro-ten.vercel.app', 'https://my-watt-up.vercel.app'];
@@ -15,7 +16,13 @@ async function ping(url) {
   }
 }
 
-function salut(h) {
+function salut(h, en) {
+  if (en) {
+    if (h < 6) return 'echo "It\'s late. I\'m probably still coding."';
+    if (h < 12) return 'echo "Morning! Coffee, job site, then code."';
+    if (h < 18) return 'echo "Good afternoon, thanks for stopping by!"';
+    return 'echo "Good evening! Enjoy the profile."';
+  }
   if (h < 6) return "echo \"Il est tard. Moi, je code sûrement encore.\"";
   if (h < 12) return 'echo "Bonjour ! Café, chantier, puis code."';
   if (h < 18) return 'echo "Bon après-midi, merci de passer !"';
@@ -25,10 +32,11 @@ function salut(h) {
 export default async function handler(req, res) {
   const now = new Date();
   const sites = await Promise.all(SITES.map(ping));
-  const date = new Intl.DateTimeFormat('fr-FR', { timeZone: 'Europe/Paris', weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(now);
+  const date = new Intl.DateTimeFormat(req.query.lang === 'en' ? 'en-GB' : 'fr-FR', { timeZone: 'Europe/Paris', weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(now);
   const h = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', hour: 'numeric', hourCycle: 'h23' }).formatToParts(now).find((x) => x.type === 'hour').value);
   res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0'); // camo de GitHub garde sinon une vieille couleur
   res.setHeader('Vercel-CDN-Cache-Control', 'max-age=20');
-  res.status(200).send(renderTerminal({ date, sites, salut: salut(h) }, req.query.theme === 'light' ? 'light' : 'dark', await themeActuel().catch(() => 'chantier')));
+  const themeA = await themeActuel().catch(() => 'chantier');
+  res.status(200).send(avecLangue(req.query.lang, () => renderTerminal({ date, sites, salut: salut(h, req.query.lang === 'en') }, req.query.theme === 'light' ? 'light' : 'dark', themeA)));
 }

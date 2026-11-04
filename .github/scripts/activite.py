@@ -102,6 +102,7 @@ def analyse(user):
         prs=cc["totalPullRequestContributions"],
         current=current, longest=longest,
         days=last_weeks(days, 30),
+        annee=last_weeks(days, 53),
         langs=top if langs else [],
     )
 
@@ -242,7 +243,21 @@ def main():
     for mode in PAL:
         with open(os.path.join(out, f"activite-{mode}.svg"), "w", encoding="utf-8") as f:
             f.write(render(stats, mode, today))
-    print(json.dumps({k: v for k, v in stats.items() if k != "days"}, ensure_ascii=False))
+    # données brutes pour les cartes dessinées par le serveur Vercel (aux couleurs du thème)
+    annee = stats["annee"]
+    meilleur = max(annee, key=lambda d: d["contributionCount"], default=None)
+    donnees = dict(
+        le=dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        total=stats["total"], commits=stats["commits"], prs=stats["prs"],
+        serie=stats["current"], record=stats["longest"],
+        actifs=sum(1 for d in annee if d["contributionCount"] > 0),
+        meilleur=dict(date=meilleur["date"], n=meilleur["contributionCount"]) if meilleur else None,
+        langages=[dict(nom=n, couleur=c, part=round(p, 4)) for n, c, p in stats["langs"]],
+        jours=[[d["date"], d["contributionCount"]] for d in annee],
+    )
+    with open(os.path.join(out, "donnees.json"), "w", encoding="utf-8") as f:
+        json.dump(donnees, f, ensure_ascii=False, separators=(",", ":"))
+    print(json.dumps({k: v for k, v in stats.items() if k not in ("days", "annee")}, ensure_ascii=False))
 
 
 if __name__ == "__main__":

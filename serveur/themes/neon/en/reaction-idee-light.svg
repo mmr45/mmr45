@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="132" height="132" viewBox="0 0 132 132" role="img" aria-label="React: Inspiring">
+<title>React: Inspiring</title>
+<defs><radialGradient id="gl" cx="50%" cy="30%" r="70%"><stop offset="0" stop-color="#D1009F" stop-opacity=".22"/><stop offset="1" stop-color="#D1009F" stop-opacity="0"/></radialGradient></defs>
+<style>
+.up{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+.hop{animation:hop 3s cubic-bezier(.3,1.6,.5,1) infinite}
+@keyframes hop{0%,75%,100%{transform:none}82%{transform:translateY(-8px) rotate(-8deg) scale(1.12)}90%{transform:rotate(5deg)}}@media (prefers-reduced-motion: reduce){*{animation:none!important}.rm{display:none}}</style>
+<rect x="1" y="1" width="130" height="130" rx="30" fill="#FFFFFF" stroke="#F0CFE8" stroke-width="2"/>
+<rect x="1" y="1" width="130" height="130" rx="30" fill="url(#gl)"/>
+<g transform="translate(66 74)"><g class="hop"><text font-family="'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif" font-size="52" text-anchor="middle">💡</text></g></g>
+<text x="66" y="112" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#6C4D82" text-anchor="middle">Inspiring</text>
+</svg>

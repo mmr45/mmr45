@@ -12,6 +12,8 @@ Contraintes GitHub prises en compte :
   - le texte est volontairement grand : l'image est réduite à ~360 px sur mobile.
 """
 import base64
+import glob
+import shutil
 import io
 import os
 from xml.sax.saxutils import escape as esc
@@ -37,10 +39,78 @@ PAL = {
     ),
 }
 
+# ─────────────────────────────────────────── version anglaise du profil ──
+LANG = "fr"
+EN = {
+    "Ce que j'ai mis en ligne": "What I've shipped", "D'où je viens": "Where I come from",
+    "Comment je construis": "How I build", "Activité": "Activity", "Laisse ta trace": "Leave your mark",
+    "On en parle ?": "Let's talk?", "// en production": "// in production", "// sous le capot": "// under the hood",
+    "// du chantier au code": "// from site to code", "// données réelles": "// real data",
+    "// mur interactif": "// interactive wall", "// réponse rapide": "// quick reply",
+    "Je code, je pousse, c'est en ligne : chaque modification part en production en quelques minutes.":
+        "I code, I push, it's live: every change reaches production within minutes.",
+    "// peintre · développeur · fondateur": "// painter · developer · founder",
+    "Préparer le support": "Prep the surface", "Écrire le code": "Write the code",
+    "Livrer en production": "Ship to production",
+    "Peintre en bâtiment, je conçois, code": "Building painter: I design, code",
+    "et mets en ligne mes propres SaaS. Seul.": "and ship my own SaaS. Solo.",
+    "⎇ main": "⎇ main", "✓ 2 SaaS en production": "✓ 2 SaaS in production",
+    "◆ CAP Peinture · mention": "◆ Painting diploma · honours", "en ligne · 2 apps": "live · 2 apps",
+    "Apprenti peintre": "Apprentice painter", "Bâtipro en ligne": "Bâtipro goes live",
+    "MyWattUp en ligne": "MyWattUp goes live", "CAP Peinture": "Painting diploma",
+    "JUILLET 2026": "JULY 2026", "SEPT. 2026": "SEPT. 2026", "avec mention": "with honours", "obtenu": "earned",
+    "en alternance,": "work-study,", "sur les chantiers": "on real sites", "seul, du 1er fichier": "solo, from file one",
+    "au paiement Stripe": "to Stripe payments", "sommeil, sport,": "sleep, sport,", "nutrition": "nutrition",
+    "la suite…": "what's next…",
+    "CLIENT": "CLIENT", "HÉBERGEMENT": "HOSTING", "BACKEND": "BACKEND", "SERVICES": "SERVICES",
+    "Interface": "Interface", "Déploiement auto": "Auto deploy", "à chaque push": "on every push",
+    "Paiements, webhooks": "Payments, webhooks", "conseils générés": "generated advice",
+    "DE MON ÉDITEUR À LA PROD": "FROM MY EDITOR TO PROD",
+    "SAAS · BTP": "SAAS · CONSTRUCTION", "SAAS · SANTÉ": "SAAS · HEALTH", "en ligne": "live",
+    "Créer son entreprise du bâtiment,": "Start a construction business",
+    "sans se noyer dans la paperasse.": "without drowning in paperwork.",
+    "Test de qualification du projet": "Project eligibility test",
+    "Simulation du statut juridique": "Legal status simulator",
+    "Dossier INPI généré tout seul": "Company filing, auto-generated",
+    "Devis BTP conformes en PDF": "Compliant quotes as PDF",
+    "Le coach qui croise sommeil,": "The coach that blends sleep,", "sport et alimentation.": "training and food.",
+    "Score d'énergie + conseil IA du jour": "Energy score + daily AI tip",
+    "Repas selon objectif et allergies": "Meals for your goal & allergies",
+    "Scanner de produits (code-barres)": "Product barcode scanner",
+    "Offre gratuite et offre Pro": "Free plan and Pro plan", "IA": "AI", "Stripe · IA": "Stripe · AI",
+    "Préparer le support, soigner la finition.": "Prep the surface, perfect the finish.",
+    "— au chantier comme dans le code": "— on site as in code",
+    '"peintre & dev"': '"painter & dev"', '"CAP · mention"': '"diploma · honours"',
+    '"finition > vite"': '"finish > fast"', "  métier": "  job", "  diplôme": "  diploma",
+    "  en_prod": "  in_prod", "  devise": "  motto",
+    # descriptions (lecteurs d'écran)
+    "Osman — peintre en bâtiment, développeur et fondateur de deux SaaS en production. Du chantier au code.":
+        "Osman — building painter, developer and founder of two SaaS in production. From the site to the code.",
+    "Comment je construis mes SaaS : interface en JavaScript/TypeScript, hébergée sur Vercel, backend Supabase (Auth, Postgres, Edge Functions), paiements Stripe et IA ; chaque git push part en production.":
+        "How I build my SaaS: JavaScript/TypeScript front end hosted on Vercel, Supabase back end (Auth, Postgres, Edge Functions), Stripe payments and AI; every git push goes to production.",
+    "Parcours : apprenti peintre en alternance de 2024 à 2026, CAP Peinture obtenu avec mention en 2026, Bâtipro en ligne en juillet 2026, MyWattUp en ligne en septembre 2026.":
+        "Path: apprentice painter in work-study 2024–2026, painting diploma with honours in 2026, Bâtipro live in July 2026, MyWattUp live in September 2026.",
+    "Ça claque": "Fire", "Impressionnant": "Mind-blown", "Inspirant": "Inspiring", "Beau boulot": "Nice work",
+    "Préparer le support, soigner la finition — au chantier comme dans le code.":
+        "Prep the surface, perfect the finish — on site as in code.",
+}
+
+
+def tr(s):
+    if LANG != "en":
+        return s
+    if s in EN:
+        return EN[s]
+    if s.startswith(("Bâtipro — ", "MyWattUp — ")):  # description des cartes projet
+        return s
+    return s
+
+
 REDUCED = "@media (prefers-reduced-motion: reduce){*{animation:none!important}.rm{display:none}}"
 
 
 def svg(w, h, label, body, style="", defs=""):
+    label = tr(label)
     return (f'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" '
             f'width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="{esc(label)}">\n'
             f'<title>{esc(label)}</title>\n<defs>{defs}</defs>\n<style>{style}{REDUCED}</style>\n{body}\n</svg>\n')
@@ -73,6 +143,7 @@ BASE_CSS = """
 
 
 def t(x, y, s, size, fill, weight=400, font=SANS, anchor="start", extra=""):
+    s = tr(s)
     a = f' text-anchor="{anchor}"' if anchor != "start" else ""
     return (f'<text x="{x}" y="{y}" font-family="{font}" font-size="{size}" font-weight="{weight}" '
             f'fill="{fill}"{a}{extra}>{esc(s)}</text>')
@@ -111,8 +182,8 @@ def hero(mode):
     N = len(CODE)
     for i, toks in enumerate(CODE):
         y = y0 + i * lh
-        spans = "".join(f'<tspan fill="{p[k]}">{esc(s)}</tspan>' for k, s in toks)
-        n = sum(len(s) for _, s in toks)
+        spans = "".join(f'<tspan fill="{p[k]}">{esc(tr(s))}</tspan>' for k, s in toks)
+        n = sum(len(tr(s)) for _, s in toks)
         dur = max(n * 0.026, 0.2)
         lines.append(t(ex + 34, y, str(i + 1), fs - 3, p["faint"], font=MONO, anchor="end"))
         lines.append(f'<text x="{gx}" y="{y}" font-family="{MONO}" font-size="{fs}" xml:space="preserve">{spans}</text>')
@@ -130,7 +201,7 @@ def hero(mode):
         delay += dur + 0.08
     type_end = delay
     last_y = y0 + (len(CODE) - 1) * lh
-    last_n = sum(len(s) for _, s in CODE[-1])
+    last_n = sum(len(tr(s)) for _, s in CODE[-1])
     hold_end = C * .9
     cursor = (f'<g class="rm" style="animation:hold {C}s linear infinite" opacity="0"><rect style="animation:blink 1.1s steps(1) infinite" '
               f'x="{gx + last_n * cw + 3:.0f}" y="{last_y - 19}" width="2.5" height="24" fill="{p["orange"]}"/></g>')
@@ -186,7 +257,7 @@ def hero(mode):
     taglines = ["Préparer le support", "Écrire le code", "Livrer en production"]
     tag = "".join(
         f'<g class="cyc" style="animation-delay:{1.6 + i * 4}s"><text x="{nx}" y="{ny + 84}" font-family="{SANS}" font-size="42" '
-        f'font-weight="800" fill="{p["text"]}" letter-spacing="-.5">{esc(s)}<tspan fill="{p["orange"]}">.</tspan></text></g>'
+        f'font-weight="800" fill="{p["text"]}" letter-spacing="-.5">{esc(tr(s))}<tspan fill="{p["orange"]}">.</tspan></text></g>'
         for i, s in enumerate(taglines))
     left = f"""
 <g class="up" style="animation-delay:.1s">{t(nx, 104, "// peintre · développeur · fondateur", 19, p['orange'], 400, MONO)}</g>
@@ -205,11 +276,11 @@ def hero(mode):
     sx, parts = 24, []
     for s, c in items_l:
         parts.append(t(sx, sy + 33, s, 18, c, 600 if c == p['green'] else 400, MONO))
-        sx += len(s) * 11 + 34
+        sx += len(tr(s)) * 11 + 34
     rx = W - 24
     for s, c in items_r:
         parts.append(t(rx, sy + 33, s, 18, c, 400, MONO, anchor="end"))
-        rx -= len(s) * 11 + 30
+        rx -= len(tr(s)) * 11 + 30
     status = f"""
 <g clip-path="url(#card)">
   <rect x="0" y="{sy}" width="{W}" height="52" fill="{p['bar']}"/>
@@ -246,7 +317,7 @@ def hero(mode):
 def titre(mode, num, title, comment):
     p = PAL[mode]
     W, H = 1200, 104
-    uw = min(len(title) * 10, 230)
+    uw = min(len(tr(title)) * 10, 230)
     body = f"""
 <g class="in">
   <rect class="bx" x="2" y="26" width="58" height="38" rx="10" fill="{p['orange']}" fill-opacity="0" stroke="{p['orange']}" stroke-width="2"/>
@@ -282,6 +353,9 @@ def capture(path):
         return "data:image/png;base64," + base64.b64encode(open(path, "rb").read()).decode()
 
 
+GABARIT = False  # True : les captures sont remplacées par « __CAPTURE:<fichier>__ », insérées par le serveur
+
+
 def image_brute(path, largeur):
     """Image déjà optimisée (JPEG des captures) : intégrée telle quelle, renvoie (data-uri, hauteur à cette largeur)."""
     data = open(path, "rb").read()
@@ -290,6 +364,8 @@ def image_brute(path, largeur):
         w, h = Image.open(io.BytesIO(data)).size
     except ImportError:
         w, h = 1, 1
+    if GABARIT:
+        return f"__CAPTURE:{os.path.basename(path)}__", largeur * h / w
     return "data:image/jpeg;base64," + base64.b64encode(data).decode(), largeur * h / w
 
 
@@ -402,7 +478,7 @@ def projet(mode, key, flip=False):
 <g class="up" style="animation-delay:.2s">
   {t(tx, y - 6, d['tag'], 16, p['faint'], 400, MONO, extra=' letter-spacing="2"')}
   {t(tx, y + 50, d['nom'], 58, p['text'], 800, extra=' letter-spacing="-1.5"')}
-  <g transform="translate({tx + len(d['tag']) * 12.2 + 22:.0f} {y - 12})">
+  <g transform="translate({tx + len(tr(d['tag'])) * 12.2 + 22:.0f} {y - 12})">
     <rect x="0" y="-17" width="122" height="32" rx="16" fill="{p['green']}" fill-opacity=".14"/>
     <circle class="pulse" cx="20" cy="1" r="6" fill="{p['green']}"/>
     {t(34, 5, "en ligne", 16, p['green'], 700, MONO)}
@@ -428,7 +504,8 @@ image.defile{animation-name:def}rect.defile{animation-name:barre}
 .float2{animation:float 6s 1s ease-in-out infinite alternate-reverse}
 @keyframes hl{0%{transform:translateY(120px)}7.5%,25%{transform:translateY(0)}32.5%,50%{transform:translateY(40px)}57.5%,75%{transform:translateY(80px)}82.5%,100%{transform:translateY(120px)}}
 """ + style_defile
-    label = f"{d['nom']} — {' '.join(d['pitch'])} " + ", ".join(d['feats']) + f". En ligne sur {d['url']}."
+    label = (f"{d['nom']} — {' '.join(tr(x) for x in d['pitch'])} " + ", ".join(tr(x) for x in d['feats'])
+             + (f". Live at {d['url']}." if LANG == "en" else f". En ligne sur {d['url']}."))
     return svg(W, H, label, bg + browser + text, style, defs)
 
 
@@ -539,7 +616,7 @@ def parcours(mode):
         x = xs[i]
         last = i == len(ms) - 1
         c = p['orange'] if last else p['blue']
-        dw = len(date) * 11.5 + 30
+        dw = len(tr(date)) * 11.5 + 30
         d0 = .3 + i * .45
         body.append(f"""
 <g class="up" style="animation-delay:{d0:.2f}s">
@@ -652,6 +729,21 @@ def pastille(tid, info):
     return svg(W, H, f"Thème {info['nom']}", body, BASE_CSS, defs)
 
 
+def pastille_auto(cfg):
+    """Bouton « Auto » : le thème suit l'heure et la saison (4 saisons en dégradé)."""
+    p = PAL["dark"]
+    W, H = 260, 92
+    cols = [cfg["themes"][k]["dark"].get("orange", p["orange"]) for k in ("sakura", "ocean", "foret", "nord")]
+    stops = "".join(f'<stop offset="{i / 3:.2f}" stop-color="{c}"/>' for i, c in enumerate(cols))
+    body = f"""<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="18" fill="{p['bg']}" stroke="url(#sa)" stroke-width="2.5"/>
+{t(22, 38, "Auto", 22, p['text'], 800)}{t(84, 38, "heure + saison", 14, p['muted'], 400, MONO)}
+<rect x="22" y="54" width="104" height="16" rx="8" fill="url(#sa)" class="tourne"/>
+<g class="pulse">{t(W - 22, 68, "choisir →", 15, p['orange'], 700, MONO, "end")}</g>"""
+    defs = f'<linearGradient id="sa" x1="0" x2="1">{stops}</linearGradient>'
+    style = BASE_CSS + ".tourne{animation:pulse 3s ease-in-out infinite}"
+    return svg(W, H, "Thème automatique : suit l'heure et la saison", body, style, defs)
+
+
 REACTIONS = [("feu", "🔥", "Ça claque"), ("bravo", "👏", "Bravo"), ("wow", "🤯", "Impressionnant"),
              ("idee", "💡", "Inspirant"), ("peinture", "🎨", "Beau boulot")]
 
@@ -667,7 +759,7 @@ def bouton_reaction(rid, emoji, nom, mode="dark"):
     defs = f'<radialGradient id="gl" cx="50%" cy="30%" r="70%"><stop offset="0" stop-color="{p["orange"]}" stop-opacity=".22"/><stop offset="1" stop-color="{p["orange"]}" stop-opacity="0"/></radialGradient>'
     style = BASE_CSS + """.hop{animation:hop 3s cubic-bezier(.3,1.6,.5,1) infinite}
 @keyframes hop{0%,75%,100%{transform:none}82%{transform:translateY(-8px) rotate(-8deg) scale(1.12)}90%{transform:rotate(5deg)}}"""
-    return svg(W, H, f"Réagir : {nom}", body, style, defs)
+    return svg(W, H, (f"React: {tr(nom)}" if LANG == "en" else f"Réagir : {nom}"), body, style, defs)
 
 
 # ───────────────────────────────── variantes par thème (servies par serveur/) ──
@@ -687,29 +779,42 @@ def ecrit_themes(titres):
         info = cfg["themes"][tid]
         for mode in base:
             PAL[mode] = {**base[mode], **{k: v for k, v in info[mode].items() if k in base[mode]}}
-        dossier = os.path.join(THEMES_OUT, tid)
-        os.makedirs(dossier, exist_ok=True)
-        files = {}
-        for mode in base:
-            files[f"hero-{mode}.svg"] = hero(mode)
-            for num, title, com in titres:
-                files[f"titre-{num}-{mode}.svg"] = titre(mode, num, title, com)
-            files[f"projet-batipro-{mode}.svg"] = projet(mode, "batipro")
-            files[f"projet-mywattup-{mode}.svg"] = projet(mode, "mywattup", flip=True)
-            files[f"archi-{mode}.svg"] = archi(mode)
-            files[f"parcours-{mode}.svg"] = parcours(mode)
-            files[f"pied-{mode}.svg"] = pied(mode)
-            files[f"avatar-{mode}.svg"] = avatar(mode)
-            for rid, emoji, nom in REACTIONS:
-                files[f"reaction-{rid}-{mode}.svg"] = bouton_reaction(rid, emoji, nom, mode)
+        global LANG, GABARIT
+        GABARIT = True
+        for lang in ("fr", "en"):
+            LANG = lang
+            dossier = os.path.join(THEMES_OUT, tid) + ("/en" if lang == "en" else "")
+            os.makedirs(dossier, exist_ok=True)
+            files = {}
+            for mode in base:
+                files[f"hero-{mode}.svg"] = hero(mode)
+                for num, title, com in titres:
+                    files[f"titre-{num}-{mode}.svg"] = titre(mode, num, title, com)
+                files[f"projet-batipro-{mode}.svg"] = projet(mode, "batipro")
+                files[f"projet-mywattup-{mode}.svg"] = projet(mode, "mywattup", flip=True)
+                files[f"archi-{mode}.svg"] = archi(mode)
+                files[f"parcours-{mode}.svg"] = parcours(mode)
+                files[f"pied-{mode}.svg"] = pied(mode)
+                for rid, emoji, nom in REACTIONS:
+                    files[f"reaction-{rid}-{mode}.svg"] = bouton_reaction(rid, emoji, nom, mode)
+            for name, content in files.items():
+                with open(os.path.join(dossier, name), "w", encoding="utf-8") as f:
+                    f.write(content)
+            n += len(files)
+        LANG, GABARIT = "fr", False
+        for vieux in glob.glob(os.path.join(THEMES_OUT, tid, "avatar-*.svg")):
+            os.remove(vieux)
         with open(os.path.join(OUT, f"theme-{tid}.svg"), "w", encoding="utf-8") as f:
             f.write(pastille(tid, info))
-        for name, content in files.items():
-            with open(os.path.join(dossier, name), "w", encoding="utf-8") as f:
-                f.write(content)
-        n += len(files)
     for mode in base:
         PAL[mode] = base[mode]
+    with open(os.path.join(OUT, "theme-auto.svg"), "w", encoding="utf-8") as f:
+        f.write(pastille_auto(cfg))
+    # captures servies à part : le serveur les insère dans les cartes projet (pas de copie par thème)
+    cap = os.path.join(THEMES_OUT, "captures")
+    os.makedirs(cap, exist_ok=True)
+    for src in glob.glob(os.path.join(OUT, "captures", "*.jpg")):
+        shutil.copyfile(src, os.path.join(cap, os.path.basename(src)))
     print(f"{n} images de thème écrites dans {THEMES_OUT}")
 
 

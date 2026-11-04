@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="540" viewBox="0 0 1200 540" role="img" aria-label="Osman — building painter, developer and founder of two SaaS in production. From the site to the code.">
+<title>Osman — building painter, developer and founder of two SaaS in production. From the site to the code.</title>
+<defs>
+  <pattern id="g" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#E9E3D8"/></pattern>
+  <radialGradient id="fd" cx="82%" cy="38%" r="80%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <mask id="m"><rect width="1200" height="540" fill="url(#fd)"/></mask>
+  <radialGradient id="gl" cx="82%" cy="38%" r="50%"><stop offset="0" stop-color="#F0600F" stop-opacity=".12"/><stop offset="1" stop-color="#F0600F" stop-opacity="0"/></radialGradient>
+  <clipPath id="card"><rect width="1200" height="540" rx="22"/></clipPath><linearGradient id="sc" x1="0" x2="1"><stop offset="0" stop-color="#F0600F" stop-opacity="0"/><stop offset=".75" stop-color="#F0600F" stop-opacity=".5"/><stop offset="1" stop-color="#F0600F" stop-opacity="0"/></linearGradient><clipPath id="ed"><rect x="668" y="52" width="480" height="400" rx="16"/></clipPath></defs>
+<style>
+.up{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+
+@keyframes blink{0%{opacity:1}50%{opacity:0}}
+.reveal{transform-box:fill-box;transform-origin:left;animation:reveal 16.0s infinite}
+@keyframes reveal{0%,2.19%{transform:scaleX(0);animation-timing-function:cubic-bezier(.65,0,.35,1)}10.31%,100%{transform:scaleX(1)}}
+.nm{animation:nm 16.0s infinite}
+@keyframes nm{0%,90.00%{opacity:1}96.00%,100%{opacity:0}}
+.roller{animation:roll 16.0s infinite}
+@keyframes roll{0%{opacity:0;transform:translate(0,0)}1.88%{opacity:1;transform:translate(0,0);animation-timing-function:cubic-bezier(.65,0,.35,1)}10.31%{opacity:1;transform:translate(382px,0);animation-timing-function:ease-in}13.12%,100%{opacity:0;transform:translate(382px,-30px)}}
+.lp{opacity:0}
+.scan{animation:scan 7s linear infinite}
+@keyframes scan{from{transform:translateY(-10px)}to{transform:translateY(540px)}}
+.cyc{opacity:0;animation:cyc 12s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes cyc{0%{opacity:0;transform:translateY(16px)}4%,30%{opacity:1;transform:none}34%,100%{opacity:0;transform:translateY(-16px)}}
+.stat0{opacity:0}
+@media (prefers-reduced-motion: reduce){.stat0,.lp{opacity:1}.cyc{display:none}}
+@keyframes ty0{0%,5.62%{transform:translateX(0);animation-timing-function:steps(22,end)}9.20%,93.94%{transform:translateX(266px);animation-timing-function:ease-in}95.81%,100%{transform:translateX(0)}}
+@keyframes cu0{0%,5.56%{opacity:0}5.62%,9.20%{opacity:1}9.26%,100%{opacity:0}}
+@keyframes ty1{0%,9.70%{transform:translateX(0);animation-timing-function:steps(23,end)}13.44%,93.38%{transform:translateX(277px);animation-timing-function:ease-in}95.25%,100%{transform:translateX(0)}}
+@keyframes cu1{0%,9.64%{opacity:0}9.70%,13.44%{opacity:1}13.50%,100%{opacity:0}}
+@keyframes ty2{0%,13.94%{transform:translateX(0);animation-timing-function:steps(31,end)}18.98%,92.81%{transform:translateX(369px);animation-timing-function:ease-in}94.69%,100%{transform:translateX(0)}}
+@keyframes cu2{0%,13.88%{opacity:0}13.94%,18.98%{opacity:1}19.04%,100%{opacity:0}}
+@keyframes ty3{0%,19.47%{transform:translateX(0);animation-timing-function:steps(23,end)}23.21%,92.25%{transform:translateX(277px);animation-timing-function:ease-in}94.12%,100%{transform:translateX(0)}}
+@keyframes cu3{0%,19.41%{opacity:0}19.47%,23.21%{opacity:1}23.27%,100%{opacity:0}}
+@keyframes ty4{0%,23.71%{transform:translateX(0);animation-timing-function:steps(24,end)}27.61%,91.69%{transform:translateX(289px);animation-timing-function:ease-in}93.56%,100%{transform:translateX(0)}}
+@keyframes cu4{0%,23.65%{opacity:0}23.71%,27.61%{opacity:1}27.67%,100%{opacity:0}}
+@keyframes ty5{0%,28.11%{transform:translateX(0);animation-timing-function:steps(25,end)}32.17%,91.12%{transform:translateX(300px);animation-timing-function:ease-in}93.00%,100%{transform:translateX(0)}}
+@keyframes cu5{0%,28.05%{opacity:0}28.11%,32.17%{opacity:1}32.24%,100%{opacity:0}}
+@keyframes ty6{0%,32.67%{transform:translateX(0);animation-timing-function:steps(25,end)}36.74%,90.56%{transform:translateX(300px);animation-timing-function:ease-in}92.44%,100%{transform:translateX(0)}}
+@keyframes cu6{0%,32.61%{opacity:0}32.67%,36.74%{opacity:1}36.80%,100%{opacity:0}}
+@keyframes ty7{0%,37.24%{transform:translateX(0);animation-timing-function:steps(20,end)}40.49%,90.00%{transform:translateX(243px);animation-timing-function:ease-in}91.88%,100%{transform:translateX(0)}}
+@keyframes cu7{0%,37.18%{opacity:0}37.24%,40.49%{opacity:1}40.55%,100%{opacity:0}}
+@keyframes hold{0%,40.92%{opacity:0}40.99%,90.00%{opacity:1}90.06%,100%{opacity:0}}
+@keyframes tm{0%,42.24%{opacity:0;transform:translateY(8px)}45.36%,89.00%{opacity:1;transform:none}91.00%,100%{opacity:0;transform:none}}
+@keyframes ok{0%,46.61%{opacity:0;transform:translateY(8px)}49.74%,89.00%{opacity:1;transform:none}91.00%,100%{opacity:0;transform:none}}@media (prefers-reduced-motion: reduce){*{animation:none!important}.rm{display:none}}</style>
+
+<g clip-path="url(#card)">
+  <rect width="1200" height="540" fill="#F7F4EE"/>
+  <rect width="1200" height="540" fill="url(#g)" mask="url(#m)"/>
+  <rect width="1200" height="540" fill="url(#gl)"/>
+</g>
+<rect x=".5" y=".5" width="1199" height="539" rx="21.5" fill="none" stroke="#E3DCCF"/><g clip-path="url(#card)"><rect class="scan rm" x="0" y="0" width="1200" height="1.5" fill="url(#sc)"/></g>
+<g class="up" style="animation-delay:.1s"><text x="64" y="104" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="19" font-weight="400" fill="#F0600F">// painter · developer · founder</text></g>
+
+<clipPath id="paint"><rect class="reveal" x="56" y="116" width="398" height="160"/></clipPath>
+<g clip-path="url(#paint)"><g class="nm">
+  <path d="M60 244c60-5 140 4 200-1s110 3 172 -1v14c-70 4-130-3-200 1s-140-4-364 0z" fill="#F0600F"/>
+  <text x="60" y="226" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="112" font-weight="800" fill="#14213D" letter-spacing="-3">Osman</text>
+</g></g>
+<g class="roller rm">
+  <g transform="translate(56 0)">
+    <path d="M18 134V114H62V76" fill="none" stroke="#5B6B85" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="53" y="30" width="18" height="50" rx="8" fill="#14213D"/>
+    <rect x="0" y="134" width="34" height="132" rx="10" fill="#F0600F"/>
+    <path d="M8 146V254M17 142V258M26 146V254" stroke="#000" stroke-opacity=".14" stroke-width="2"/>
+  </g>
+</g>
+<g class="stat0"><text x="64" y="310" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="42" font-weight="800" fill="#14213D">Prep the surface<tspan fill="#F0600F">.</tspan></text></g>
+<g class="cyc" style="animation-delay:1.6s"><text x="64" y="310" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="42" font-weight="800" fill="#14213D" letter-spacing="-.5">Prep the surface<tspan fill="#F0600F">.</tspan></text></g><g class="cyc" style="animation-delay:5.6s"><text x="64" y="310" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="42" font-weight="800" fill="#14213D" letter-spacing="-.5">Write the code<tspan fill="#F0600F">.</tspan></text></g><g class="cyc" style="animation-delay:9.6s"><text x="64" y="310" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="42" font-weight="800" fill="#14213D" letter-spacing="-.5">Ship to production<tspan fill="#F0600F">.</tspan></text></g>
+<g class="up" style="animation-delay:1.3s">
+  <text x="64" y="366" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="25" font-weight="400" fill="#5B6B85">Building painter: I design, code</text>
+  <text x="64" y="400" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="25" font-weight="400" fill="#5B6B85">and ship my own SaaS. Solo.</text>
+</g>
+<g class="up" style="animation-delay:.5s">
+  <rect x="668" y="52" width="480" height="400" rx="16" fill="#FFFFFF" stroke="#E3DCCF"/>
+  <path d="M668 68a16 16 0 0 1 16-16h448a16 16 0 0 1 16 16v28H668z" fill="#FBF9F5"/>
+  <rect x="668" y="96" width="480" height="1" fill="#E3DCCF"/>
+  <circle cx="692" cy="74" r="6" fill="#FF5F57"/><circle cx="712" cy="74" r="6" fill="#FEBC2E"/><circle cx="732" cy="74" r="6" fill="#28C840"/>
+  <rect x="758" y="60" width="206" height="37" rx="8" fill="#FFFFFF"/>
+  <rect x="758" y="94" width="206" height="3" fill="#FFFFFF"/>
+  <rect x="758" y="60" width="206" height="2" rx="1" fill="#F0600F"/>
+  <text x="776" y="84" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="13" font-weight="800" fill="#1D5FA3">TS</text>
+  <text x="802" y="84" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="15" font-weight="400" fill="#14213D">osman.config.ts</text>
+  <text x="702" y="144" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="16" font-weight="400" fill="#97A3B6" text-anchor="end">1</text><text x="720" y="144" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="19" xml:space="preserve"><tspan fill="#D2500A">export const </tspan><tspan fill="#1D5FA3">osman</tspan><tspan fill="#5B6B85"> = {</tspan></text><text x="702" y="175" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="16" font-weight="400" fill="#97A3B6" text-anchor="end">2</text><text x="720" y="175" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="19" xml:space="preserve"><tspan fill="#1D5FA3">  job</tspan><tspan fill="#5B6B85">: </tspan><tspan fill="#1A7F37">"painter &amp; dev"</tspan><tspan fill="#5B6B85">,</tspan></text><text x="702" y="206" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="16" font-weight="400" fill="#97A3B6" text-anchor="end">3</text><text x="720" y="206" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="19" xml:space="preserve"><tspan fill="#1D5FA3">  diploma</tspan><tspan fill="#5B6B85">: </tspan><tspan fill="#1A7F37">"diploma · honours"</tspan><tspan fill="#5B6B85">,</tspan></text><text x="702" y="237" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="16" font-weight="400" fill="#97A3B6" text-anchor="end">4</text><text x="720" y="237" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="19" xml:space="preserve"><tspan fill="#1D5FA3">  in_prod</tspan><tspan fill="#5B6B85">: [</tspan><tspan fill="#1A7F37">"Bâtipro"</tspan><tspan fill="#5B6B85">, </tspan></text><text x="702" y="268" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="16" font-weight="400" fill="#97A3B6" text-anchor="end">5</text><text x="720" y="268" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="19" xml:space="preserve"><tspan fill="#5B6B85">            </tspan><tspan fill="#1A7F37">"MyWattUp"</tspan><tspan fill="#5B6B85">],</tspan></text><text x="702" y="299" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="16" font-weight="400" fill="#97A3B6" text-anchor="end">6</text><text x="720" y="299" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="19" xml:space="preserve"><tspan fill="#1D5FA3">  stack</tspan><tspan fill="#5B6B85">: </tspan><tspan fill="#1A7F37">"TS · Supabase"</tspan><tspan fill="#5B6B85">,</tspan></text><text x="702" y="330" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="16" font-weight="400" fill="#97A3B6" text-anchor="end">7</text><text x="720" y="330" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="19" xml:space="preserve"><tspan fill="#1D5FA3">  motto</tspan><tspan fill="#5B6B85">: </tspan><tspan fill="#1A7F37">"finish &gt; fast"</tspan><tspan fill="#5B6B85">,</tspan></text><text x="702" y="361" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="16" font-weight="400" fill="#97A3B6" text-anchor="end">8</text><text x="720" y="361" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="19" xml:space="preserve"><tspan fill="#5B6B85">} </tspan><tspan fill="#D2500A">satisfies </tspan><tspan fill="#9A6700">Artisan</tspan><tspan fill="#5B6B85">;</tspan></text>
+  <g clip-path="url(#ed)"><g class="rm" style="animation:ty0 16.0s linear infinite"><rect x="718" y="122" width="430" height="31" fill="#FFFFFF"/><rect style="animation:cu0 16.0s linear infinite" x="719" y="125" width="2.5" height="24" fill="#F0600F" opacity="0"/></g><g class="rm" style="animation:ty1 16.0s linear infinite"><rect x="718" y="153" width="430" height="31" fill="#FFFFFF"/><rect style="animation:cu1 16.0s linear infinite" x="719" y="156" width="2.5" height="24" fill="#F0600F" opacity="0"/></g><g class="rm" style="animation:ty2 16.0s linear infinite"><rect x="718" y="184" width="430" height="31" fill="#FFFFFF"/><rect style="animation:cu2 16.0s linear infinite" x="719" y="187" width="2.5" height="24" fill="#F0600F" opacity="0"/></g><g class="rm" style="animation:ty3 16.0s linear infinite"><rect x="718" y="215" width="430" height="31" fill="#FFFFFF"/><rect style="animation:cu3 16.0s linear infinite" x="719" y="218" width="2.5" height="24" fill="#F0600F" opacity="0"/></g><g class="rm" style="animation:ty4 16.0s linear infinite"><rect x="718" y="246" width="430" height="31" fill="#FFFFFF"/><rect style="animation:cu4 16.0s linear infinite" x="719" y="249" width="2.5" height="24" fill="#F0600F" opacity="0"/></g><g class="rm" style="animation:ty5 16.0s linear infinite"><rect x="718" y="277" width="430" height="31" fill="#FFFFFF"/><rect style="animation:cu5 16.0s linear infinite" x="719" y="280" width="2.5" height="24" fill="#F0600F" opacity="0"/></g><g class="rm" style="animation:ty6 16.0s linear infinite"><rect x="718" y="308" width="430" height="31" fill="#FFFFFF"/><rect style="animation:cu6 16.0s linear infinite" x="719" y="311" width="2.5" height="24" fill="#F0600F" opacity="0"/></g><g class="rm" style="animation:ty7 16.0s linear infinite"><rect x="718" y="339" width="430" height="31" fill="#FFFFFF"/><rect style="animation:cu7 16.0s linear infinite" x="719" y="342" width="2.5" height="24" fill="#F0600F" opacity="0"/></g></g>
+  <g class="rm" style="animation:hold 16.0s linear infinite" opacity="0"><rect style="animation:blink 1.1s steps(1) infinite" x="952" y="342" width="2.5" height="24" fill="#F0600F"/></g>
+  
+  <g class="lp" style="animation:tm 16.0s infinite">
+    <rect x="668" y="404" width="480" height="1" fill="#E3DCCF"/>
+    <text x="690" y="436" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="18" font-weight="400" fill="#5B6B85">$ git push</text>
+    <g class="lp" style="animation:ok 16.0s infinite">
+      <circle cx="836" cy="430" r="9" fill="#1A7F37"/>
+      <path d="M831.5 430.5l3 3 6-6.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="854" y="436" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="18" font-weight="600" fill="#1A7F37">live · 2 apps</text>
+    </g>
+  </g>
+</g>
+<g clip-path="url(#card)">
+  <rect x="0" y="488" width="1200" height="52" fill="#EFE9DD"/>
+  <rect x="0" y="488" width="1200" height="1" fill="#E3DCCF"/>
+  <rect x="0" y="488" width="6" height="52" fill="#F0600F"/>
+</g>
+<g class="up" style="animation-delay:.3s"><text x="24" y="521" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="18" font-weight="400" fill="#5B6B85">⎇ main</text><text x="124" y="521" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="18" font-weight="600" fill="#1A7F37">✓ 2 SaaS in production</text><text x="400" y="521" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="18" font-weight="400" fill="#5B6B85">◆ Painting diploma · honours</text><text x="1176" y="521" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="18" font-weight="400" fill="#5B6B85" text-anchor="end">France</text><text x="1080" y="521" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="18" font-weight="400" fill="#97A3B6" text-anchor="end">UTF-8</text><text x="995" y="521" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="18" font-weight="400" fill="#1D5FA3" text-anchor="end">TypeScript</text></g>
+</svg>

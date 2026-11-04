@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="260" height="92" viewBox="0 0 260 92" role="img" aria-label="Thème automatique : suit l'heure et la saison">
+<title>Thème automatique : suit l'heure et la saison</title>
+<defs><linearGradient id="sa" x1="0" x2="1"><stop offset="0.00" stop-color="#FF8FB1"/><stop offset="0.33" stop-color="#2DD4BF"/><stop offset="0.67" stop-color="#9BCB3C"/><stop offset="1.00" stop-color="#88C0D0"/></linearGradient></defs>
+<style>
+.up{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+.tourne{animation:pulse 3s ease-in-out infinite}@media (prefers-reduced-motion: reduce){*{animation:none!important}.rm{display:none}}</style>
+<rect x="1" y="1" width="258" height="90" rx="18" fill="#0B1220" stroke="url(#sa)" stroke-width="2.5"/>
+<text x="22" y="38" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#EEF3FA">Auto</text><text x="84" y="38" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="14" font-weight="400" fill="#8A9BB8">heure + saison</text>
+<rect x="22" y="54" width="104" height="16" rx="8" fill="url(#sa)" class="tourne"/>
+<g class="pulse"><text x="238" y="68" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="15" font-weight="700" fill="#FF6A13" text-anchor="end">choisir →</text></g>
+</svg>
