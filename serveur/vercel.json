@@ -39,7 +39,7 @@
     },
     {
       "source": "/theme-actuel.svg",
-      "destination": "/api/themeactuel"
+      "destination": "/api/theme?svg=1"
     }
   ],
   "headers": [
