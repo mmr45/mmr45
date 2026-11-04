@@ -50,13 +50,13 @@
   const COULEURS = { orange:'#FF6A13', bleu:'#2F7BEA', vert:'#3FB950', jaune:'#F2CC60', rose:'#F778BA', violet:'#A371F7', blanc:'#EFE9DD' };
   const q = new URLSearchParams(location.search);
   const c = q.get('c'), err = q.get('erreur'), n = q.get('n');
-  const hex = COULEURS[c] || ({ neon: '#FF2BD6', ocean: '#2DD4BF', matrix: '#00FF66', sunset: '#FF5E5B' })[q.get('theme')] || '#FF6A13';
+  const hex = COULEURS[c] || ({"chantier": "#FF6A13", "neon": "#FF2BD6", "ocean": "#2DD4BF", "matrix": "#00FF66", "sunset": "#FF5E5B", "nord": "#88C0D0", "or": "#E8B04B", "sakura": "#FF8FB1", "cyber": "#FCEE0A", "foret": "#9BCB3C", "lavande": "#B69CFF"})[q.get('theme')] || '#FF6A13';
   document.documentElement.style.setProperty('--c', hex);
   const titre = document.getElementById('titre'), sous = document.getElementById('sous');
   const th = q.get('theme');
   const re = q.get('reaction');
   const REACTIONS = { feu: ['🔥', 'Ça claque'], bravo: ['👏', 'Bravo'], wow: ['🤯', 'Impressionnant'], idee: ['💡', 'Inspirant'], peinture: ['🎨', 'Beau boulot'] };
-  const NOMS_THEMES = { chantier: 'Chantier', neon: 'Néon', ocean: 'Océan', matrix: 'Matrix', sunset: 'Coucher de soleil' };
+  const NOMS_THEMES = {"chantier": "Chantier", "neon": "Néon", "ocean": "Océan", "matrix": "Matrix", "sunset": "Coucher de soleil", "nord": "Nord", "or": "Or & noir", "sakura": "Sakura", "cyber": "Cyberpunk", "foret": "Forêt", "lavande": "Lavande"};
   if (th) {
     fetch('/api/stats').then((r) => r.json()).then((d) => {
       const t = d.theme?.liste?.find((x) => x.id === th);
@@ -81,7 +81,7 @@
     document.title = 'Nouveau thème pour le profil';
     titre.innerHTML = 'Thème <span></span> activé !';
     titre.querySelector('span').textContent = NOMS_THEMES[th] || th;
-    sous.textContent = 'Tout le profil vient de changer de couleurs, pour tous les visiteurs. Le prochain pourra le changer à son tour.';
+    sous.textContent = 'Tout le profil vient de changer de couleurs, pour tous les visiteurs. Recharge le profil pour le voir ; le prochain visiteur pourra le changer à son tour.';
   }
   else if (err === 'limite') { titre.textContent = 'Pinceau au repos'; sous.textContent = 'Tu as déjà donné 10 coups de pinceau aujourd’hui. Reviens demain !'; }
   else if (err) { titre.textContent = 'Oups'; sous.textContent = 'La peinture n’a pas pris. Réessaie dans un instant.'; }

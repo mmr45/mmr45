@@ -1,6 +1,6 @@
 // Réactions des visiteurs (un clic sur un emoji dans le README), stockées dans Blob.
 // Chaque visiteur peut donner chaque réaction une fois par jour (IP hachée, jamais stockée en clair).
-import { readFile, writeFile } from 'node:fs/promises';
+import { ecritVersion, litVersion } from './versions.js';
 import { empreinte } from './etat.js';
 
 export const REACTIONS = {
@@ -12,28 +12,14 @@ export const REACTIONS = {
 };
 export const ORDRE_REACTIONS = Object.keys(REACTIONS);
 
-const CHEMIN = 'stats/reactions.json';
-const LOCAL = !process.env.BLOB_READ_WRITE_TOKEN;
-const FICHIER_LOCAL = '/tmp/mmr45-reactions.json';
+const CHEMIN = 'stats/reactions.json'; // ancien emplacement
+const PREFIXE = 'stats/reactions/v-';
 const GARDE = 12;
 
 const vide = () => ({ total: 0, compte: {}, dernieres: [], limites: { jour: '', ips: {} } });
 
-function url() {
-  const m = /^vercel_blob_rw_([A-Za-z0-9]+)_/.exec(process.env.BLOB_READ_WRITE_TOKEN || '');
-  return m ? `https://${m[1].toLowerCase()}.public.blob.vercel-storage.com/${CHEMIN}` : null;
-}
-
 export async function litReactions() {
-  if (LOCAL) {
-    try { return { ...vide(), ...JSON.parse(await readFile(FICHIER_LOCAL, 'utf8')) }; } catch { return vide(); }
-  }
-  const u = url();
-  if (!u) return vide();
-  const r = await fetch(`${u}?t=${Date.now()}`, { cache: 'no-store' });
-  if (r.status === 404) return vide();
-  if (!r.ok) throw new Error(`lecture réactions ${r.status}`);
-  return { ...vide(), ...(await r.json()) };
+  return { ...vide(), ...((await litVersion(PREFIXE, CHEMIN)) || {}) };
 }
 
 export async function reagir(id, ip, pays = '', now = new Date()) {
@@ -48,12 +34,7 @@ export async function reagir(id, ip, pays = '', now = new Date()) {
   e.total = (e.total || 0) + 1;
   e.compte = { ...e.compte, [id]: (e.compte?.[id] || 0) + 1 };
   e.dernieres = [{ r: id, le: now.toISOString(), ...(pays ? { pays } : {}) }, ...(e.dernieres || [])].slice(0, GARDE);
-  const json = JSON.stringify(e);
-  if (LOCAL) await writeFile(FICHIER_LOCAL, json);
-  else {
-    const { put } = await import('@vercel/blob');
-    await put(CHEMIN, json, { access: 'public', contentType: 'application/json', addRandomSuffix: false, allowOverwrite: true, cacheControlMaxAge: 60 });
-  }
+  await ecritVersion(PREFIXE, e);
   return { ok: true, n: e.compte[id], total: e.total };
 }
 

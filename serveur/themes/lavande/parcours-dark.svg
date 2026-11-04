@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="330" viewBox="0 0 1200 330" role="img" aria-label="Parcours : apprenti peintre en alternance de 2024 à 2026, CAP Peinture obtenu avec mention en 2026, Bâtipro en ligne en juillet 2026, MyWattUp en ligne en septembre 2026.">
+<title>Parcours : apprenti peintre en alternance de 2024 à 2026, CAP Peinture obtenu avec mention en 2026, Bâtipro en ligne en juillet 2026, MyWattUp en ligne en septembre 2026.</title>
+<defs>
+  <pattern id="g" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#1F1B2E"/></pattern>
+  <radialGradient id="fd" cx="85%" cy="40%" r="80%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <mask id="m"><rect width="1200" height="330" fill="url(#fd)"/></mask>
+  <radialGradient id="gl" cx="85%" cy="40%" r="50%"><stop offset="0" stop-color="#B69CFF" stop-opacity=".2"/><stop offset="1" stop-color="#B69CFF" stop-opacity="0"/></radialGradient>
+  <clipPath id="card"><rect width="1200" height="330" rx="22"/></clipPath><linearGradient id="tl" gradientUnits="userSpaceOnUse" x1="150" x2="990" y1="0" y2="0"><stop offset="0" stop-color="#7DD3FC"/><stop offset="1" stop-color="#B69CFF"/></linearGradient></defs>
+<style>
+.up{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+
+.draw{stroke-dasharray:100 100;animation:draw 10s .2s infinite both}
+@keyframes draw{0%{stroke-dashoffset:100;animation-timing-function:cubic-bezier(.6,0,.3,1)}22%,88%{stroke-dashoffset:0}97%,100%{stroke-dashoffset:-100}}
+.pop{transform-box:fill-box;transform-origin:center;animation:pop 10s infinite}
+@keyframes pop{0%{transform:scale(0)}4%{transform:scale(1.3)}6%,88%{transform:scale(1)}95%,100%{transform:scale(0)}}
+.ring{transform-box:fill-box;transform-origin:center;animation:ring 2s 2.4s ease-out infinite}
+@keyframes ring{from{transform:scale(1);opacity:.8}to{transform:scale(2.4);opacity:0}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important}.rm{display:none}}</style>
+
+<g clip-path="url(#card)">
+  <rect width="1200" height="330" fill="#13111D"/>
+  <rect width="1200" height="330" fill="url(#g)" mask="url(#m)"/>
+  <rect width="1200" height="330" fill="url(#gl)"/>
+</g>
+<rect x=".5" y=".5" width="1199" height="329" rx="21.5" fill="none" stroke="#363050"/>
+<path class="draw" pathLength="100" d="M150 128H990" stroke="url(#tl)" stroke-width="5" stroke-linecap="round"/>
+<path d="M1016 128H1172" stroke="#B69CFF" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round" opacity=".6"/>
+<text x="1172" y="112" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="17" font-weight="400" fill="#756D96" text-anchor="end">la suite…</text>
+<g class="up" style="animation-delay:0.30s">
+  <rect x="72" y="56" width="156" height="34" rx="17" fill="#7DD3FC" fill-opacity=".14"/>
+  <text x="150" y="79" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="17" font-weight="700" fill="#7DD3FC" text-anchor="middle" letter-spacing="1">2024 → 2026</text>
+</g>
+<g class="pop" style="animation-delay:0.50s">
+  <circle cx="150" cy="128" r="15" fill="#13111D" stroke="#7DD3FC" stroke-width="4"/>
+  <circle cx="150" cy="128" r="6" fill="#7DD3FC"/>
+</g>
+
+<g class="up" style="animation-delay:0.60s">
+  <text x="150" y="192" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="27" font-weight="800" fill="#F1EEFF" text-anchor="middle">Apprenti peintre</text>
+  <text x="150" y="228" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="21" font-weight="400" fill="#B8B0D8" text-anchor="middle">en alternance,</text>
+  <text x="150" y="256" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="21" font-weight="400" fill="#B8B0D8" text-anchor="middle">sur les chantiers</text>
+</g>
+<g class="up" style="animation-delay:0.75s">
+  <rect x="392" y="56" width="76" height="34" rx="17" fill="#7DD3FC" fill-opacity=".14"/>
+  <text x="430" y="79" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="17" font-weight="700" fill="#7DD3FC" text-anchor="middle" letter-spacing="1">2026</text>
+</g>
+<g class="pop" style="animation-delay:0.95s">
+  <circle cx="430" cy="128" r="15" fill="#13111D" stroke="#7DD3FC" stroke-width="4"/>
+  <circle cx="430" cy="128" r="6" fill="#7DD3FC"/>
+</g>
+
+<g class="up" style="animation-delay:1.05s">
+  <text x="430" y="192" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="27" font-weight="800" fill="#F1EEFF" text-anchor="middle">CAP Peinture</text>
+  <text x="430" y="228" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="21" font-weight="400" fill="#B8B0D8" text-anchor="middle">obtenu</text>
+  <text x="430" y="256" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="21" font-weight="400" fill="#B8B0D8" text-anchor="middle">avec mention</text>
+</g>
+<g class="up" style="animation-delay:1.20s">
+  <rect x="626" y="56" width="168" height="34" rx="17" fill="#7DD3FC" fill-opacity=".14"/>
+  <text x="710" y="79" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="17" font-weight="700" fill="#7DD3FC" text-anchor="middle" letter-spacing="1">JUILLET 2026</text>
+</g>
+<g class="pop" style="animation-delay:1.40s">
+  <circle cx="710" cy="128" r="15" fill="#13111D" stroke="#7DD3FC" stroke-width="4"/>
+  <circle cx="710" cy="128" r="6" fill="#7DD3FC"/>
+</g>
+
+<g class="up" style="animation-delay:1.50s">
+  <text x="710" y="192" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="27" font-weight="800" fill="#F1EEFF" text-anchor="middle">Bâtipro en ligne</text>
+  <text x="710" y="228" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="21" font-weight="400" fill="#B8B0D8" text-anchor="middle">seul, du 1er fichier</text>
+  <text x="710" y="256" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="21" font-weight="400" fill="#B8B0D8" text-anchor="middle">au paiement Stripe</text>
+</g>
+<g class="up" style="animation-delay:1.65s">
+  <rect x="918" y="56" width="145" height="34" rx="17" fill="#B69CFF" fill-opacity=".14"/>
+  <text x="990" y="79" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="17" font-weight="700" fill="#B69CFF" text-anchor="middle" letter-spacing="1">SEPT. 2026</text>
+</g>
+<g class="pop" style="animation-delay:1.85s">
+  <circle cx="990" cy="128" r="15" fill="#13111D" stroke="#B69CFF" stroke-width="4"/>
+  <circle cx="990" cy="128" r="6" fill="#B69CFF"/>
+</g>
+<circle class="ring rm" cx="990" cy="128" r="15" fill="none" stroke="#B69CFF" stroke-width="2"/>
+<g class="up" style="animation-delay:1.95s">
+  <text x="990" y="192" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="27" font-weight="800" fill="#F1EEFF" text-anchor="middle">MyWattUp en ligne</text>
+  <text x="990" y="228" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="21" font-weight="400" fill="#B8B0D8" text-anchor="middle">sommeil, sport,</text>
+  <text x="990" y="256" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="21" font-weight="400" fill="#B8B0D8" text-anchor="middle">nutrition</text>
+</g>
+</svg>

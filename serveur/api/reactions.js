@@ -3,8 +3,14 @@ import { themeActuel } from '../lib/theme.js';
 import { litReactions } from '../lib/reactions.js';
 import { renderReactions } from '../lib/cartes.js';
 
+let memo = null, memoAt = 0;
+
 export default async function handler(req, res) {
-  const e = await litReactions().catch(() => ({ total: 0, compte: {}, dernieres: [] }));
+  if (!memo || Date.now() - memoAt > 4000) {
+    memo = await litReactions().catch(() => memo || { total: 0, compte: {}, dernieres: [] });
+    memoAt = Date.now();
+  }
+  const e = memo;
   res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
   res.status(200).send(renderReactions(e, req.query.theme === 'light' ? 'light' : 'dark', new Date(), await themeActuel().catch(() => 'chantier')));
