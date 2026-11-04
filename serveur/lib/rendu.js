@@ -247,7 +247,7 @@ ${t(x0, 280, prec, 19, p.faint, 400, SANS)}</g>
 ${theme}
 ${t(gx, 92, '30 DERNIERS JOURS', 14, p.faint, 400, MONO, 'start', ' letter-spacing="2"')}
 ${t(gx + gw, 92, `record ${etat.record.n}/jour`, 16, p.faint, 400, MONO, 'end')}
-${t(gx, gyb + 30, `${auj} aujourd’hui`, 17, p.orange, 700, MONO)}${t(gx + gw, gyb + 30, `${sur30} visites sur 30 jours`, 17, p.muted, 400, MONO, 'end')}
+${t(gx, gyb + 30, `${auj} aujourd’hui`, 17, p.orange, 700, MONO)}${t(gx + gw, gyb + 30, `${sur30} visite${sur30 > 1 ? 's' : ''} sur 30 jours`, 17, p.muted, 400, MONO, 'end')}
 <line x1="${gx}" y1="${gyb + 0.5}" x2="${gx + gw}" y2="${gyb + 0.5}" stroke="${p.line}"/>
 ${barres}
 ${ticker}`;

@@ -56,7 +56,7 @@ async function lit() {
     const { head } = await import('@vercel/blob');
     try { url = (await head(CHEMIN)).url; } catch { return null; }
   }
-  const r = await fetch(`${url}?cache=0&t=${Date.now()}`, { cache: 'no-store' });
+  const r = await fetch(`${url}?t=${Date.now()}`, { cache: 'no-store' });
   if (r.status === 404) return null;
   if (!r.ok) throw new Error(`lecture vues ${r.status}`);
   return r.json();
@@ -92,7 +92,8 @@ let derniereEcriture = 0;
 let verrou = Promise.resolve();
 
 async function charge() {
-  const e = await lit().catch((err) => { console.error('[vues] lecture', err); return memo; });
+  // une lecture en échec (autre qu'un fichier absent) ne doit jamais repartir de zéro
+  const e = await lit();
   if (e) return e;
   const n = vide();
   n.base = await seedKomarev();
@@ -107,7 +108,15 @@ export function compte(th) {
     const ecrire = Date.now() - derniereEcriture >= ECRITURE_MIN_MS;
     if (ecrire || !memo) {
       // relecture fraîche puis on rejoue les visites en attente et la nouvelle
-      const e = await charge();
+      let e;
+      try { e = await charge(); } catch (err) {
+        // lecture impossible : on garde la visite en mémoire, sans rien écraser
+        console.error('[vues] lecture', err);
+        if (!memo) throw err;
+        const precedente = memo.dernieres[0]?.le || null;
+        applique(memo, ev); attente.push(ev);
+        return { etat: memo, numero: memo.total, precedente };
+      }
       for (const a of attente) applique(e, a);
       const precedente = e.dernieres[0]?.le || null;
       applique(e, ev);
