@@ -72,7 +72,7 @@ export function empreinte(ip, jour) {
   return createHash('sha256').update(`${process.env.SEL || 'mmr45-mur'}|${jour}|${ip}`).digest('hex').slice(0, 16);
 }
 
-export function peindre(etat, couleur, ip, now = new Date()) {
+export function peindre(etat, couleur, ip, now = new Date(), pays = '') {
   const jour = now.toISOString().slice(0, 10);
   if (etat.limites.jour !== jour) etat.limites = { jour, ips: {} };
   const h = empreinte(ip || 'inconnu', jour);
@@ -86,7 +86,8 @@ export function peindre(etat, couleur, ip, now = new Date()) {
     nouvelleCouche = true;
   }
   const libres = ORDRE.filter((k) => !etat.cases.some((c) => c.case === k));
-  etat.cases.push({ case: libres[0], couleur, par: 'visiteur', le: now.toISOString() });
+  etat.cases.push({ case: libres[0], couleur, par: 'visiteur', le: now.toISOString(), ...(pays ? { pays } : {}) });
+  if (pays) { etat.pays ||= {}; etat.pays[pays] = (etat.pays[pays] || 0) + 1; }
   etat.total += 1;
   return { ok: true, nouvelleCouche, numero: etat.total };
 }

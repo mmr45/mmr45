@@ -13,7 +13,12 @@
 </p>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=mmr45&label=Visites&color=1D5FA3&style=flat-square&base=4999" alt="Visites du profil" />
+  <a href="https://mmr45-profil.vercel.app/dashboard">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/vues.svg?theme=dark" />
+      <img src="https://mmr45-profil.vercel.app/vues.svg?theme=light" alt="Visites du profil en direct : ton numéro de visite, les 30 derniers jours et les dernières visites. Clique pour le tableau de bord complet." width="100%" />
+    </picture>
+  </a>
 </p>
 
 <br />

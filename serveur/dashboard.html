@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tableau de bord du profil</title>
+<meta name="description" content="Les visites du profil GitHub de mmr45, en direct." />
+<style>
+  :root { --bg:#0B1220; --panel:#0F1729; --panel2:#131D33; --line:#22304D; --grid:#1A2742; --text:#EEF3FA; --muted:#8A9BB8; --faint:#5C6E8F;
+    --orange:#FF6A13; --blue:#4A92FF; --green:#3FB950; --red:#F85149; --mono:'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#F7F4EE; --panel:#FFFFFF; --panel2:#FBF9F5; --line:#E3DCCF; --grid:#E9E3D8; --text:#14213D; --muted:#5B6B85; --faint:#97A3B6;
+      --orange:#F0600F; --blue:#1D5FA3; --green:#1A7F37; --red:#CF222E; }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif; }
+  body { min-height: 100vh; padding: 28px 16px 60px;
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 32px 32px; background-attachment: fixed; }
+  body::before { content: ""; position: fixed; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 20% 0%, color-mix(in srgb, var(--orange) 14%, transparent), transparent 55%), radial-gradient(circle at 50% 40%, transparent, var(--bg) 75%); }
+  main { position: relative; max-width: 1180px; margin: 0 auto; display: grid; gap: 16px; }
+  header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+  .live { font-family: var(--mono); color: var(--faint); letter-spacing: 2px; font-size: 13px; display: flex; align-items: center; gap: 10px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--red); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: .25; } }
+  header a { color: var(--orange); font-family: var(--mono); font-weight: 700; text-decoration: none; font-size: 14px; }
+  .card { background: color-mix(in srgb, var(--panel) 92%, transparent); border: 1px solid var(--line); border-radius: 20px; padding: 22px; backdrop-filter: blur(6px); min-width: 0; }
+  .lab { font-family: var(--mono); font-size: 12px; letter-spacing: 2px; color: var(--faint); text-transform: uppercase; margin: 0 0 14px; }
+  .hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 24px; align-items: center; }
+  .big { font-family: var(--mono); font-weight: 800; font-size: clamp(56px, 11vw, 120px); line-height: 1; letter-spacing: -2px; font-variant-numeric: tabular-nums; }
+  .big.bump { animation: bump .6s cubic-bezier(.3,1.6,.5,1); }
+  @keyframes bump { 30% { transform: scale(1.04); color: var(--orange); } }
+  .sous { color: var(--muted); font-size: 18px; margin-top: 10px; }
+  .sous b { color: var(--text); }
+  .kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .kpi { background: var(--panel2); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+  .kpi .v { font-family: var(--mono); font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .kpi .l { color: var(--muted); font-size: 14px; margin-top: 4px; }
+  .grid2 { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .bar { transform-box: fill-box; transform-origin: bottom; animation: grow .8s cubic-bezier(.3,1.3,.5,1) both; }
+  @keyframes grow { from { transform: scaleY(0); } }
+  .feed { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; max-height: 392px; overflow: hidden; }
+  .feed li { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 12px; background: var(--panel2); border: 1px solid var(--line); font-size: 15px; }
+  .feed li.neuf { animation: arrive .7s cubic-bezier(.2,.9,.3,1.2) both; border-color: var(--orange); }
+  @keyframes arrive { from { opacity: 0; transform: translateY(-14px) scale(.97); } }
+  .feed .n { font-family: var(--mono); font-weight: 800; }
+  .feed .t { color: var(--muted); font-family: var(--mono); font-size: 13px; text-align: right; }
+  .feed .th { color: var(--muted); }
+  .heat { display: grid; grid-template-columns: 34px repeat(24, minmax(0, 1fr)); gap: 3px; font-family: var(--mono); font-size: 11px; color: var(--faint); }
+  .heat i { aspect-ratio: 1; border-radius: 3px; background: var(--panel2); display: block; }
+  .heat span { display: flex; align-items: center; }
+  .split { height: 14px; border-radius: 8px; background: color-mix(in srgb, #EFE9DD 70%, var(--panel2)); overflow: hidden; margin: 6px 0 10px; }
+  .split div { height: 100%; background: linear-gradient(90deg, #1A2742, var(--blue)); transition: width 1.2s cubic-bezier(.6,0,.2,1); width: 0; }
+  .row { display: flex; justify-content: space-between; color: var(--muted); font-size: 15px; }
+  .mur { display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); gap: 3px; margin-bottom: 14px; }
+  .mur i { aspect-ratio: 1; border-radius: 3px; background: var(--panel2); border: 1px dashed var(--line); }
+  .mur i.p { border: 0; animation: pop .5s cubic-bezier(.3,1.6,.5,1) both; }
+  @keyframes pop { from { transform: scale(0); } }
+  .pays { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pays span { background: var(--panel2); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 15px; }
+  .abos { display: flex; flex-wrap: wrap; gap: 10px; }
+  .abos a { display: block; width: 46px; height: 46px; border-radius: 50%; overflow: hidden; border: 2px solid var(--line); transition: transform .15s; }
+  .abos a:hover { transform: translateY(-3px) scale(1.08); border-color: var(--orange); }
+  .abos img { width: 100%; height: 100%; display: block; }
+  .vide { color: var(--faint); font-size: 15px; }
+  .btn { display: inline-flex; gap: 8px; align-items: center; background: var(--orange); color: #fff; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 999px; }
+  .note { color: var(--muted); font-size: 14px; line-height: 1.55; }
+  .note b { color: var(--text); }
+  @media (max-width: 860px) { .hero, .grid2, .grid3 { grid-template-columns: 1fr; } .heat { gap: 2px; font-size: 9px; grid-template-columns: 28px repeat(24, minmax(0, 1fr)); } }
+  .pots { display: flex; gap: 8px; flex-wrap: wrap; } .pots a { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line); transition: transform .15s; } .pots a:hover { transform: translateY(-3px) scale(1.1); }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="live"><span class="dot"></span>EN DIRECT · TABLEAU DE BORD DU PROFIL <span id="maj"></span></div>
+    <a href="https://github.com/mmr45">← retour au profil</a>
+  </header>
+
+  <section class="card hero">
+    <div>
+      <p class="lab">Visites du profil, depuis toujours</p>
+      <div class="big" id="total">0</div>
+      <div class="sous">Dernière visite <b id="derniere">…</b></div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="v" id="k-auj">0</div><div class="l">aujourd’hui</div></div>
+      <div class="kpi"><div class="v" id="k-7">0</div><div class="l">sur 7 jours</div></div>
+      <div class="kpi"><div class="v" id="k-30">0</div><div class="l">sur 30 jours</div></div>
+      <div class="kpi"><div class="v" id="k-rec">0</div><div class="l" id="k-rec-l">record sur une journée</div></div>
+    </div>
+  </section>
+
+  <section class="grid2">
+    <div class="card"><p class="lab">30 derniers jours</p><svg id="courbe" viewBox="0 0 700 300" role="img" aria-label="Visites par jour sur 30 jours"></svg></div>
+    <div class="card"><p class="lab">Dernières visites · en direct</p><ul class="feed" id="feed"></ul></div>
+  </section>
+
+  <section class="grid2">
+    <div class="card"><p class="lab">Quand les gens passent (heure de Paris)</p><div class="heat" id="heat"></div></div>
+    <div class="card">
+      <p class="lab">Thème des visiteurs</p>
+      <div class="split"><div id="split"></div></div>
+      <div class="row"><span id="t-dark">☾ sombre</span><span id="t-light">clair ☀</span></div>
+      <p class="lab" style="margin-top:26px">Heure de pointe</p>
+      <div class="sous" id="pointe" style="margin:0">…</div>
+    </div>
+  </section>
+
+  <section class="grid3">
+    <div class="card">
+      <p class="lab">Le mur de peinture</p>
+      <div class="mur" id="mur"></div>
+      <div class="row" style="margin-bottom:12px"><span id="mur-n">…</span></div><div class="pots" id="pots" aria-label="Peindre une case"></div>
+    </div>
+    <div class="card"><p class="lab">D’où viennent les peintres</p><div class="pays" id="pays"><span class="vide">…</span></div></div>
+    <div class="card"><p class="lab">Ils suivent le profil</p><div class="abos" id="abos"><span class="vide">…</span></div></div>
+  </section>
+
+  <section class="card note">
+    <p class="lab">Comment ça marche</p>
+    Chaque fois que quelqu’un ouvre le profil, GitHub charge la carte « visites » depuis ce serveur : c’est ce chargement qui est compté, en direct.
+    <b>GitHub cache volontairement l’identité des visiteurs</b> (les images passent par son proxy), donc personne, ni moi ni GitHub, ne peut savoir qui regarde un profil.
+    Ce tableau ne garde que l’heure de chaque visite et le thème clair ou sombre du navigateur. Pour les peintres du mur, seul le pays est retenu.
+  </section>
+</main>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const fmt = (n) => Number(n).toLocaleString('fr-FR');
+  const COULEURS = { orange:'#FF6A13', bleu:'#2F7BEA', vert:'#3FB950', jaune:'#F2CC60', rose:'#F778BA', violet:'#A371F7', blanc:'#EFE9DD' };
+  const JOURS = ['lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.', 'dim.'];
+  const MOIS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+  const jourCourt = (k) => { const [, m, d] = k.split('-').map(Number); return `${d} ${MOIS[m - 1]}`; };
+  const drapeau = (cc) => String.fromCodePoint(...[...cc].map((c) => 127397 + c.charCodeAt(0)));
+  const nomPays = (() => { try { const d = new Intl.DisplayNames(['fr'], { type: 'region' }); return (cc) => d.of(cc); } catch { return (cc) => cc; } })();
+  const heureParis = (iso) => new Intl.DateTimeFormat('fr-FR', { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date(iso));
+
+  let decalage = 0; // horloge serveur - horloge locale
+  const now = () => Date.now() + decalage;
+  function ilya(iso) {
+    const s = Math.max(0, Math.round((now() - new Date(iso)) / 1000));
+    if (s < 5) return "à l'instant";
+    if (s < 60) return `il y a ${s} s`;
+    const m = Math.floor(s / 60); if (m < 60) return `il y a ${m} min`;
+    const h = Math.floor(m / 60); if (h < 24) return `il y a ${h} h`;
+    const j = Math.floor(h / 24); return `il y a ${j} jour${j > 1 ? 's' : ''}`;
+  }
+
+  // compteur qui roule jusqu'à sa valeur
+  let affiche = 0;
+  function rouler(el, cible, dur = 1400) {
+    const de = affiche, t0 = performance.now();
+    if (de && cible > de) { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
+    const pas = (t) => {
+      const k = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - k, 4);
+      el.textContent = fmt(Math.round(de + (cible - de) * e));
+      if (k < 1) requestAnimationFrame(pas); else affiche = cible;
+    };
+    requestAnimationFrame(pas);
+  }
+
+  function serie(jours, auj, n = 30) {
+    const base = new Date(`${auj}T12:00:00Z`), out = [];
+    for (let i = n - 1; i >= 0; i--) { const k = new Date(base - i * 864e5).toISOString().slice(0, 10); out.push([k, jours[k] || 0]); }
+    return out;
+  }
+
+  function courbe(s) {
+    const W = 700, H = 300, pad = 28, gh = H - pad - 20, bw = (W - 10) / s.length, max = Math.max(...s.map(([, n]) => n), 1);
+    const pts = s.map(([, n], i) => [5 + i * bw + bw / 2, 10 + gh - (gh * n) / max]);
+    const ligne = pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join('');
+    const aire = `${ligne}L${pts.at(-1)[0].toFixed(1)} ${10 + gh}L${pts[0][0].toFixed(1)} ${10 + gh}Z`;
+    const o = css('--orange'), b = css('--blue'), f = css('--faint'), l = css('--line');
+    $('courbe').innerHTML = `<defs><linearGradient id="ga" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${b}" stop-opacity=".35"/><stop offset="1" stop-color="${b}" stop-opacity="0"/></linearGradient></defs>
+      ${[0, .5, 1].map((r) => `<line x1="5" x2="${W - 5}" y1="${10 + gh * r}" y2="${10 + gh * r}" stroke="${l}" stroke-dasharray="${r === 1 ? '' : '3 5'}"/>`).join('')}
+      <text x="${W - 5}" y="8" fill="${f}" font-size="12" font-family="monospace" text-anchor="end">max ${max}</text>
+      ${s.map(([k, n], i) => { const h = Math.max((gh * n) / max, n ? 3 : 1.5); const auj = i === s.length - 1;
+        return `<rect class="bar" style="animation-delay:${i * 25}ms" x="${(5 + i * bw + 3).toFixed(1)}" y="${(10 + gh - h).toFixed(1)}" width="${(bw - 6).toFixed(1)}" height="${h.toFixed(1)}" rx="3" fill="${auj ? o : b}" fill-opacity="${auj ? 1 : .28}"><title>${jourCourt(k)} : ${n} visite${n > 1 ? 's' : ''}</title></rect>`; }).join('')}
+      <path d="${aire}" fill="url(#ga)"/><path d="${ligne}" fill="none" stroke="${b}" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="${pts.at(-1)[0]}" cy="${pts.at(-1)[1]}" r="5" fill="${o}"><animate attributeName="r" values="5;9;5" dur="2s" repeatCount="indefinite"/></circle>
+      ${s.map(([k], i) => (i % 5 === 4 || i === s.length - 1) ? `<text x="${5 + i * bw + bw / 2}" y="${H - 4}" fill="${f}" font-size="12" font-family="monospace" text-anchor="middle">${i === s.length - 1 ? 'auj.' : jourCourt(k)}</text>` : '').join('')}`;
+  }
+
+  function heat(g) {
+    const max = Math.max(...g.flat(), 1), o = css('--orange');
+    let h = '<span></span>' + Array.from({ length: 24 }, (_, i) => `<span style="justify-content:center">${i % 6 === 0 ? i : ''}</span>`).join('');
+    g.forEach((row, d) => {
+      h += `<span>${JOURS[d]}</span>` + row.map((n, hr) => `<i title="${JOURS[d]} ${hr} h : ${n} visite${n > 1 ? 's' : ''}" style="${n ? `background:color-mix(in srgb, ${o} ${Math.round(18 + (82 * n) / max)}%, transparent)` : ''}"></i>`).join('');
+    });
+    $('heat').innerHTML = h;
+    let best = [0, 0, -1];
+    g.forEach((row, d) => row.forEach((n, hr) => { if (n > best[2]) best = [d, hr, n]; }));
+    const parHeure = Array.from({ length: 24 }, (_, hr) => g.reduce((a, row) => a + row[hr], 0));
+    const hp = parHeure.indexOf(Math.max(...parHeure));
+    $('pointe').innerHTML = best[2] > 0 ? `Vers <b>${hp} h</b>, et surtout le <b>${['lundi','mardi','mercredi','jeudi','vendredi','samedi','dimanche'][best[0]]} à ${best[1]} h</b>.` : 'Pas encore assez de visites.';
+  }
+
+  const vus = new Set();
+  let premier = true;
+  function feed(list) {
+    const ul = $('feed');
+    ul.innerHTML = list.slice(0, 7).map((d) => {
+      const neuf = !premier && !vus.has(d.n);
+      return `<li class="${neuf ? 'neuf' : ''}"><span class="n">n°${fmt(d.n)}</span><span class="th">${d.th === 'light' ? '☀ thème clair' : '☾ thème sombre'}</span><span class="t" data-le="${d.le}">${heureParis(d.le)}<br>${ilya(d.le)}</span></li>`;
+    }).join('') || '<li><span class="vide">Pas encore de visite enregistrée.</span></li>';
+    list.forEach((d) => vus.add(d.n));
+  }
+
+  function mur(m) {
+    if (!m) return;
+    const parCase = new Array(144).fill(null);
+    m.cases.forEach((c) => { if (c.k >= 0 && c.k < 144) parCase[c.k] = c.couleur; });
+    $('mur').innerHTML = parCase.map((c, i) => c ? `<i class="p" style="background:${COULEURS[c]};animation-delay:${i * 4}ms"></i>` : '<i></i>').join('');
+    $('mur-n').textContent = `${fmt(m.total)} coup${m.total > 1 ? 's' : ''} de pinceau · couche n°${m.couche}`;
+    const p = Object.entries(m.pays || {}).sort((a, b) => b[1] - a[1]);
+    $('pays').innerHTML = p.length ? p.map(([cc, n]) => `<span>${drapeau(cc)} ${nomPays(cc)} · ${n}</span>`).join('') : '<span class="vide">Les prochains coups de pinceau afficheront leur pays ici.</span>';
+  }
+
+  async function charge() {
+    try {
+      const r = await fetch('/api/stats', { cache: 'no-store' });
+      const d = await r.json();
+      decalage = new Date(d.maintenant) - Date.now();
+      const v = d.visites, s = serie(v.jours, d.aujourdhui);
+      rouler($('total'), v.total);
+      $('k-auj').textContent = fmt(s.at(-1)[1]);
+      $('k-7').textContent = fmt(s.slice(-7).reduce((a, [, n]) => a + n, 0));
+      $('k-30').textContent = fmt(s.reduce((a, [, n]) => a + n, 0));
+      $('k-rec').textContent = fmt(v.record.n);
+      if (v.record.jour) $('k-rec-l').textContent = `record, le ${jourCourt(v.record.jour)}`;
+      $('derniere').dataset.le = v.dernieres[0]?.le || '';
+      courbe(s); heat(v.grille); feed(v.dernieres);
+      const td = v.theme.dark || 0, tl = v.theme.light || 0, tt = Math.max(td + tl, 1);
+      $('split').style.width = `${(td * 100) / tt}%`;
+      $('t-dark').textContent = `☾ ${Math.round((td * 100) / tt)} % sombre`;
+      $('t-light').textContent = `${Math.round((tl * 100) / tt)} % clair ☀`;
+      mur(d.mur);
+      premier = false;
+    } catch (e) { console.error(e); }
+  }
+
+  function tic() {
+    const le = $('derniere').dataset.le;
+    $('derniere').textContent = le ? ilya(le) : 'pas encore enregistrée';
+    document.querySelectorAll('.feed .t').forEach((el) => { el.innerHTML = `${heureParis(el.dataset.le)}<br>${ilya(el.dataset.le)}`; });
+  }
+
+  fetch('/api/abonnes').then((r) => r.json()).then(({ abonnes, erreur }) => {
+    $('abos').innerHTML = abonnes.length
+      ? abonnes.slice(-24).reverse().map((u) => `<a href="${u.url}" title="${u.login}"><img src="${u.avatar}" alt="${u.login}" loading="lazy" width="46" height="46"></a>`).join('')
+        + '<a href="https://github.com/mmr45" title="Suivre le profil" style="display:grid;place-items:center;font-size:22px;color:var(--orange);text-decoration:none">+</a>'
+      : erreur ? '<span class="vide">Indisponible pour le moment.</span>'
+        : '<span class="vide">Personne pour l’instant. <a href="https://github.com/mmr45" style="color:var(--orange);width:auto;height:auto;border:0;border-radius:0">Sois le premier à suivre le profil →</a></span>';
+  }).catch(() => { $('abos').innerHTML = '<span class="vide">Indisponible pour le moment.</span>'; });
+
+  $('pots').innerHTML = Object.entries(COULEURS).map(([n, h]) => `<a href="/peindre/${n}" title="Peindre en ${n}" aria-label="Peindre en ${n}" style="background:${h}"></a>`).join('');
+  charge(); setInterval(charge, 8000); setInterval(tic, 1000);
+</script>
+</body>
+</html>
