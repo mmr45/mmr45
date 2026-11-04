@@ -49,7 +49,7 @@ export default async function handler(req, res) {
   if (px && Number(px[1]) < CASES) {
     const etat = await chargeMemo().catch(() => ({ cases: [] }));
     res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');
-    res.setHeader('Vercel-CDN-Cache-Control', 'max-age=5, stale-while-revalidate=60');
+    res.setHeader('Vercel-CDN-Cache-Control', 'max-age=5, stale-while-revalidate=86400'); // toujours une version prête, même après une longue pause
     return res.status(200).send(renderPixel(etat, Number(px[1])));
   }
   const theme = await themeActuel().catch(() => 'chantier');
