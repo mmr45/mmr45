@@ -78,6 +78,13 @@
   </picture>
 </p>
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/feuille.svg?mode=dark&amp;v=1" />
+    <img src="https://mmr45-profil.vercel.app/img/feuille.svg?mode=light&amp;v=1" alt="Feuille de route : mes dernières livraisons sur Bâtipro et MyWattUp, et ce qui est en cours, relevées chaque nuit" width="100%" />
+  </picture>
+</p>
+
 <br />
 
 <picture>
@@ -113,6 +120,13 @@
 </picture>
 </p>
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/conseil.svg?mode=dark&amp;v=1" />
+    <img src="https://mmr45-profil.vercel.app/img/conseil.svg?mode=light&amp;v=1" alt="Conseil de peintre du jour : une astuce de chantier ou de code, nouvelle chaque jour" width="100%" />
+  </picture>
+</p>
+
 <br />
 
 <picture>
@@ -138,6 +152,13 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/rouleau.svg?mode=dark&amp;v=1" />
     <img src="https://mmr45-profil.vercel.app/img/rouleau.svg?mode=light&amp;v=1" alt="Mon mur de code : un rouleau de peinture repeint mes contributions des 12 derniers mois, une case par jour" width="100%" />
+  </picture>
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/succes.svg?mode=dark&amp;v=1" />
+    <img src="https://mmr45-profil.vercel.app/img/succes.svg?mode=light&amp;v=1" alt="Succès débloqués : ils s'allument tout seuls quand je passe un cap (commits, contributions, visites, coups de pinceau…)" width="100%" />
   </picture>
 </p>
 

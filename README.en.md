@@ -78,6 +78,13 @@
   </picture>
 </p>
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/feuille.svg?mode=dark&amp;v=1&amp;lang=en" />
+    <img src="https://mmr45-profil.vercel.app/img/feuille.svg?mode=light&amp;v=1&amp;lang=en" alt="Roadmap: my latest releases on Bâtipro and MyWattUp, and what is in progress, collected every night" width="100%" />
+  </picture>
+</p>
+
 <br />
 
 <picture>
@@ -113,6 +120,13 @@
 </picture>
 </p>
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/conseil.svg?mode=dark&amp;v=1&amp;lang=en" />
+    <img src="https://mmr45-profil.vercel.app/img/conseil.svg?mode=light&amp;v=1&amp;lang=en" alt="Painter's tip of the day: a job-site or coding tip, new every day" width="100%" />
+  </picture>
+</p>
+
 <br />
 
 <picture>
@@ -138,6 +152,13 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/rouleau.svg?mode=dark&amp;v=1&amp;lang=en" />
     <img src="https://mmr45-profil.vercel.app/img/rouleau.svg?mode=light&amp;v=1&amp;lang=en" alt="My code wall: a paint roller repaints my contributions of the last 12 months, one square per day" width="100%" />
+  </picture>
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/succes.svg?mode=dark&amp;v=1&amp;lang=en" />
+    <img src="https://mmr45-profil.vercel.app/img/succes.svg?mode=light&amp;v=1&amp;lang=en" alt="Achievements: they light up on their own when I reach a milestone (commits, contributions, visits, brush strokes…)" width="100%" />
   </picture>
 </p>
 
