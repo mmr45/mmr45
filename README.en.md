@@ -1,15 +1,5 @@
 <p align="center"><a href="https://github.com/mmr45"><img src="https://img.shields.io/badge/Version-fran%C3%A7aise-2F81F7?style=for-the-badge" alt="Version française" /></a> <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md"><img src="https://img.shields.io/badge/English-%E2%9C%93-E8B04B?style=for-the-badge" alt="English (current language)" /></a></p>
 
-<p align="center"><a href="https://mmr45-profil.vercel.app/langues"><b>🌐 Read in your language — 190 languages and variants</b></a></p>
-<p align="center"><sub>Searchable, scrollable language menu. Automatic translation of the text version; image artwork stays in French or English.</sub></p>
-
-<p align="center">
-  <a href="https://batipro-ten.vercel.app"><b>Discover Bâtipro</b></a> ·
-  <a href="https://my-watt-up.vercel.app"><b>Try MyWattUp</b></a> ·
-  <a href="https://mmr45-profil.vercel.app/dashboard"><b>Explore the dashboard</b></a> ·
-  <a href="https://mmr45-profil.vercel.app/fresque"><b>Paint the mural</b></a>
-</p>
-
 <p align="center">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/hero.svg?mode=dark&amp;v=4&amp;lang=en" />
@@ -35,10 +25,8 @@
 
 <a href="https://mmr45-profil.vercel.app/dashboard"><img src="https://mmr45-profil.vercel.app/theme-actuel.svg?v=4&amp;lang=en" alt="Current profile theme." width="100%" /></a>
 
-<p align="center"><a href="https://mmr45-profil.vercel.app/ambiances"><b>🎨 Explore all 36 themes — preview light / dark before applying</b></a></p>
-
 <details>
-<summary><b>🎨 Change the profile theme</b>: 36 choices: classics, new worlds and automatic mode</summary>
+<summary>🎨 Change theme</summary>
 <br />
 <p align="center">
   <a href="https://mmr45-profil.vercel.app/theme/auto"><img src="https://raw.githubusercontent.com/mmr45/mmr45/main/assets/theme-auto.svg" width="170" alt="Automatic theme: follows the time and season" /></a>
@@ -65,7 +53,6 @@
 <tr><td><a href="https://mmr45-profil.vercel.app/theme/retro">Retro Arcade</a></td><td><a href="https://mmr45-profil.vercel.app/theme/synthwave">Synthwave</a></td><td><a href="https://mmr45-profil.vercel.app/theme/rosepoudre">Powder Pink</a></td><td><a href="https://mmr45-profil.vercel.app/theme/lagon">Lagoon</a></td></tr>
 <tr><td><a href="https://mmr45-profil.vercel.app/theme/prune">Plum</a></td><td><a href="https://mmr45-profil.vercel.app/theme/cosmos">Cosmos</a></td><td><a href="https://mmr45-profil.vercel.app/theme/ardoise">Slate</a></td><td><a href="https://mmr45-profil.vercel.app/theme/contraste">High Contrast</a></td></tr>
 </table>
-<p align="center"><a href="https://mmr45-profil.vercel.app/ambiances">Compare all themes before choosing →</a></p>
 </details>
 
 
