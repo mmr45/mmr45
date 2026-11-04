@@ -91,7 +91,7 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=ts,js,vue,tailwind,html,css,nodejs,supabase,postgres,vercel,git,github&perline=12&theme=dark" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=ts%2Cjs%2Cvue%2Ctailwind%2Chtml%2Ccss%2Cnodejs%2Csupabase%2Cpostgres%2Cvercel%2Cgit%2Cgithub&amp;perline=12&amp;theme=dark" />
     <img src="https://skillicons.dev/icons?i=ts,js,vue,tailwind,html,css,nodejs,supabase,postgres,vercel,git,github&perline=12&theme=light" alt="TypeScript, JavaScript, Vue, Tailwind, HTML, CSS, Node.js, Supabase, PostgreSQL, Vercel, Git, GitHub" />
   </picture>
 </p>
