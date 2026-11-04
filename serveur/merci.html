@@ -67,6 +67,7 @@
   if (th && err === 'limite') { titre.textContent = 'Doucement !'; sous.textContent = 'Tu as déjà changé le thème 20 fois aujourd’hui. Reviens demain.'; }
   else if (th && err) { titre.textContent = 'Oups'; sous.textContent = 'Le thème n’a pas pu changer. Réessaie dans un instant.'; }
   else if (th) {
+    document.title = 'Nouveau thème pour le profil';
     titre.innerHTML = 'Thème <span></span> activé !';
     titre.querySelector('span').textContent = NOMS_THEMES[th] || th;
     sous.textContent = 'Tout le profil vient de changer de couleurs, pour tous les visiteurs. Le prochain pourra le changer à son tour.';
