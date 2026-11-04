@@ -24,6 +24,18 @@
     {
       "source": "/img/:n",
       "destination": "/api/img?n=:n"
+    },
+    {
+      "source": "/reagir/:r",
+      "destination": "/api/reagir?r=:r"
+    },
+    {
+      "source": "/reactions.svg",
+      "destination": "/api/reactions"
+    },
+    {
+      "source": "/live.svg",
+      "destination": "/api/live"
     }
   ],
   "headers": [

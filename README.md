@@ -1,12 +1,5 @@
 <p align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/avatar.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/avatar.svg?mode=light&amp;v=2" alt="Avatar animé : un O peint au rouleau autour du symbole du code" width="170" />
-</picture>
-</p>
-
-<p align="center">
-<picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/hero.svg?mode=dark&amp;v=2" />
   <img src="https://mmr45-profil.vercel.app/img/hero.svg?mode=light&amp;v=2" alt="Osman — peintre en bâtiment, développeur et fondateur de deux SaaS en production. Du chantier au code." width="100%" />
 </picture>
@@ -65,8 +58,8 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mmr45/mmr45/live/live-dark.svg" />
-    <img src="https://raw.githubusercontent.com/mmr45/mmr45/live/live-light.svg" alt="En direct : disponibilité et temps de réponse de Bâtipro et MyWattUp, mesurés toutes les 30 minutes" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/live.svg?theme=dark" />
+    <img src="https://mmr45-profil.vercel.app/live.svg?theme=light" alt="En direct : disponibilité et temps de réponse de Bâtipro et MyWattUp, mesurés toutes les 30 minutes, avec l'heure de Paris en direct" width="100%" />
   </picture>
 </p>
 
@@ -132,6 +125,23 @@
   <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-05.svg?mode=dark&amp;v=2" />
   <img src="https://mmr45-profil.vercel.app/img/titre-05.svg?mode=light&amp;v=2" alt="Laisse ta trace" width="100%" />
 </picture>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/reactions.svg?theme=dark" />
+    <img src="https://mmr45-profil.vercel.app/reactions.svg?theme=light" alt="Réactions des visiteurs au profil, comptées en direct" width="100%" />
+  </picture>
+</p>
+
+<p align="center">
+  <a href="https://mmr45-profil.vercel.app/reagir/feu"><img src="./assets/reaction-feu.svg" width="96" alt="Réagir : Ça claque" /></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/bravo"><img src="./assets/reaction-bravo.svg" width="96" alt="Réagir : Bravo" /></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/wow"><img src="./assets/reaction-wow.svg" width="96" alt="Réagir : Impressionnant" /></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/idee"><img src="./assets/reaction-idee.svg" width="96" alt="Réagir : Inspirant" /></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/peinture"><img src="./assets/reaction-peinture.svg" width="96" alt="Réagir : Beau boulot" /></a>
+</p>
+
+<br />
 
 <p align="center">
   <picture>

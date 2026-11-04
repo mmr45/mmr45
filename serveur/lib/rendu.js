@@ -32,16 +32,16 @@ export function t(x, y, s, size, fill, weight = 400, font = SANS, anchor = 'star
 }
 
 const REDUCED = '@media (prefers-reduced-motion: reduce){*{animation:none!important}.rm{display:none}}';
-const BASE_CSS = `.up{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+export const BASE_CSS = `.up{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
 @keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .pulse{animation:pulse 2s ease-in-out infinite}@keyframes pulse{50%{opacity:.25}}`;
 
-function svg(w, h, label, body, style = '', defs = '') {
+export function svg(w, h, label, body, style = '', defs = '') {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(label)}">
 <title>${esc(label)}</title><defs>${defs}</defs><style>${BASE_CSS}${style}${REDUCED}</style>${body}</svg>`;
 }
 
-function cardBg(p, w, h, gx = '50%', gy = '50%') {
+export function cardBg(p, w, h, gx = '50%', gy = '50%') {
   const defs = `<pattern id="g" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="${p.grid}"/></pattern>
 <radialGradient id="fd" cx="${gx}" cy="${gy}" r="80%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
 <mask id="m"><rect width="${w}" height="${h}" fill="url(#fd)"/></mask>

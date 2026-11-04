@@ -605,6 +605,24 @@ def pastille(tid, info):
     return svg(W, H, f"Thème {info['nom']}", body, BASE_CSS, defs)
 
 
+REACTIONS = [("feu", "🔥", "Ça claque"), ("bravo", "👏", "Bravo"), ("wow", "🤯", "Impressionnant"),
+             ("idee", "💡", "Inspirant"), ("peinture", "🎨", "Beau boulot")]
+
+
+def bouton_reaction(rid, emoji, nom):
+    """Bouton cliquable du README : un emoji qui sautille, comme un pot de peinture."""
+    p = PAL["dark"]
+    W, H = 132, 132
+    body = f"""<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="30" fill="{p['panel']}" stroke="{p['line']}" stroke-width="2"/>
+<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="30" fill="url(#gl)"/>
+<g transform="translate(66 74)"><g class="hop"><text font-family="'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif" font-size="52" text-anchor="middle">{emoji}</text></g></g>
+{t(66, 112, nom, 14, p['muted'], 700, SANS, "middle")}"""
+    defs = f'<radialGradient id="gl" cx="50%" cy="30%" r="70%"><stop offset="0" stop-color="{p["orange"]}" stop-opacity=".22"/><stop offset="1" stop-color="{p["orange"]}" stop-opacity="0"/></radialGradient>'
+    style = BASE_CSS + """.hop{animation:hop 3s cubic-bezier(.3,1.6,.5,1) infinite}
+@keyframes hop{0%,75%,100%{transform:none}82%{transform:translateY(-8px) rotate(-8deg) scale(1.12)}90%{transform:rotate(5deg)}}"""
+    return svg(W, H, f"Réagir : {nom}", body, style, defs)
+
+
 # ───────────────────────────────── variantes par thème (servies par serveur/) ──
 THEMES_JSON = os.path.join(ROOT, "serveur", "lib", "themes.json")
 THEMES_OUT = os.path.join(ROOT, "serveur", "themes")
@@ -665,6 +683,8 @@ def main():
         files[f"parcours-{mode}.svg"] = parcours(mode)
         files[f"pied-{mode}.svg"] = pied(mode)
         files[f"avatar-{mode}.svg"] = avatar(mode)
+    for rid, emoji, nom in REACTIONS:
+        files[f"reaction-{rid}.svg"] = bouton_reaction(rid, emoji, nom)
     for name, content in files.items():
         with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
             f.write(content)
