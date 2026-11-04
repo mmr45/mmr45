@@ -1,14 +1,14 @@
 <p align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/avatar.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/avatar.svg?mode=light" alt="Avatar animé : un O peint au rouleau autour du symbole du code" width="170" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/avatar.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/avatar.svg?mode=light&amp;v=2" alt="Avatar animé : un O peint au rouleau autour du symbole du code" width="170" />
 </picture>
 </p>
 
 <p align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/hero.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/hero.svg?mode=light" alt="Osman — peintre en bâtiment, développeur et fondateur de deux SaaS en production. Du chantier au code." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/hero.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/hero.svg?mode=light&amp;v=2" alt="Osman — peintre en bâtiment, développeur et fondateur de deux SaaS en production. Du chantier au code." width="100%" />
 </picture>
 </p>
 
@@ -41,14 +41,14 @@
 <br />
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-01.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/titre-01.svg?mode=light" alt="Ce que j'ai mis en ligne" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-01.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/titre-01.svg?mode=light&amp;v=2" alt="Ce que j'ai mis en ligne" width="100%" />
 </picture>
 
 <p align="center">
   <a href="https://batipro-ten.vercel.app"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/projet-batipro.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/projet-batipro.svg?mode=light" alt="Bâtipro — créer son entreprise du bâtiment sans se noyer dans la paperasse : test de qualification, statut juridique, dossier INPI, devis BTP en PDF." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/projet-batipro.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/projet-batipro.svg?mode=light&amp;v=2" alt="Bâtipro — créer son entreprise du bâtiment sans se noyer dans la paperasse : test de qualification, statut juridique, dossier INPI, devis BTP en PDF." width="100%" />
 </picture></a>
 </p>
 
@@ -56,8 +56,8 @@
 
 <p align="center">
   <a href="https://my-watt-up.vercel.app"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/projet-mywattup.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/projet-mywattup.svg?mode=light" alt="MyWattUp — le coach qui croise sommeil, sport et alimentation : score d'énergie, repas adaptés, scanner de produits." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/projet-mywattup.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/projet-mywattup.svg?mode=light&amp;v=2" alt="MyWattUp — le coach qui croise sommeil, sport et alimentation : score d'énergie, repas adaptés, scanner de produits." width="100%" />
 </picture></a>
 </p>
 
@@ -73,14 +73,14 @@
 <br />
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-02.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/titre-02.svg?mode=light" alt="Comment je construis" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-02.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/titre-02.svg?mode=light&amp;v=2" alt="Comment je construis" width="100%" />
 </picture>
 
 <p align="center">
   <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/archi.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/archi.svg?mode=light" alt="Architecture : interface JavaScript/TypeScript, hébergement Vercel, backend Supabase, paiements Stripe et IA ; chaque git push part en production." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/archi.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/archi.svg?mode=light&amp;v=2" alt="Architecture : interface JavaScript/TypeScript, hébergement Vercel, backend Supabase, paiements Stripe et IA ; chaque git push part en production." width="100%" />
 </picture>
 </p>
 
@@ -94,22 +94,22 @@
 <br />
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-03.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/titre-03.svg?mode=light" alt="D'où je viens" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-03.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/titre-03.svg?mode=light&amp;v=2" alt="D'où je viens" width="100%" />
 </picture>
 
 <p align="center">
   <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/parcours.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/parcours.svg?mode=light" alt="Parcours : apprenti peintre en alternance de 2024 à 2026, CAP Peinture avec mention en 2026, Bâtipro en ligne en juillet 2026, MyWattUp en ligne en septembre 2026." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/parcours.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/parcours.svg?mode=light&amp;v=2" alt="Parcours : apprenti peintre en alternance de 2024 à 2026, CAP Peinture avec mention en 2026, Bâtipro en ligne en juillet 2026, MyWattUp en ligne en septembre 2026." width="100%" />
 </picture>
 </p>
 
 <br />
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-04.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/titre-04.svg?mode=light" alt="Activité" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-04.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/titre-04.svg?mode=light&amp;v=2" alt="Activité" width="100%" />
 </picture>
 
 <p align="center">
@@ -129,8 +129,8 @@
 <br />
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-05.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/titre-05.svg?mode=light" alt="Laisse ta trace" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-05.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/titre-05.svg?mode=light&amp;v=2" alt="Laisse ta trace" width="100%" />
 </picture>
 
 <p align="center">
@@ -157,8 +157,8 @@
 <br />
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-06.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/titre-06.svg?mode=light" alt="On en parle ?" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-06.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/titre-06.svg?mode=light&amp;v=2" alt="On en parle ?" width="100%" />
 </picture>
 
 <p align="center">
@@ -175,7 +175,7 @@
 
 <p align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/pied.svg?mode=dark" />
-  <img src="https://mmr45-profil.vercel.app/img/pied.svg?mode=light" alt="Préparer le support, soigner la finition — au chantier comme dans le code." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/pied.svg?mode=dark&amp;v=2" />
+  <img src="https://mmr45-profil.vercel.app/img/pied.svg?mode=light&amp;v=2" alt="Préparer le support, soigner la finition — au chantier comme dans le code." width="100%" />
 </picture>
 </p>
