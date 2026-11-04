@@ -122,15 +122,15 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/stats.svg?mode=dark" />
-    <img src="https://mmr45-profil.vercel.app/img/stats.svg?mode=light" alt="Mes stats GitHub sur 12 mois : contributions, commits, pull requests, jours actifs, série de jours et langages, aux couleurs du thème" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/stats.svg?mode=dark&amp;v=5" />
+    <img src="https://mmr45-profil.vercel.app/img/stats.svg?mode=light&amp;v=5" alt="Mes stats GitHub sur 12 mois : contributions, commits, pull requests, jours actifs, série de jours et langages, aux couleurs du thème" width="100%" />
   </picture>
 </p>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/ville.svg?mode=dark" />
-    <img src="https://mmr45-profil.vercel.app/img/ville.svg?mode=light" alt="Mes contributions des 12 derniers mois en ville 3D animée : une tour par jour, plus elle est haute, plus j'ai codé" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/ville.svg?mode=dark&amp;v=5" />
+    <img src="https://mmr45-profil.vercel.app/img/ville.svg?mode=light&amp;v=5" alt="Mes contributions des 12 derniers mois en ville 3D animée : une tour par jour, plus elle est haute, plus j'ai codé" width="100%" />
   </picture>
 </p>
 
