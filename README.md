@@ -1,27 +1,27 @@
 <p align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/hero.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/hero.svg?mode=light&amp;v=2" alt="Osman — peintre en bâtiment, développeur et fondateur de deux SaaS en production. Du chantier au code." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/hero.svg?mode=dark&amp;v=4" />
+  <img src="https://mmr45-profil.vercel.app/img/hero.svg?mode=light&amp;v=4" alt="Osman — peintre en bâtiment, développeur et fondateur de deux SaaS en production. Du chantier au code." width="100%" />
 </picture>
 </p>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/terminal.svg?theme=dark" />
-    <img src="https://mmr45-profil.vercel.app/terminal.svg?theme=light" alt="Terminal en direct : heure de Paris et ping réel de Bâtipro et MyWattUp à chaque affichage" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/terminal.svg?theme=dark&amp;v=4" />
+    <img src="https://mmr45-profil.vercel.app/terminal.svg?theme=light&amp;v=4" alt="Terminal en direct : heure de Paris et ping réel de Bâtipro et MyWattUp à chaque affichage" width="100%" />
   </picture>
 </p>
 
 <p align="center">
   <a href="https://mmr45-profil.vercel.app/dashboard">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/vues.svg?theme=dark" />
-      <img src="https://mmr45-profil.vercel.app/vues.svg?theme=light" alt="Visites du profil en direct : ton numéro de visite, les 30 derniers jours et les dernières visites. Clique pour le tableau de bord complet." width="100%" />
+      <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/vues.svg?theme=dark&amp;v=4" />
+      <img src="https://mmr45-profil.vercel.app/vues.svg?theme=light&amp;v=4" alt="Visites du profil en direct : ton numéro de visite, les 30 derniers jours et les dernières visites. Clique pour le tableau de bord complet." width="100%" />
     </picture>
   </a>
 </p>
 
-<a href="https://mmr45-profil.vercel.app/dashboard"><img src="https://mmr45-profil.vercel.app/theme-actuel.svg?v=3" alt="Thème actuel du profil." width="100%" /></a>
+<a href="https://mmr45-profil.vercel.app/dashboard"><img src="https://mmr45-profil.vercel.app/theme-actuel.svg?v=4" alt="Thème actuel du profil." width="100%" /></a>
 
 <details>
 <summary><b>🎨 Changer le thème du profil</b> : clique ici pour ouvrir le menu (11 thèmes)</summary>
@@ -46,14 +46,14 @@
 <br />
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-01.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/titre-01.svg?mode=light&amp;v=2" alt="Ce que j'ai mis en ligne" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-01.svg?mode=dark&amp;v=4" />
+  <img src="https://mmr45-profil.vercel.app/img/titre-01.svg?mode=light&amp;v=4" alt="Ce que j'ai mis en ligne" width="100%" />
 </picture>
 
 <p align="center">
   <a href="https://batipro-ten.vercel.app"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/projet-batipro.svg?mode=dark&amp;v=3" />
-  <img src="https://mmr45-profil.vercel.app/img/projet-batipro.svg?mode=light&amp;v=3" alt="Bâtipro — créer son entreprise du bâtiment sans se noyer dans la paperasse : test de qualification, statut juridique, dossier INPI, devis BTP en PDF." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/projet-batipro.svg?mode=dark&amp;v=4" />
+  <img src="https://mmr45-profil.vercel.app/img/projet-batipro.svg?mode=light&amp;v=4" alt="Bâtipro — créer son entreprise du bâtiment sans se noyer dans la paperasse : test de qualification, statut juridique, dossier INPI, devis BTP en PDF." width="100%" />
 </picture></a>
 </p>
 
@@ -61,8 +61,8 @@
 
 <p align="center">
   <a href="https://my-watt-up.vercel.app"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/projet-mywattup.svg?mode=dark&amp;v=3" />
-  <img src="https://mmr45-profil.vercel.app/img/projet-mywattup.svg?mode=light&amp;v=3" alt="MyWattUp — le coach qui croise sommeil, sport et alimentation : score d'énergie, repas adaptés, scanner de produits." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/projet-mywattup.svg?mode=dark&amp;v=4" />
+  <img src="https://mmr45-profil.vercel.app/img/projet-mywattup.svg?mode=light&amp;v=4" alt="MyWattUp — le coach qui croise sommeil, sport et alimentation : score d'énergie, repas adaptés, scanner de produits." width="100%" />
 </picture></a>
 </p>
 
@@ -70,22 +70,22 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/live.svg?theme=dark" />
-    <img src="https://mmr45-profil.vercel.app/live.svg?theme=light" alt="En direct : disponibilité et temps de réponse de Bâtipro et MyWattUp, mesurés toutes les 30 minutes, avec l'heure de Paris en direct" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/live.svg?theme=dark&amp;v=4" />
+    <img src="https://mmr45-profil.vercel.app/live.svg?theme=light&amp;v=4" alt="En direct : disponibilité et temps de réponse de Bâtipro et MyWattUp, mesurés toutes les 30 minutes, avec l'heure de Paris en direct" width="100%" />
   </picture>
 </p>
 
 <br />
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-02.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/titre-02.svg?mode=light&amp;v=2" alt="Comment je construis" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-02.svg?mode=dark&amp;v=4" />
+  <img src="https://mmr45-profil.vercel.app/img/titre-02.svg?mode=light&amp;v=4" alt="Comment je construis" width="100%" />
 </picture>
 
 <p align="center">
   <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/archi.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/archi.svg?mode=light&amp;v=2" alt="Architecture : interface JavaScript/TypeScript, hébergement Vercel, backend Supabase, paiements Stripe et IA ; chaque git push part en production." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/archi.svg?mode=dark&amp;v=4" />
+  <img src="https://mmr45-profil.vercel.app/img/archi.svg?mode=light&amp;v=4" alt="Architecture : interface JavaScript/TypeScript, hébergement Vercel, backend Supabase, paiements Stripe et IA ; chaque git push part en production." width="100%" />
 </picture>
 </p>
 
@@ -99,22 +99,22 @@
 <br />
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-03.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/titre-03.svg?mode=light&amp;v=2" alt="D'où je viens" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-03.svg?mode=dark&amp;v=4" />
+  <img src="https://mmr45-profil.vercel.app/img/titre-03.svg?mode=light&amp;v=4" alt="D'où je viens" width="100%" />
 </picture>
 
 <p align="center">
   <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/parcours.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/parcours.svg?mode=light&amp;v=2" alt="Parcours : apprenti peintre en alternance de 2024 à 2026, CAP Peinture avec mention en 2026, Bâtipro en ligne en juillet 2026, MyWattUp en ligne en septembre 2026." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/parcours.svg?mode=dark&amp;v=4" />
+  <img src="https://mmr45-profil.vercel.app/img/parcours.svg?mode=light&amp;v=4" alt="Parcours : apprenti peintre en alternance de 2024 à 2026, CAP Peinture avec mention en 2026, Bâtipro en ligne en juillet 2026, MyWattUp en ligne en septembre 2026." width="100%" />
 </picture>
 </p>
 
 <br />
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-04.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/titre-04.svg?mode=light&amp;v=2" alt="Activité" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-04.svg?mode=dark&amp;v=4" />
+  <img src="https://mmr45-profil.vercel.app/img/titre-04.svg?mode=light&amp;v=4" alt="Activité" width="100%" />
 </picture>
 
 <p align="center">
@@ -134,31 +134,31 @@
 <br />
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-05.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/titre-05.svg?mode=light&amp;v=2" alt="Laisse ta trace" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-05.svg?mode=dark&amp;v=4" />
+  <img src="https://mmr45-profil.vercel.app/img/titre-05.svg?mode=light&amp;v=4" alt="Laisse ta trace" width="100%" />
 </picture>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/reactions.svg?theme=dark" />
-    <img src="https://mmr45-profil.vercel.app/reactions.svg?theme=light" alt="Réactions des visiteurs au profil, comptées en direct" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/reactions.svg?theme=dark&amp;v=4" />
+    <img src="https://mmr45-profil.vercel.app/reactions.svg?theme=light&amp;v=4" alt="Réactions des visiteurs au profil, comptées en direct" width="100%" />
   </picture>
 </p>
 
 <p align="center">
-  <a href="https://mmr45-profil.vercel.app/reagir/feu"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-feu.svg?mode=dark&amp;v=3" /><img src="https://mmr45-profil.vercel.app/img/reaction-feu.svg?mode=light&amp;v=3" width="96" alt="Réagir : Ça claque" /></picture></a>
-  <a href="https://mmr45-profil.vercel.app/reagir/bravo"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-bravo.svg?mode=dark&amp;v=3" /><img src="https://mmr45-profil.vercel.app/img/reaction-bravo.svg?mode=light&amp;v=3" width="96" alt="Réagir : Bravo" /></picture></a>
-  <a href="https://mmr45-profil.vercel.app/reagir/wow"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-wow.svg?mode=dark&amp;v=3" /><img src="https://mmr45-profil.vercel.app/img/reaction-wow.svg?mode=light&amp;v=3" width="96" alt="Réagir : Impressionnant" /></picture></a>
-  <a href="https://mmr45-profil.vercel.app/reagir/idee"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-idee.svg?mode=dark&amp;v=3" /><img src="https://mmr45-profil.vercel.app/img/reaction-idee.svg?mode=light&amp;v=3" width="96" alt="Réagir : Inspirant" /></picture></a>
-  <a href="https://mmr45-profil.vercel.app/reagir/peinture"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-peinture.svg?mode=dark&amp;v=3" /><img src="https://mmr45-profil.vercel.app/img/reaction-peinture.svg?mode=light&amp;v=3" width="96" alt="Réagir : Beau boulot" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/feu"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-feu.svg?mode=dark&amp;v=4" /><img src="https://mmr45-profil.vercel.app/img/reaction-feu.svg?mode=light&amp;v=4" width="96" alt="Réagir : Ça claque" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/bravo"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-bravo.svg?mode=dark&amp;v=4" /><img src="https://mmr45-profil.vercel.app/img/reaction-bravo.svg?mode=light&amp;v=4" width="96" alt="Réagir : Bravo" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/wow"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-wow.svg?mode=dark&amp;v=4" /><img src="https://mmr45-profil.vercel.app/img/reaction-wow.svg?mode=light&amp;v=4" width="96" alt="Réagir : Impressionnant" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/idee"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-idee.svg?mode=dark&amp;v=4" /><img src="https://mmr45-profil.vercel.app/img/reaction-idee.svg?mode=light&amp;v=4" width="96" alt="Réagir : Inspirant" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/peinture"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-peinture.svg?mode=dark&amp;v=4" /><img src="https://mmr45-profil.vercel.app/img/reaction-peinture.svg?mode=light&amp;v=4" width="96" alt="Réagir : Beau boulot" /></picture></a>
 </p>
 
 <br />
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/mur.svg?theme=dark" />
-    <img src="https://mmr45-profil.vercel.app/mur.svg?theme=light" alt="Mur de peinture collectif, repeint par les visiteurs" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/mur.svg?theme=dark&amp;v=4" />
+    <img src="https://mmr45-profil.vercel.app/mur.svg?theme=light&amp;v=4" alt="Mur de peinture collectif, repeint par les visiteurs" width="100%" />
   </picture>
 </p>
 
@@ -179,8 +179,8 @@
 <br />
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-06.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/titre-06.svg?mode=light&amp;v=2" alt="On en parle ?" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-06.svg?mode=dark&amp;v=4" />
+  <img src="https://mmr45-profil.vercel.app/img/titre-06.svg?mode=light&amp;v=4" alt="On en parle ?" width="100%" />
 </picture>
 
 <p align="center">
@@ -197,7 +197,7 @@
 
 <p align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/pied.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/pied.svg?mode=light&amp;v=2" alt="Préparer le support, soigner la finition — au chantier comme dans le code." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/pied.svg?mode=dark&amp;v=4" />
+  <img src="https://mmr45-profil.vercel.app/img/pied.svg?mode=light&amp;v=4" alt="Préparer le support, soigner la finition — au chantier comme dans le code." width="100%" />
 </picture>
 </p>
