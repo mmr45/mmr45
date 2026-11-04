@@ -10,7 +10,8 @@ import { renderStats, renderVille, renderRouleau } from '../lib/gh-cartes.js';
 import { renderSucces, renderFeuille, renderConseil, renderMorpion, renderCase, renderSondage, renderVote } from '../lib/extras.js';
 import { litMorpion, litSondage, SONDAGE } from '../lib/jeux.js';
 import { stats as statsVues } from '../lib/vues.js';
-import { charge as chargeMur } from '../lib/etat.js';
+import { charge as chargeMur, chargeMemo } from '../lib/etat.js';
+import { renderPixel, CASES } from '../lib/rendu.js';
 import { litReactions } from '../lib/reactions.js';
 
 const NOMS = new Set(['hero', 'archi', 'parcours', 'pied', 'projet-batipro', 'projet-mywattup',
@@ -44,6 +45,14 @@ export default async function handler(req, res) {
   const lang = req.query.lang === 'en' ? 'en' : 'fr';
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');
   res.setHeader('Expires', '0');
+  // les 144 cases de la fresque : sans thème, une lecture de Blob partagée, courte mise en cache CDN
+  const px = /^px-(\d+)$/.exec(nom);
+  if (px && Number(px[1]) < CASES) {
+    const etat = await chargeMemo().catch(() => ({ cases: [] }));
+    res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');
+    res.setHeader('Vercel-CDN-Cache-Control', 'max-age=5, stale-while-revalidate=60');
+    return res.status(200).send(renderPixel(etat, Number(px[1])));
+  }
   const theme = await themeActuel().catch(() => 'chantier');
   res.setHeader('X-Theme', theme);
   if (nom === 'partage.png') {

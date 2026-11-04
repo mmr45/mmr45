@@ -134,6 +134,21 @@ ${cases.join('')}
   return svg(W, H, `Mur de peinture collectif en direct : couche n°${etat.couche}, ${n} cases peintes sur ${CASES}, ${total} coups de pinceau.`, body, style, defs);
 }
 
+// ───────────────────────────────────────────── une case de la fresque (README) ──
+// Sans thème ni mode : couleurs de peinture sur fond transparent, lisibles en clair comme en sombre.
+export function renderPixel(etat, k, now = new Date()) {
+  const c = etat.cases.find((x) => x.case === k);
+  const der = etat.cases[etat.cases.length - 1];
+  const frais = c && c === der && now - new Date(c.le) < 10 * 60000;
+  const body = !c
+    ? `<rect x="2" y="2" width="36" height="36" rx="7" fill="#8A9BB8" fill-opacity=".08" stroke="#8A9BB8" stroke-opacity=".6" stroke-width="1.5" stroke-dasharray="4 3"/>`
+    : `<rect x="1" y="1" width="38" height="38" rx="7" fill="${COULEURS[c.couleur]}" stroke="#000" stroke-opacity=".12"/>
+<rect class="lu" x="1" y="1" width="38" height="12" rx="6" fill="#fff" fill-opacity=".18"/>
+${frais ? '<rect class="frais rm" x="1" y="1" width="38" height="38" rx="7" fill="none" stroke="#fff" stroke-width="3"/>' : ''}`;
+  const label = c ? `Case ${k + 1} : ${c.couleur}, ${relatif(c.le, now)}. Clique pour la repeindre.` : `Case ${k + 1} libre : clique pour la peindre.`;
+  return svg(40, 40, label, body, '.frais{animation:fr 1.2s ease-in-out infinite alternate}@keyframes fr{to{stroke-opacity:.1}}');
+}
+
 // ──────────────────────────────────────────────────── terminal en direct ──
 export function renderTerminal(d, mode, theme) {
   const p = palette(mode, theme);

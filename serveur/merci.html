@@ -113,7 +113,7 @@
   else if (err === 'limite') { titre.textContent = 'Pinceau au repos'; sous.textContent = 'Tu as déjà donné 10 coups de pinceau aujourd’hui. Reviens demain !'; }
   else if (err) { titre.textContent = 'Oups'; sous.textContent = 'La peinture n’a pas pris. Réessaie dans un instant.'; }
   else if (c) {
-    titre.innerHTML = 'Touche <span></span> posée !';
+    titre.innerHTML = q.get('case') ? `Case ${Number(q.get('case'))} peinte en <span></span> !` : 'Touche <span></span> posée !';
     titre.querySelector('span').textContent = c;
     sous.textContent = (n ? `Coup de pinceau n°${n}. ` : '') + (q.get('couche') ? `Tu viens d’attaquer la couche n°${q.get('couche')} !` : 'Il apparaît déjà sur le profil.');
   }

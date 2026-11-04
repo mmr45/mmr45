@@ -54,7 +54,17 @@ export async function charge() {
   return vide();
 }
 
+// Lecture partagée pour les 144 cases de la fresque : une seule lecture de Blob toutes les 5 s
+// par instance, même quand le README charge toutes les cases en même temps.
+let memo = null, memoAt = 0, enCours = null;
+export function chargeMemo() {
+  if (memo && Date.now() - memoAt < 5000) return Promise.resolve(memo);
+  enCours ||= charge().then((e) => { memo = e; memoAt = Date.now(); return e; }).finally(() => { enCours = null; });
+  return enCours;
+}
+
 export async function sauve(etat) {
+  memo = etat; memoAt = Date.now();
   const json = JSON.stringify(etat);
   if (LOCAL) return writeFile(FICHIER_LOCAL, json);
   const { put, list, del } = await import('@vercel/blob');
@@ -72,7 +82,9 @@ export function empreinte(ip, jour) {
   return createHash('sha256').update(`${process.env.SEL || 'mmr45-mur'}|${jour}|${ip}`).digest('hex').slice(0, 16);
 }
 
-export function peindre(etat, couleur, ip, now = new Date(), pays = '') {
+// `k` (0 à CASES-1) : case choisie par le visiteur dans la fresque, repeinte même si elle l'était déjà.
+// Sans `k` : la prochaine case libre, dans l'ordre éparpillé (pots de peinture du README).
+export function peindre(etat, couleur, ip, now = new Date(), pays = '', k = null) {
   const jour = now.toISOString().slice(0, 10);
   if (etat.limites.jour !== jour) etat.limites = { jour, ips: {} };
   const h = empreinte(ip || 'inconnu', jour);
@@ -80,13 +92,15 @@ export function peindre(etat, couleur, ip, now = new Date(), pays = '') {
   if (deja >= MAX_PAR_JOUR) return { ok: false, raison: 'limite' };
   etat.limites.ips[h] = deja + 1;
   let nouvelleCouche = false;
-  if (etat.cases.length >= CASES) {
+  if (k !== null) {
+    etat.cases = etat.cases.filter((c) => c.case !== k);
+  } else if (etat.cases.length >= CASES) {
     etat.couche += 1;
     etat.cases = [];
     nouvelleCouche = true;
   }
-  const libres = ORDRE.filter((k) => !etat.cases.some((c) => c.case === k));
-  etat.cases.push({ case: libres[0], couleur, par: 'visiteur', le: now.toISOString(), ...(pays ? { pays } : {}) });
+  const cible = k !== null ? k : ORDRE.find((i) => !etat.cases.some((c) => c.case === i));
+  etat.cases.push({ case: cible, couleur, par: 'visiteur', le: now.toISOString(), ...(pays ? { pays } : {}) });
   if (pays) { etat.pays ||= {}; etat.pays[pays] = (etat.pays[pays] || 0) + 1; }
   etat.total += 1;
   return { ok: true, nouvelleCouche, numero: etat.total };
