@@ -1,9 +1,40 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/peindre/:couleur", "destination": "/api/peindre?c=:couleur" },
-    { "source": "/mur.svg", "destination": "/api/mur" },
-    { "source": "/terminal.svg", "destination": "/api/terminal" },
-    { "source": "/vues.svg", "destination": "/api/vues" }
+    {
+      "source": "/peindre/:couleur",
+      "destination": "/api/peindre?c=:couleur"
+    },
+    {
+      "source": "/mur.svg",
+      "destination": "/api/mur"
+    },
+    {
+      "source": "/terminal.svg",
+      "destination": "/api/terminal"
+    },
+    {
+      "source": "/vues.svg",
+      "destination": "/api/vues"
+    },
+    {
+      "source": "/theme/:t",
+      "destination": "/api/theme?t=:t"
+    },
+    {
+      "source": "/img/:n",
+      "destination": "/api/img?n=:n"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/themes/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
   ]
 }

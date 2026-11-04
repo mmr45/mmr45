@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="580" viewBox="0 0 1200 580" role="img" aria-label="Comment je construis mes SaaS : interface en JavaScript/TypeScript, hébergée sur Vercel, backend Supabase (Auth, Postgres, Edge Functions), paiements Stripe et IA ; chaque git push part en production.">
+<title>Comment je construis mes SaaS : interface en JavaScript/TypeScript, hébergée sur Vercel, backend Supabase (Auth, Postgres, Edge Functions), paiements Stripe et IA ; chaque git push part en production.</title>
+<defs>
+  <pattern id="g" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#F6DEF0"/></pattern>
+  <radialGradient id="fd" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  <mask id="m"><rect width="1200" height="580" fill="url(#fd)"/></mask>
+  <radialGradient id="gl" cx="50%" cy="30%" r="50%"><stop offset="0" stop-color="#D1009F" stop-opacity=".12"/><stop offset="1" stop-color="#D1009F" stop-opacity="0"/></radialGradient>
+  <clipPath id="card"><rect width="1200" height="580" rx="22"/></clipPath></defs>
+<style>
+.up{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+
+.fill{transform-box:fill-box;transform-origin:left;animation:fill 8s infinite}
+@keyframes fill{0%,10%{transform:scaleX(0);opacity:1;animation-timing-function:cubic-bezier(.6,0,.3,1)}42%,86%{transform:scaleX(1);opacity:1}94%,100%{transform:scaleX(1);opacity:0}}
+.pop{transform-box:fill-box;transform-origin:center;animation:pop 8s infinite}
+@keyframes pop{0%{transform:scale(0)}5%{transform:scale(1.25)}8%,86%{transform:scale(1)}94%,100%{transform:scale(0)}}
+.act{animation:act 2s infinite}
+@keyframes act{0%,100%{opacity:0}15%{opacity:.85}45%{opacity:0}}
+.glow{transform-box:fill-box;transform-origin:center;animation:glow 8s 3.6s infinite}
+@keyframes glow{0%{transform:scale(1);opacity:.9}12%,100%{transform:scale(2.6);opacity:0}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important}.rm{display:none}}</style>
+
+<g clip-path="url(#card)">
+  <rect width="1200" height="580" fill="#FFF4FC"/>
+  <rect width="1200" height="580" fill="url(#g)" mask="url(#m)"/>
+  <rect width="1200" height="580" fill="url(#gl)"/>
+</g>
+<rect x=".5" y=".5" width="1199" height="579" rx="21.5" fill="none" stroke="#F0CFE8"/><path id="l0" d="M305 150.0H331" stroke="#F0CFE8" stroke-width="2" stroke-dasharray="4 4"/><circle class="rm" r="4.5" fill="#D1009F"><animateMotion dur="2s" begin="1.00s" repeatCount="indefinite" path="M299 150.0H337"/><animate attributeName="opacity" values="0;1;1;0" dur="2s" begin="1.00s" repeatCount="indefinite"/></circle><circle class="rm" r="4.5" fill="#D1009F"><animateMotion dur="2s" begin="2.00s" repeatCount="indefinite" path="M299 150.0H337"/><animate attributeName="opacity" values="0;1;1;0" dur="2s" begin="2.00s" repeatCount="indefinite"/></circle><path id="l1" d="M587 150.0H613" stroke="#F0CFE8" stroke-width="2" stroke-dasharray="4 4"/><circle class="rm" r="4.5" fill="#D1009F"><animateMotion dur="2s" begin="1.35s" repeatCount="indefinite" path="M581 150.0H619"/><animate attributeName="opacity" values="0;1;1;0" dur="2s" begin="1.35s" repeatCount="indefinite"/></circle><circle class="rm" r="4.5" fill="#D1009F"><animateMotion dur="2s" begin="2.35s" repeatCount="indefinite" path="M581 150.0H619"/><animate attributeName="opacity" values="0;1;1;0" dur="2s" begin="2.35s" repeatCount="indefinite"/></circle><path id="l2" d="M869 150.0H895" stroke="#F0CFE8" stroke-width="2" stroke-dasharray="4 4"/><circle class="rm" r="4.5" fill="#D1009F"><animateMotion dur="2s" begin="1.70s" repeatCount="indefinite" path="M863 150.0H901"/><animate attributeName="opacity" values="0;1;1;0" dur="2s" begin="1.70s" repeatCount="indefinite"/></circle><circle class="rm" r="4.5" fill="#D1009F"><animateMotion dur="2s" begin="2.70s" repeatCount="indefinite" path="M863 150.0H901"/><animate attributeName="opacity" values="0;1;1;0" dur="2s" begin="2.70s" repeatCount="indefinite"/></circle><path d="M1023.0 250C1023.0 296 741.0 296 741.0 250" fill="none" stroke="#F0CFE8" stroke-width="2" stroke-dasharray="4 4"/><text x="882.0" y="308" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="15" font-weight="400" fill="#B49BC6" text-anchor="middle">webhook</text><circle class="rm" r="4.5" fill="#13863F"><animateMotion dur="2.4s" begin="2s" repeatCount="indefinite" path="M1023.0 250C1023.0 296 741.0 296 741.0 250"/><animate attributeName="opacity" values="0;1;1;0" dur="2.4s" begin="2s" repeatCount="indefinite"/></circle>
+<g class="up" style="animation-delay:0.15s">
+  <rect x="51" y="52" width="252" height="196" rx="16" fill="#FFFFFF" stroke="#F0CFE8"/>
+  <rect x="51" y="52" width="252" height="5" rx="2.5" fill="#0088A6"/>
+  <rect class="act rm" style="animation-delay:1.00s" x="51" y="52" width="252" height="196" rx="16" fill="none" stroke="#0088A6" stroke-width="2" opacity="0"/>
+  <text x="73" y="96" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="15" font-weight="400" fill="#B49BC6" letter-spacing="2">CLIENT</text>
+  <text x="73" y="142" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="33" font-weight="800" fill="#2A0A3D" letter-spacing="-.5">Interface</text>
+  <text x="73" y="184" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="20" font-weight="400" fill="#6C4D82">JS / TS · Vue</text>
+  <text x="73" y="214" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="20" font-weight="400" fill="#6C4D82">Tailwind · PWA</text>
+</g>
+<g class="up" style="animation-delay:0.30s">
+  <rect x="333" y="52" width="252" height="196" rx="16" fill="#FFFFFF" stroke="#F0CFE8"/>
+  <rect x="333" y="52" width="252" height="5" rx="2.5" fill="#2A0A3D"/>
+  <rect class="act rm" style="animation-delay:1.35s" x="333" y="52" width="252" height="196" rx="16" fill="none" stroke="#2A0A3D" stroke-width="2" opacity="0"/>
+  <text x="355" y="96" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="15" font-weight="400" fill="#B49BC6" letter-spacing="2">HÉBERGEMENT</text>
+  <text x="355" y="142" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="33" font-weight="800" fill="#2A0A3D" letter-spacing="-.5">Vercel</text>
+  <text x="355" y="184" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="20" font-weight="400" fill="#6C4D82">Déploiement auto</text>
+  <text x="355" y="214" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="20" font-weight="400" fill="#6C4D82">à chaque push</text>
+</g>
+<g class="up" style="animation-delay:0.45s">
+  <rect x="615" y="52" width="252" height="196" rx="16" fill="#FFFFFF" stroke="#F0CFE8"/>
+  <rect x="615" y="52" width="252" height="5" rx="2.5" fill="#13863F"/>
+  <rect class="act rm" style="animation-delay:1.70s" x="615" y="52" width="252" height="196" rx="16" fill="none" stroke="#13863F" stroke-width="2" opacity="0"/>
+  <text x="637" y="96" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="15" font-weight="400" fill="#B49BC6" letter-spacing="2">BACKEND</text>
+  <text x="637" y="142" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="33" font-weight="800" fill="#2A0A3D" letter-spacing="-.5">Supabase</text>
+  <text x="637" y="184" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="20" font-weight="400" fill="#6C4D82">Auth · Postgres</text>
+  <text x="637" y="214" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="20" font-weight="400" fill="#6C4D82">Edge Functions</text>
+</g>
+<g class="up" style="animation-delay:0.60s">
+  <rect x="897" y="52" width="252" height="196" rx="16" fill="#FFFFFF" stroke="#F0CFE8"/>
+  <rect x="897" y="52" width="252" height="5" rx="2.5" fill="#D1009F"/>
+  <rect class="act rm" style="animation-delay:2.05s" x="897" y="52" width="252" height="196" rx="16" fill="none" stroke="#D1009F" stroke-width="2" opacity="0"/>
+  <text x="919" y="96" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="15" font-weight="400" fill="#B49BC6" letter-spacing="2">SERVICES</text>
+  <text x="919" y="142" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="33" font-weight="800" fill="#2A0A3D" letter-spacing="-.5">Stripe · IA</text>
+  <text x="919" y="184" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="20" font-weight="400" fill="#6C4D82">Paiements, webhooks</text>
+  <text x="919" y="214" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="20" font-weight="400" fill="#6C4D82">conseils générés</text>
+</g>
+<g class="up" style="animation-delay:.8s">
+  <text x="56" y="340" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="16" font-weight="400" fill="#B49BC6" letter-spacing="2">DE MON ÉDITEUR À LA PROD</text>
+  <rect x="56" y="410" width="1088" height="8" rx="4" fill="#FFF0FA" stroke="#F0CFE8"/>
+  <rect class="fill" x="56" y="410" width="1088" height="8" rx="4" fill="#D1009F"/>
+</g>
+
+<g class="pop" style="animation-delay:1.00s">
+  <circle cx="56.0" cy="414" r="17" fill="#FFF4FC" stroke="#D1009F" stroke-width="3"/>
+  <path d="M50.0 414.5l4 4 8-8.5" fill="none" stroke="#D1009F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g class="up" style="animation-delay:1.00s">
+  <text x="39.0" y="472" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="24" font-weight="700" fill="#2A0A3D">git push</text>
+</g>
+
+<g class="pop" style="animation-delay:1.70s">
+  <circle cx="418.6666666666667" cy="414" r="17" fill="#FFF4FC" stroke="#D1009F" stroke-width="3"/>
+  <path d="M412.6666666666667 414.5l4 4 8-8.5" fill="none" stroke="#D1009F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g class="up" style="animation-delay:1.70s">
+  <text x="418.6666666666667" y="472" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="24" font-weight="700" fill="#2A0A3D" text-anchor="middle">build</text>
+</g>
+
+<g class="pop" style="animation-delay:2.40s">
+  <circle cx="781.3333333333334" cy="414" r="17" fill="#FFF4FC" stroke="#D1009F" stroke-width="3"/>
+  <path d="M775.3333333333334 414.5l4 4 8-8.5" fill="none" stroke="#D1009F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g class="up" style="animation-delay:2.40s">
+  <text x="781.3333333333334" y="472" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="24" font-weight="700" fill="#2A0A3D" text-anchor="middle">preview</text>
+</g>
+<circle class="glow rm" cx="1144.0" cy="414" r="17" fill="none" stroke="#13863F" stroke-width="2" opacity="0"/>
+<g class="pop" style="animation-delay:3.10s">
+  <circle cx="1144.0" cy="414" r="17" fill="#FFF4FC" stroke="#13863F" stroke-width="3"/>
+  <path d="M1138.0 414.5l4 4 8-8.5" fill="none" stroke="#13863F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g class="up" style="animation-delay:3.10s">
+  <text x="1161.0" y="472" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="24" font-weight="700" fill="#13863F" text-anchor="end">production</text>
+</g>
+<g class="up" style="animation-delay:3.4s">
+  <text x="600.0" y="536" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="21" font-weight="400" fill="#6C4D82" text-anchor="middle">Je code, je pousse, c'est en ligne : chaque modification part en production en quelques minutes.</text>
+</g>
+</svg>

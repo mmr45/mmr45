@@ -1,4 +1,5 @@
 // GET /terminal.svg?theme=dark|light : heure de Paris et ping réel des deux SaaS, à chaque affichage.
+import { themeActuel } from '../lib/theme.js';
 import { renderTerminal } from '../lib/rendu.js';
 
 const SITES = ['https://batipro-ten.vercel.app', 'https://my-watt-up.vercel.app'];
@@ -27,6 +28,6 @@ export default async function handler(req, res) {
   const date = new Intl.DateTimeFormat('fr-FR', { timeZone: 'Europe/Paris', weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(now);
   const h = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', hour: 'numeric', hourCycle: 'h23' }).formatToParts(now).find((x) => x.type === 'hour').value);
   res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');
-  res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=20, stale-while-revalidate=40');
-  res.status(200).send(renderTerminal({ date, sites, salut: salut(h) }, req.query.theme === 'light' ? 'light' : 'dark'));
+  res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=20, stale-while-revalidate=5');
+  res.status(200).send(renderTerminal({ date, sites, salut: salut(h) }, req.query.theme === 'light' ? 'light' : 'dark', await themeActuel().catch(() => 'chantier')));
 }

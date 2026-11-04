@@ -72,6 +72,13 @@
   .note b { color: var(--text); }
   @media (max-width: 860px) { .hero, .grid2, .grid3 { grid-template-columns: 1fr; } .heat { gap: 2px; font-size: 9px; grid-template-columns: 28px repeat(24, minmax(0, 1fr)); } }
   .pots { display: flex; gap: 8px; flex-wrap: wrap; } .pots a { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line); transition: transform .15s; } .pots a:hover { transform: translateY(-3px) scale(1.1); }
+  .themes { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+  .themes a { display: block; text-decoration: none; border-radius: 16px; padding: 14px 16px; border: 2px solid transparent; transition: transform .15s; }
+  .themes a:hover { transform: translateY(-3px); }
+  .themes a.on { box-shadow: 0 0 0 3px var(--orange); }
+  .themes b { display: block; font-size: 17px; margin-bottom: 10px; }
+  .themes i { display: inline-block; width: 14px; height: 14px; border-radius: 50%; margin-right: 6px; }
+  .themes small { display: block; margin-top: 8px; font-family: var(--mono); font-size: 12px; opacity: .75; }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
@@ -122,6 +129,12 @@
     <div class="card"><p class="lab">Ils suivent le profil</p><div class="abos" id="abos"><span class="vide">…</span></div></div>
   </section>
 
+  <section class="card">
+    <p class="lab">Thème du profil · choisi par les visiteurs</p>
+    <div class="sous" id="th-actuel" style="margin:0 0 16px">…</div>
+    <div class="themes" id="themes"></div>
+  </section>
+
   <section class="card note">
     <p class="lab">Comment ça marche</p>
     Chaque fois que quelqu’un ouvre le profil, GitHub charge la carte « visites » depuis ce serveur : c’est ce chargement qui est compté, en direct.
@@ -142,6 +155,7 @@
   const nomPays = (() => { try { const d = new Intl.DisplayNames(['fr'], { type: 'region' }); return (cc) => d.of(cc); } catch { return (cc) => cc; } })();
   const heureParis = (iso) => new Intl.DateTimeFormat('fr-FR', { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(new Date(iso));
 
+  let courbeCache = null, heatCache = null;
   let decalage = 0; // horloge serveur - horloge locale
   const now = () => Date.now() + decalage;
   function ilya(iso) {
@@ -236,14 +250,38 @@
       $('k-rec').textContent = fmt(v.record.n);
       if (v.record.jour) $('k-rec-l').textContent = `record, le ${jourCourt(v.record.jour)}`;
       $('derniere').dataset.le = v.dernieres[0]?.le || '';
+      courbeCache = s; heatCache = v.grille;
       courbe(s); heat(v.grille); feed(v.dernieres);
       const td = v.theme.dark || 0, tl = v.theme.light || 0, tt = Math.max(td + tl, 1);
       $('split').style.width = `${(td * 100) / tt}%`;
       $('t-dark').textContent = `☾ ${Math.round((td * 100) / tt)} % sombre`;
       $('t-light').textContent = `${Math.round((tl * 100) / tt)} % clair ☀`;
       mur(d.mur);
+      appliqueTheme(d.theme);
       premier = false;
     } catch (e) { console.error(e); }
+  }
+
+  let themeAffiche = '';
+  function appliqueTheme(t) {
+    if (!t) return;
+    const clair = matchMedia('(prefers-color-scheme: light)').matches;
+    const cur = t.liste.find((x) => x.id === t.actuel);
+    if (themeAffiche && t.actuel !== themeAffiche) { location.reload(); return; }
+    if (cur && !themeAffiche) {
+      const pal = clair ? cur.light : cur.dark;
+      const r = document.documentElement.style;
+      for (const k of ['bg', 'panel', 'panel2', 'line', 'grid', 'text', 'muted', 'faint', 'orange', 'blue', 'green', 'red']) if (pal[k]) r.setProperty(`--${k}`, pal[k]);
+      themeAffiche = t.actuel;
+      courbeCache && courbe(courbeCache); heatCache && heat(heatCache);
+    }
+    $('th-actuel').innerHTML = `En ce moment : <b>${cur ? cur.nom : t.actuel}</b>${t.le ? `, choisi ${ilya(t.le)}` : ''} · ${fmt(t.changements)} changement${t.changements > 1 ? 's' : ''} au total`;
+    $('themes').innerHTML = t.liste.map((x) => {
+      const p = x.dark;
+      return `<a href="/theme/${x.id}" class="${x.id === t.actuel ? 'on' : ''}" style="background:${p.bg};color:${p.text};border-color:${p.line}">
+        <b>${x.nom}</b>${['orange', 'blue', 'green', 'text'].map((k) => `<i style="background:${p[k]}"></i>`).join('')}
+        <small style="color:${p.orange}">${x.id === t.actuel ? 'actif' : 'choisir →'} · ${t.votes[x.id] || 0} vote${(t.votes[x.id] || 0) > 1 ? 's' : ''}</small></a>`;
+    }).join('');
   }
 
   function tic() {

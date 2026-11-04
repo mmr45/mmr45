@@ -550,6 +550,102 @@ def pied(mode):
     return svg(W, H, "Préparer le support, soigner la finition — au chantier comme dans le code.", body, style)
 
 
+# ──────────────────────────────────────────────────────── avatar animé ──
+def avatar(mode):
+    """Avatar rond : un « O » peint au rouleau, en boucle, anneau qui tourne."""
+    p = PAL[mode]
+    S, c, R = 400, 200, 118
+    circ = 2 * 3.14159 * R
+    drips = [(-38, 34), (-6, 52), (30, 26)]
+    coul = "".join(
+        f'<path class="drip" style="animation-delay:{1.2 + i * 0.25:.2f}s" d="M{c + dx - 7} {c + R - 8}h14v{h - 7}a7 7 0 0 1-14 0z" fill="{p["orange"]}"/>'
+        for i, (dx, h) in enumerate(drips))
+    defs = f"""
+  <clipPath id="rond"><circle cx="{c}" cy="{c}" r="196"/></clipPath>
+  <pattern id="g" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="{p['grid']}"/></pattern>
+  <radialGradient id="gl" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="{p['orange']}" stop-opacity="{p['glow']}"/><stop offset="1" stop-color="{p['orange']}" stop-opacity="0"/></radialGradient>
+  <linearGradient id="an" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="{p['orange']}"/><stop offset=".5" stop-color="{p['blue']}"/><stop offset="1" stop-color="{p['orange']}" stop-opacity="0"/></linearGradient>"""
+    body = f"""
+<g clip-path="url(#rond)"><rect width="{S}" height="{S}" fill="{p['bg']}"/><rect width="{S}" height="{S}" fill="url(#g)"/><rect width="{S}" height="{S}" fill="url(#gl)"/>
+  <g class="rm">{coul}</g>
+  <circle cx="{c}" cy="{c}" r="{R}" fill="none" stroke="{p['panel2']}" stroke-width="54"/>
+  <circle class="peint" cx="{c}" cy="{c}" r="{R}" fill="none" stroke="{p['orange']}" stroke-width="54" stroke-linecap="round"
+    stroke-dasharray="{circ:.1f}" transform="rotate(-90 {c} {c})"/>
+  <g class="roul rm"><g transform="translate({c} {c - R})">
+    <path d="M0 -36V-58H34V-74" fill="none" stroke="{p['muted']}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="26" y="-96" width="16" height="26" rx="6" fill="{p['faint']}"/>
+    <rect x="-16" y="-36" width="32" height="72" rx="11" fill="{p['text']}"/><rect x="-16" y="-36" width="32" height="72" rx="11" fill="{p['orange']}" fill-opacity=".45"/>
+    <path d="M-8 -28V28M0 -28V28M8 -28V28" stroke="{p['orange']}" stroke-opacity=".5" stroke-width="2"/></g></g>
+  {t(c, c + 12, "</>", 40, p['text'], 800, MONO, "middle")}
+</g>
+<circle class="anneau" cx="{c}" cy="{c}" r="193" fill="none" stroke="url(#an)" stroke-width="6"/>
+<circle cx="{c}" cy="{c}" r="196" fill="none" stroke="{p['line']}" stroke-width="2"/>"""
+    style = f"""
+.peint{{animation:peint 8s cubic-bezier(.6,0,.3,1) infinite}}
+@keyframes peint{{0%,6%{{stroke-dashoffset:{circ:.1f}}}55%,90%{{stroke-dashoffset:0;opacity:1}}97%{{opacity:0;stroke-dashoffset:0}}100%{{opacity:0;stroke-dashoffset:{circ:.1f}}}}}
+.roul{{transform-origin:{c}px {c}px;animation:roul 8s cubic-bezier(.6,0,.3,1) infinite}}
+@keyframes roul{{0%,6%{{transform:rotate(0);opacity:1}}55%{{transform:rotate(360deg);opacity:1}}62%,100%{{transform:rotate(360deg);opacity:0}}}}
+.anneau{{transform-origin:{c}px {c}px;animation:tour 6s linear infinite}}@keyframes tour{{to{{transform:rotate(360deg)}}}}
+.drip{{transform-box:fill-box;transform-origin:top;animation:drip 8s infinite}}
+@keyframes drip{{0%,55%{{transform:scaleY(0)}}75%,90%{{transform:scaleY(1);opacity:1}}97%,100%{{transform:scaleY(1);opacity:0}}}}"""
+    return svg(S, S, "Avatar animé d'Osman : un O peint au rouleau autour du symbole du code.", body, style, defs)
+
+
+# ─────────────────────────────────────────────────── pastilles de thème ──
+def pastille(tid, info):
+    """Bouton de thème pour le README : aperçu des couleurs + nom."""
+    p = PAL["dark"]
+    W, H = 260, 92
+    dots = "".join(f'<circle cx="{30 + i * 26}" cy="62" r="9" fill="{p[k]}"/>' for i, k in enumerate(["orange", "blue", "green", "text"]))
+    body = f"""<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="18" fill="{p['bg']}" stroke="{p['line']}" stroke-width="2"/>
+<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="18" fill="url(#gl)"/>
+{t(22, 38, info['nom'], 22, p['text'], 800)}{dots}
+<g class="pulse">{t(W - 22, 68, "choisir →", 15, p['orange'], 700, MONO, "end")}</g>"""
+    defs = f'<radialGradient id="gl" cx="85%" cy="20%" r="70%"><stop offset="0" stop-color="{p["orange"]}" stop-opacity=".3"/><stop offset="1" stop-color="{p["orange"]}" stop-opacity="0"/></radialGradient>'
+    return svg(W, H, f"Thème {info['nom']}", body, BASE_CSS, defs)
+
+
+# ───────────────────────────────── variantes par thème (servies par serveur/) ──
+THEMES_JSON = os.path.join(ROOT, "serveur", "lib", "themes.json")
+THEMES_OUT = os.path.join(ROOT, "serveur", "themes")
+
+
+def ecrit_themes(titres):
+    """Toutes les images, pour chaque thème : le serveur redirige vers le thème choisi."""
+    import copy
+    import json
+    with open(THEMES_JSON, encoding="utf-8") as f:
+        cfg = json.load(f)
+    base = copy.deepcopy(PAL)
+    n = 0
+    for tid in cfg["ordre"]:
+        info = cfg["themes"][tid]
+        for mode in base:
+            PAL[mode] = {**base[mode], **{k: v for k, v in info[mode].items() if k in base[mode]}}
+        dossier = os.path.join(THEMES_OUT, tid)
+        os.makedirs(dossier, exist_ok=True)
+        files = {}
+        for mode in base:
+            files[f"hero-{mode}.svg"] = hero(mode)
+            for num, title, com in titres:
+                files[f"titre-{num}-{mode}.svg"] = titre(mode, num, title, com)
+            files[f"projet-batipro-{mode}.svg"] = projet(mode, "batipro")
+            files[f"projet-mywattup-{mode}.svg"] = projet(mode, "mywattup", flip=True)
+            files[f"archi-{mode}.svg"] = archi(mode)
+            files[f"parcours-{mode}.svg"] = parcours(mode)
+            files[f"pied-{mode}.svg"] = pied(mode)
+            files[f"avatar-{mode}.svg"] = avatar(mode)
+        with open(os.path.join(OUT, f"theme-{tid}.svg"), "w", encoding="utf-8") as f:
+            f.write(pastille(tid, info))
+        for name, content in files.items():
+            with open(os.path.join(dossier, name), "w", encoding="utf-8") as f:
+                f.write(content)
+        n += len(files)
+    for mode in base:
+        PAL[mode] = base[mode]
+    print(f"{n} images de thème écrites dans {THEMES_OUT}")
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     titres = [("01", "Ce que j'ai mis en ligne", "// en production"),
@@ -568,9 +664,11 @@ def main():
         files[f"archi-{mode}.svg"] = archi(mode)
         files[f"parcours-{mode}.svg"] = parcours(mode)
         files[f"pied-{mode}.svg"] = pied(mode)
+        files[f"avatar-{mode}.svg"] = avatar(mode)
     for name, content in files.items():
         with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
             f.write(content)
+    ecrit_themes(titres)
     from mur import ecrit_pots
     ecrit_pots(OUT)
     print(f"{len(files)} fichiers écrits dans {OUT} (+ pots de peinture)")

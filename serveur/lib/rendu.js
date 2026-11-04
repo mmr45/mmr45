@@ -1,4 +1,5 @@
 // Rendu SVG côté serveur : mêmes couleurs, polices et règles que .github/scripts/profil.py.
+import themes from './themes.json' with { type: 'json' };
 export const SANS = "'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif";
 export const MONO = "'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace";
 
@@ -8,6 +9,13 @@ export const PAL = {
   light: { bg: '#F7F4EE', panel: '#FFFFFF', panel2: '#FBF9F5', line: '#E3DCCF', grid: '#E9E3D8', text: '#14213D',
     muted: '#5B6B85', faint: '#97A3B6', orange: '#F0600F', blue: '#1D5FA3', green: '#1A7F37', red: '#CF222E', glow: '.12' },
 };
+
+// palette du mode (clair/sombre) dans le thème choisi par les visiteurs
+export function palette(mode, theme = 'chantier') {
+  const base = PAL[mode] || PAL.dark;
+  const t = themes.themes[theme]?.[mode === 'light' ? 'light' : 'dark'] || {};
+  return { ...base, ...Object.fromEntries(Object.entries(t).filter(([k]) => k in base)) };
+}
 
 export const COULEURS = {
   orange: '#FF6A13', bleu: '#2F7BEA', vert: '#3FB950', jaune: '#F2CC60', rose: '#F778BA', violet: '#A371F7', blanc: '#EFE9DD',
@@ -55,8 +63,8 @@ export function relatif(iso, now = new Date()) {
 }
 
 // ─────────────────────────────────────────────────────────────── le mur ──
-export function renderMur(etat, mode, now = new Date()) {
-  const p = PAL[mode] || PAL.dark;
+export function renderMur(etat, mode, now = new Date(), theme) {
+  const p = palette(mode, theme);
   const W = 1200, H = 470, cell = 42, gap = 6;
   let [defs, bg] = cardBg(p, W, H);
   const x0 = Math.floor((W - (COLS * (cell + gap) - gap)) / 2), y0 = 92;
@@ -126,8 +134,8 @@ ${cases.join('')}
 }
 
 // ──────────────────────────────────────────────────── terminal en direct ──
-export function renderTerminal(d, mode) {
-  const p = PAL[mode] || PAL.dark;
+export function renderTerminal(d, mode, theme) {
+  const p = palette(mode, theme);
   const W = 1200, H = 300;
   const fs = 21, lh = 38, cw = 12.65, x0 = 40, ytop = 92;
   const ok = (s) => (s.ok ? p.green : p.red);
@@ -184,8 +192,8 @@ function joursRecents(jours, aujourdhui, n = 30) {
   return out;
 }
 
-export function renderVues(v, mode, now = new Date()) {
-  const p = PAL[mode] || PAL.dark;
+export function renderVues(v, mode, now = new Date(), theme) {
+  const p = palette(mode, theme);
   const { etat, numero, precedente, aujourdhui } = v;
   const W = 1200, H = 372;
   const [defs0, bg] = cardBg(p, W, H, '20%', '40%');
@@ -218,7 +226,7 @@ export function renderVues(v, mode, now = new Date()) {
   const td = etat.theme.dark || 0, tl = etat.theme.light || 0, tt = Math.max(td + tl, 1);
   const pd = Math.round((td * 100) / tt);
   const tw = 520;
-  const theme = td + tl
+  const blocTheme = td + tl
     ? `<rect x="${x0}" y="300" width="${tw}" height="10" rx="5" fill="${p.panel2}"/>
 <rect class="jauge" x="${x0}" y="300" width="${Math.max((tw * pd) / 100, 6).toFixed(0)}" height="10" rx="5" fill="${p.blue}"/>
 ${t(x0, 340, `☾ ${pd} % en mode sombre`, 19, p.muted, 400, SANS)}${t(x0 + tw, 340, `${100 - pd} % en clair ☀`, 19, p.muted, 400, SANS, 'end')}`
@@ -244,7 +252,7 @@ ${t(W - 40, 56, 'tableau de bord complet →', 18, p.orange, 700, MONO, 'end')}<
 ${odo.join('')}
 <g class="up" style="animation-delay:1s">${t(x0, 246, 'Tu es la visite ', 24, p.muted, 400, SANS)}<text x="${x0 + 164}" y="246" font-family="${SANS}" font-size="24" font-weight="800" fill="${p.orange}">n°${esc(milliers(numero))}</text>
 ${t(x0, 280, prec, 19, p.faint, 400, SANS)}</g>
-${theme}
+${blocTheme}
 ${t(gx, 92, '30 DERNIERS JOURS', 14, p.faint, 400, MONO, 'start', ' letter-spacing="2"')}
 ${t(gx + gw, 92, `record ${etat.record.n}/jour`, 16, p.faint, 400, MONO, 'end')}
 ${t(gx, gyb + 30, `${auj} aujourd’hui`, 17, p.orange, 700, MONO)}${t(gx + gw, gyb + 30, `${sur30} visite${sur30 > 1 ? 's' : ''} sur 30 jours`, 17, p.muted, 400, MONO, 'end')}
