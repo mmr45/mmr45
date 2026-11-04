@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="260" height="92" viewBox="0 0 260 92" role="img" aria-label="Thème Chantier">
+<title>Thème Chantier</title>
+<defs><radialGradient id="gl" cx="85%" cy="20%" r="70%"><stop offset="0" stop-color="#FF6A13" stop-opacity=".3"/><stop offset="1" stop-color="#FF6A13" stop-opacity="0"/></radialGradient></defs>
+<style>
+.up{animation:up .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.pulse{animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important}.rm{display:none}}</style>
+<rect x="1" y="1" width="258" height="90" rx="18" fill="#0B1220" stroke="#22304D" stroke-width="2"/>
+<rect x="1" y="1" width="258" height="90" rx="18" fill="url(#gl)"/>
+<text x="22" y="38" font-family="'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#EEF3FA">Chantier</text><circle cx="30" cy="62" r="9" fill="#FF6A13"/><circle cx="56" cy="62" r="9" fill="#4A92FF"/><circle cx="82" cy="62" r="9" fill="#3FB950"/><circle cx="108" cy="62" r="9" fill="#EEF3FA"/>
+<g class="pulse"><text x="238" y="68" font-family="'SFMono-Regular', Consolas, 'Liberation Mono', 'DejaVu Sans Mono', Menlo, monospace" font-size="15" font-weight="700" fill="#FF6A13" text-anchor="end">choisir →</text></g>
+</svg>

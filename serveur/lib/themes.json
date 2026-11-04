@@ -1,0 +1,42 @@
+{
+  "ordre": ["chantier", "neon", "ocean", "matrix", "sunset"],
+  "themes": {
+    "chantier": { "nom": "Chantier", "dark": {}, "light": {} },
+    "neon": {
+      "nom": "Néon",
+      "dark": { "bg": "#0D0221", "panel": "#140531", "panel2": "#1B0A3F", "line": "#3A1B6B", "grid": "#21104A", "text": "#F7ECFF", "muted": "#B79BD9", "faint": "#7C63A6",
+        "orange": "#FF2BD6", "orange2": "#FF7AE6", "blue": "#00E5FF", "green": "#39FF88", "bar": "#120428", "red": "#FF4D6D",
+        "kw": "#FF2BD6", "str": "#39FF88", "prop": "#00E5FF", "typ": "#FFE14D", "pun": "#B79BD9", "com": "#7C63A6", "glow": ".26" },
+      "light": { "bg": "#FFF4FC", "panel": "#FFFFFF", "panel2": "#FFF0FA", "line": "#F0CFE8", "grid": "#F6DEF0", "text": "#2A0A3D", "muted": "#6C4D82", "faint": "#B49BC6",
+        "orange": "#D1009F", "orange2": "#EE4FC6", "blue": "#0088A6", "green": "#13863F", "bar": "#FBE6F5", "red": "#C8133E",
+        "kw": "#C3008F", "str": "#13863F", "prop": "#0088A6", "typ": "#8A6A00", "pun": "#6C4D82", "com": "#B49BC6" }
+    },
+    "ocean": {
+      "nom": "Océan",
+      "dark": { "bg": "#03161E", "panel": "#06212D", "panel2": "#0A2B3A", "line": "#14495E", "grid": "#0B3243", "text": "#E5F7FB", "muted": "#8DBACB", "faint": "#58879A",
+        "orange": "#2DD4BF", "orange2": "#7CE8DA", "blue": "#38BDF8", "green": "#4ADE80", "bar": "#041C27", "red": "#FB7185",
+        "kw": "#2DD4BF", "str": "#A7F3D0", "prop": "#7DD3FC", "typ": "#FDE68A", "pun": "#8DBACB", "com": "#58879A" },
+      "light": { "bg": "#EFF9FA", "panel": "#FFFFFF", "panel2": "#F5FBFC", "line": "#CDE6EA", "grid": "#DCEEF1", "text": "#0B2A36", "muted": "#4D6F7C", "faint": "#93AFB9",
+        "orange": "#0F9488", "orange2": "#3FB7AA", "blue": "#0369A1", "green": "#15803D", "bar": "#E2F2F4", "red": "#BE123C",
+        "kw": "#0F766E", "str": "#15803D", "prop": "#0369A1", "typ": "#946200", "pun": "#4D6F7C", "com": "#93AFB9" }
+    },
+    "matrix": {
+      "nom": "Matrix",
+      "dark": { "bg": "#010A04", "panel": "#03140A", "panel2": "#061C0E", "line": "#0F3D1E", "grid": "#082612", "text": "#D3FFE0", "muted": "#7FC795", "faint": "#4A8A5E",
+        "orange": "#00FF66", "orange2": "#7DFFAE", "blue": "#00C2A8", "green": "#00FF66", "bar": "#02100A", "red": "#FF5555",
+        "kw": "#00FF66", "str": "#B6FFCF", "prop": "#5CF2C8", "typ": "#E5FF66", "pun": "#7FC795", "com": "#4A8A5E", "glow": ".22" },
+      "light": { "bg": "#F1FBF3", "panel": "#FFFFFF", "panel2": "#F4FCF6", "line": "#CDE8D4", "grid": "#DDF0E1", "text": "#082A14", "muted": "#47705A", "faint": "#93B5A0",
+        "orange": "#0A8F3C", "orange2": "#36B064", "blue": "#007A6A", "green": "#0A8F3C", "bar": "#E3F4E7", "red": "#C02626",
+        "kw": "#0A7A34", "str": "#0A8F3C", "prop": "#007A6A", "typ": "#7A6A00", "pun": "#47705A", "com": "#93B5A0" }
+    },
+    "sunset": {
+      "nom": "Coucher de soleil",
+      "dark": { "bg": "#170A14", "panel": "#22101D", "panel2": "#2B1524", "line": "#4D2440", "grid": "#33182B", "text": "#FFEFF2", "muted": "#D3A2B4", "faint": "#93657A",
+        "orange": "#FF5E5B", "orange2": "#FF9E80", "blue": "#FFB627", "green": "#7EE081", "bar": "#1C0C18", "red": "#FF4D6D",
+        "kw": "#FF5E5B", "str": "#FFD6A5", "prop": "#FFB627", "typ": "#C9A7FF", "pun": "#D3A2B4", "com": "#93657A" },
+      "light": { "bg": "#FFF6F1", "panel": "#FFFFFF", "panel2": "#FFF8F4", "line": "#F2D6CB", "grid": "#F7E3DA", "text": "#3A1020", "muted": "#7A4D5C", "faint": "#BF9AA6",
+        "orange": "#E0403D", "orange2": "#F07A5E", "blue": "#B86E00", "green": "#2E8540", "bar": "#FBEAE2", "red": "#C8133E",
+        "kw": "#C7302D", "str": "#2E8540", "prop": "#B86E00", "typ": "#6B3FB8", "pun": "#7A4D5C", "com": "#BF9AA6" }
+    }
+  }
+}

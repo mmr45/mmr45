@@ -49,10 +49,29 @@
   const COULEURS = { orange:'#FF6A13', bleu:'#2F7BEA', vert:'#3FB950', jaune:'#F2CC60', rose:'#F778BA', violet:'#A371F7', blanc:'#EFE9DD' };
   const q = new URLSearchParams(location.search);
   const c = q.get('c'), err = q.get('erreur'), n = q.get('n');
-  const hex = COULEURS[c] || '#FF6A13';
+  const hex = COULEURS[c] || ({ neon: '#FF2BD6', ocean: '#2DD4BF', matrix: '#00FF66', sunset: '#FF5E5B' })[q.get('theme')] || '#FF6A13';
   document.documentElement.style.setProperty('--c', hex);
   const titre = document.getElementById('titre'), sous = document.getElementById('sous');
-  if (err === 'limite') { titre.textContent = 'Pinceau au repos'; sous.textContent = 'Tu as déjà donné 10 coups de pinceau aujourd’hui. Reviens demain !'; }
+  const th = q.get('theme');
+  const NOMS_THEMES = { chantier: 'Chantier', neon: 'Néon', ocean: 'Océan', matrix: 'Matrix', sunset: 'Coucher de soleil' };
+  if (th) {
+    fetch('/api/stats').then((r) => r.json()).then((d) => {
+      const t = d.theme?.liste?.find((x) => x.id === th);
+      if (!t) return;
+      const r = document.documentElement.style;
+      const pal = t.dark;
+      r.setProperty('--bg', pal.bg); r.setProperty('--panel', pal.panel); r.setProperty('--line', pal.line);
+      r.setProperty('--text', pal.text); r.setProperty('--muted', pal.muted); r.setProperty('--orange', pal.orange); r.setProperty('--c', pal.orange);
+    }).catch(() => {});
+  }
+  if (th && err === 'limite') { titre.textContent = 'Doucement !'; sous.textContent = 'Tu as déjà changé le thème 20 fois aujourd’hui. Reviens demain.'; }
+  else if (th && err) { titre.textContent = 'Oups'; sous.textContent = 'Le thème n’a pas pu changer. Réessaie dans un instant.'; }
+  else if (th) {
+    titre.innerHTML = 'Thème <span></span> activé !';
+    titre.querySelector('span').textContent = NOMS_THEMES[th] || th;
+    sous.textContent = 'Tout le profil vient de changer de couleurs, pour tous les visiteurs. Le prochain pourra le changer à son tour.';
+  }
+  else if (err === 'limite') { titre.textContent = 'Pinceau au repos'; sous.textContent = 'Tu as déjà donné 10 coups de pinceau aujourd’hui. Reviens demain !'; }
   else if (err) { titre.textContent = 'Oups'; sous.textContent = 'La peinture n’a pas pris. Réessaie dans un instant.'; }
   else if (c) {
     titre.innerHTML = 'Touche <span></span> posée !';
@@ -70,7 +89,7 @@
     pots.append(a);
   }
   // retour automatique au profil, annulable
-  let s = 8;
+  let s = q.get('theme') ? 5 : 8;
   const compte = document.getElementById('compte');
   const tick = () => {
     compte.innerHTML = `Retour automatique au profil dans ${s} s · <button type="button">rester ici</button>`;
@@ -79,7 +98,7 @@
   tick();
   const iv = setInterval(() => { s -= 1; if (s <= 0) { clearInterval(iv); location.href = 'https://github.com/mmr45'; } else tick(); }, 1000);
   // confettis de peinture
-  if (!err && c && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!err && (c || th) && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const cv = document.getElementById('confetti'), ctx = cv.getContext('2d');
     const fit = () => { cv.width = innerWidth; cv.height = innerHeight; }; fit(); addEventListener('resize', fit);
     const P = Array.from({ length: 140 }, () => ({ x: innerWidth / 2, y: innerHeight * .25, vx: (Math.random() - .5) * 14, vy: -Math.random() * 12 - 4,
