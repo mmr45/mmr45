@@ -3,6 +3,7 @@
 // jusqu'à 60 s dans le cache du CDN de Blob, et une relecture renvoyait alors l'ancien état :
 // c'est ce qui faisait « sauter » le thème. Ici on ne relit jamais un fichier réécrit.
 import { readFile, writeFile } from 'node:fs/promises';
+import { REDIS, rget, rset } from './store.js';
 
 const LOCAL = !process.env.BLOB_READ_WRITE_TOKEN;
 const fichierLocal = (prefixe) => `/tmp/mmr45-${prefixe.replace(/\W+/g, '-')}.json`;
@@ -14,6 +15,7 @@ function urlFixe(chemin) {
 
 // Lit la dernière version ; `ancien` = ancien chemin fixe, relu une seule fois pour reprendre l'état.
 export async function litVersion(prefixe, ancien) {
+  if (REDIS) return rget(prefixe);
   if (LOCAL) {
     try { return JSON.parse(await readFile(fichierLocal(prefixe), 'utf8')); } catch { return null; }
   }
@@ -33,6 +35,7 @@ export async function litVersion(prefixe, ancien) {
 }
 
 export async function ecritVersion(prefixe, obj, garder = 4) {
+  if (REDIS) return rset(prefixe, obj);
   const json = JSON.stringify(obj);
   if (LOCAL) return writeFile(fichierLocal(prefixe), json);
   const { put, list, del } = await import('@vercel/blob');

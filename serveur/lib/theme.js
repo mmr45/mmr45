@@ -20,7 +20,7 @@ export function themeAuto(now = new Date()) {
 const CHEMIN = 'stats/theme.json'; // ancien emplacement, relu une fois
 const PREFIXE = 'stats/theme/v-';
 const MAX_PAR_JOUR = 20;
-const MEMO_MS = 4000;
+const MEMO_MS = 10000;
 
 const defaut = () => ({ theme: 'chantier', le: null, changements: 0, votes: {}, limites: { jour: '', ips: {} } });
 

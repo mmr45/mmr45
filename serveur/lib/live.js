@@ -2,6 +2,7 @@
 // Chaque affichage de /live.svg mesure les sites en direct ; une mesure est gardée au plus
 // toutes les 15 min (96 points = 24 h). Repart de l'ancien historique tenu par GitHub Actions.
 import { readFile, writeFile } from 'node:fs/promises';
+import { REDIS, rget, rset } from './store.js';
 
 export const SITES = { batipro: 'https://batipro-ten.vercel.app', mywattup: 'https://my-watt-up.vercel.app' };
 const CHEMIN = 'stats/live.json';
@@ -28,7 +29,10 @@ export async function ping(u) {
 }
 
 async function lit() {
-  if (LOCAL) {
+  if (REDIS) {
+    const h = await rget('live');
+    if (h) return h;
+  } else if (LOCAL) {
     try { return JSON.parse(await readFile(FICHIER_LOCAL, 'utf8')); } catch { /* seed */ }
   } else {
     const u = url();
@@ -46,6 +50,7 @@ async function lit() {
 }
 
 async function ecrit(h) {
+  if (REDIS) return rset('live', h);
   const json = JSON.stringify(h);
   if (LOCAL) return writeFile(FICHIER_LOCAL, json);
   const { put } = await import('@vercel/blob');

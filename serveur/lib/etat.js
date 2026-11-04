@@ -5,6 +5,7 @@
 import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { CASES } from './rendu.js';
+import { REDIS, rget, rset } from './store.js';
 
 const PREFIXE = 'mur/etat-';
 const SEED = 'https://raw.githubusercontent.com/mmr45/mmr45/mur/etat.json';
@@ -33,14 +34,18 @@ function normalise(e) {
 }
 
 export async function charge() {
-  if (LOCAL) {
+  if (REDIS) {
+    const e = await rget('mur');
+    if (e) return normalise(e);
+  } else if (LOCAL) {
     try { return normalise(JSON.parse(await readFile(FICHIER_LOCAL, 'utf8'))); } catch { return vide(); }
-  }
-  const { list } = await import('@vercel/blob');
-  const { blobs } = await list({ prefix: PREFIXE, limit: 1 });
-  if (blobs.length) {
-    const r = await fetch(blobs[0].url, { cache: 'no-store' });
-    if (r.ok) return normalise(await r.json());
+  } else {
+    const { list } = await import('@vercel/blob');
+    const { blobs } = await list({ prefix: PREFIXE, limit: 1 });
+    if (blobs.length) {
+      const r = await fetch(blobs[0].url, { cache: 'no-store' });
+      if (r.ok) return normalise(await r.json());
+    }
   }
   // première fois : on reprend le mur peint via les issues GitHub
   try {
@@ -65,6 +70,7 @@ export function chargeMemo() {
 
 export async function sauve(etat) {
   memo = etat; memoAt = Date.now();
+  if (REDIS) return rset('mur', etat);
   const json = JSON.stringify(etat);
   if (LOCAL) return writeFile(FICHIER_LOCAL, json);
   const { put, list, del } = await import('@vercel/blob');
