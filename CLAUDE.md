@@ -4,9 +4,9 @@ Ce dépôt est le profil GitHub d'Osman : peintre en bâtiment, développeur, fo
 
 ## Règles absolues
 
-- **Jamais le nom de famille d'Osman**, nulle part : texte, URL, alt d'image, commit, nom de fichier. Ne le cite pas non plus dans une PR ou un commentaire.
-- **Aucune info perso critique** : pas d'e-mail, de téléphone, d'adresse ni de lieu de formation précis. Les seuls contacts publics sont TikTok, X et Discord.
-- Avant chaque PR, cherche « mail », « linkedin » et le nom de famille dans tout le dépôt.
+- **Jamais le nom de famille d'Osman**, nulle part : texte, URL, alt d'image, commit, nom de fichier. Ne le cite pas non plus dans une PR ou un commentaire. Seule exception, autorisée par Osman : l'adresse de son profil LinkedIn dans le bouton de contact.
+- **Aucune info perso critique** : pas d'e-mail, de téléphone, d'adresse ni de lieu de formation précis. Les seuls contacts publics sont TikTok, X, Discord et LinkedIn.
+- Avant chaque PR, cherche « mail » et le nom de famille dans tout le dépôt (hors bouton LinkedIn).
 - L'ancien nom de famille reste dans de vieux commits. Pour le purger, il faut réécrire l'historique et forcer un push : **seulement avec l'accord explicite d'Osman.**
 - Aucun secret dans le dépôt. Les jetons vivent dans les variables d'environnement de Vercel.
 - Tout passe par une PR. Osman fusionne lui-même, souvent en quelques minutes : ne pousse jamais sur une branche peut-être déjà fusionnée. Pour une retouche après une fusion, ouvre une nouvelle branche depuis `main`.
