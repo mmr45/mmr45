@@ -12,7 +12,8 @@ export default async function handler(req, res) {
   const ip = String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '').split(',')[0].trim();
   try {
     const etat = await charge();
-    const r = peindre(etat, couleur, ip);
+    const pays = String(req.headers['x-vercel-ip-country'] || '').toUpperCase().slice(0, 2);
+    const r = peindre(etat, couleur, ip, new Date(), /^[A-Z]{2}$/.test(pays) ? pays : '');
     if (!r.ok) return merci({ c: couleur, erreur: r.raison });
     await sauve(etat);
     return merci({ c: couleur, n: r.numero, ...(r.nouvelleCouche ? { couche: etat.couche } : {}) });

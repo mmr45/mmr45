@@ -168,3 +168,94 @@ ${t(W / 2, 52, 'osman@chantier: ~ (en direct)', 16, p.faint, 400, MONO, 'middle'
   const label = `Terminal en direct : ${d.date}. Bâtipro ${d.sites[0].ok ? `en ligne, ${d.sites[0].ms} ms` : 'hors ligne'} ; MyWattUp ${d.sites[1].ok ? `en ligne, ${d.sites[1].ms} ms` : 'hors ligne'}.`;
   return svg(W, H, label, body, style, defs);
 }
+
+// ──────────────────────────────────────────────────── compteur de visites ──
+const MOIS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+export const jourCourt = (iso) => { const [, m, d] = iso.split('-').map(Number); return `${d} ${MOIS[m - 1]}`; };
+export const milliers = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
+function joursRecents(jours, aujourdhui, n = 30) {
+  const out = [];
+  const base = new Date(`${aujourdhui}T12:00:00Z`);
+  for (let i = n - 1; i >= 0; i--) {
+    const k = new Date(base - i * 86400000).toISOString().slice(0, 10);
+    out.push([k, jours[k] || 0]);
+  }
+  return out;
+}
+
+export function renderVues(v, mode, now = new Date()) {
+  const p = PAL[mode] || PAL.dark;
+  const { etat, numero, precedente, aujourdhui } = v;
+  const W = 1200, H = 372;
+  const [defs0, bg] = cardBg(p, W, H, '20%', '40%');
+  // compteur façon odomètre : une colonne 0-9 par chiffre, qui roule jusqu'à sa valeur
+  const digits = milliers(numero).split('');
+  const fs = 96, L = 104, dw = 58, x0 = 40, yb = 196;
+  let x = x0;
+  const odo = [], kf = [];
+  digits.forEach((c, i) => {
+    if (c === ' ') { x += 22; return; }
+    const d = Number(c);
+    const col = Array.from({ length: 10 }, (_, k) => `<text x="${x}" y="${yb + k * L}" font-family="${MONO}" font-size="${fs}" font-weight="800" fill="${p.text}">${k}</text>`).join('');
+    odo.push(`<g clip-path="url(#od)"><g class="od" style="animation:o${i} ${(1.2 + i * 0.18).toFixed(2)}s ${(0.2 + i * 0.05).toFixed(2)}s cubic-bezier(.2,.9,.25,1) both">${col}</g></g>`);
+    kf.push(`@keyframes o${i}{from{transform:translateY(0)}to{transform:translateY(-${d * L}px)}}`);
+    x += dw;
+  });
+  const odoW = x - x0;
+  // 30 derniers jours
+  const serie = joursRecents(etat.jours, aujourdhui);
+  const max = Math.max(...serie.map(([, n]) => n), 1);
+  const gx = 640, gw = 520, gyb = 226, gh = 118, bw = gw / 30;
+  const barres = serie.map(([k, n], i) => {
+    const h = Math.max((gh * n) / max, n ? 4 : 2);
+    const auj = i === serie.length - 1;
+    return `<rect class="${auj ? 'bar auj' : 'bar'}" style="animation-delay:${(0.3 + i * 0.03).toFixed(2)}s" x="${(gx + i * bw + 2).toFixed(1)}" y="${(gyb - h).toFixed(1)}" width="${(bw - 4).toFixed(1)}" height="${h.toFixed(1)}" rx="3" fill="${auj ? p.orange : p.blue}" fill-opacity="${auj ? 1 : 0.75}"><title>${jourCourt(k)} : ${n} visite${n > 1 ? 's' : ''}</title></rect>`;
+  }).join('');
+  const sur30 = serie.reduce((a, [, n]) => a + n, 0);
+  const auj = serie[serie.length - 1][1];
+  // thème des visiteurs
+  const td = etat.theme.dark || 0, tl = etat.theme.light || 0, tt = Math.max(td + tl, 1);
+  const pd = Math.round((td * 100) / tt);
+  const tw = 520;
+  const theme = td + tl
+    ? `<rect x="${x0}" y="300" width="${tw}" height="10" rx="5" fill="${p.panel2}"/>
+<rect class="jauge" x="${x0}" y="300" width="${Math.max((tw * pd) / 100, 6).toFixed(0)}" height="10" rx="5" fill="${p.blue}"/>
+${t(x0, 340, `☾ ${pd} % en mode sombre`, 19, p.muted, 400, SANS)}${t(x0 + tw, 340, `${100 - pd} % en clair ☀`, 19, p.muted, 400, SANS, 'end')}`
+    : '';
+  // bandeau défilant des dernières visites
+  const items = etat.dernieres.slice(0, 12).map((d) => {
+    const hh = new Intl.DateTimeFormat('fr-FR', { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit' }).format(new Date(d.le));
+    return `n°${milliers(d.n)} · ${hh} · ${d.th === 'light' ? 'clair' : 'sombre'}`;
+  });
+  const ligne = items.join('     ◆     ');
+  const lw = Math.max(ligne.length * 10.4 + 60, 600);
+  const ticker = items.length
+    ? `<clipPath id="tk"><rect x="${gx}" y="284" width="${gw}" height="70"/></clipPath><g clip-path="url(#tk)">
+${t(gx, 306, 'DERNIÈRES VISITES (ANONYMES)', 14, p.faint, 400, MONO, 'start', ' letter-spacing="2"')}
+<g class="tick rm">${t(gx, 338, `${ligne}     ◆     `, 17, p.muted, 400, MONO, 'start', ' xml:space="preserve"')}${t(gx + lw, 338, ligne, 17, p.muted, 400, MONO, 'start', ' xml:space="preserve"')}</g></g>`
+    : '';
+  const prec = precedente ? `La visite d’avant : ${relatif(precedente, now)}` : 'Tu ouvres le compteur !';
+  const defs = `${defs0}<clipPath id="od"><rect x="${x0 - 4}" y="${yb - fs + 12}" width="${odoW + 8}" height="${L - 6}"/></clipPath>`;
+  const body = `${bg}
+<g class="up"><circle class="pulse" cx="${x0 + 6}" cy="50" r="6" fill="${p.red}"/>
+${t(x0 + 22, 56, 'EN DIRECT · VISITES DU PROFIL', 17, p.faint, 400, MONO, 'start', ' letter-spacing="2"')}
+${t(W - 40, 56, 'tableau de bord complet →', 18, p.orange, 700, MONO, 'end')}</g>
+${odo.join('')}
+<g class="up" style="animation-delay:1s">${t(x0, 246, 'Tu es la visite ', 24, p.muted, 400, SANS)}<text x="${x0 + 164}" y="246" font-family="${SANS}" font-size="24" font-weight="800" fill="${p.orange}">n°${esc(milliers(numero))}</text>
+${t(x0, 280, prec, 19, p.faint, 400, SANS)}</g>
+${theme}
+${t(gx, 92, '30 DERNIERS JOURS', 14, p.faint, 400, MONO, 'start', ' letter-spacing="2"')}
+${t(gx + gw, 92, `record ${etat.record.n}/jour`, 16, p.faint, 400, MONO, 'end')}
+${t(gx, gyb + 30, `${auj} aujourd’hui`, 17, p.orange, 700, MONO)}${t(gx + gw, gyb + 30, `${sur30} visites sur 30 jours`, 17, p.muted, 400, MONO, 'end')}
+<line x1="${gx}" y1="${gyb + 0.5}" x2="${gx + gw}" y2="${gyb + 0.5}" stroke="${p.line}"/>
+${barres}
+${ticker}`;
+  const style = `.bar{transform-box:fill-box;transform-origin:bottom;animation:bar .9s cubic-bezier(.3,1.4,.5,1) both}@keyframes bar{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.auj{animation:bar .9s 1.2s cubic-bezier(.3,1.4,.5,1) both,aujp 2s 2.2s ease-in-out infinite}@keyframes aujp{50%{fill-opacity:.45}}
+.jauge{transform-box:fill-box;transform-origin:left;animation:jauge 1.6s .6s cubic-bezier(.6,0,.2,1) both}@keyframes jauge{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.tick{animation:tick ${Math.max(lw / 45, 12).toFixed(1)}s linear infinite}@keyframes tick{to{transform:translateX(-${lw.toFixed(0)}px)}}
+${kf.join('\n')}`;
+  const label = `Visites du profil en direct : ${numero}. Tu es la visite numéro ${numero}. ${auj} aujourd’hui, ${sur30} sur 30 jours.`;
+  return svg(W, H, label, body, style, defs);
+}
