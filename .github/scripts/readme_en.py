@@ -10,8 +10,8 @@ import re
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 TEXTES = [
-    ('<p align="center"><sub><b>🇫🇷 Français</b> · <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md">🇬🇧 English version</a></sub></p>',
-     '<p align="center"><sub><a href="https://github.com/mmr45">🇫🇷 Version française</a> · <b>🇬🇧 English</b></sub></p>'),
+    ('<p align="center"><a href="https://github.com/mmr45"><img src="https://img.shields.io/badge/Fran%C3%A7ais-%E2%9C%93-E8B04B?style=for-the-badge" alt="Français (langue actuelle)" /></a> <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md"><img src="https://img.shields.io/badge/English-version-2F81F7?style=for-the-badge" alt="English version" /></a></p>',
+     '<p align="center"><a href="https://github.com/mmr45"><img src="https://img.shields.io/badge/Version-fran%C3%A7aise-2F81F7?style=for-the-badge" alt="Version française" /></a> <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md"><img src="https://img.shields.io/badge/English-%E2%9C%93-E8B04B?style=for-the-badge" alt="English (current language)" /></a></p>'),
     ("Osman — peintre en bâtiment, développeur et fondateur de deux SaaS en production. Du chantier au code.",
      "Osman — building painter, developer and founder of two SaaS in production. From the site to the code."),
     ("Terminal en direct : heure de Paris et ping réel de Bâtipro et MyWattUp à chaque affichage",
