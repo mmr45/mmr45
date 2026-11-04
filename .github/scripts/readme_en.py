@@ -10,7 +10,7 @@ import re
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 TEXTES = [
-    ('<p align="right"><sub><b>🇫🇷 Français</b> · <a href="./README.en.md">🇬🇧 English version</a></sub></p>',
+    ('<p align="right"><sub><b>🇫🇷 Français</b> · <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md">🇬🇧 English version</a></sub></p>',
      '<p align="right"><sub><a href="https://github.com/mmr45">🇫🇷 Version française</a> · <b>🇬🇧 English</b></sub></p>'),
     ("Osman — peintre en bâtiment, développeur et fondateur de deux SaaS en production. Du chantier au code.",
      "Osman — building painter, developer and founder of two SaaS in production. From the site to the code."),
