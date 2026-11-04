@@ -2,7 +2,7 @@
 import { stats, paris } from '../lib/vues.js';
 import { palette } from '../lib/rendu.js';
 import { charge } from '../lib/etat.js';
-import { etatTheme, THEMES, ORDRE } from '../lib/theme.js';
+import { etatTheme, themeAuto, THEMES, ORDRE } from '../lib/theme.js';
 import { litReactions, publique, REACTIONS } from '../lib/reactions.js';
 
 export default async function handler(req, res) {
@@ -15,8 +15,9 @@ export default async function handler(req, res) {
     maintenant: new Date().toISOString(),
     aujourdhui: paris().jour,
     visites: { total: v.total, base: v.base, depuis: v.depuis, jours: v.jours, grille: v.grille, theme: v.theme, dernieres: v.dernieres, record: v.record },
-    theme: { actuel: th.theme, le: th.le, changements: th.changements || 0, votes: th.votes || {}, liste: ORDRE.map((id) => ({ id, nom: THEMES[id].nom, dark: palette('dark', id), light: palette('light', id) })) },
+    theme: { actuel: th.theme, effectif: th.theme === 'auto' ? themeAuto().id : th.theme, le: th.le, changements: th.changements || 0, votes: th.votes || {}, liste: [{ id: 'auto', nom: 'Automatique', dark: palette('dark', themeAuto().id), light: palette('light', themeAuto().id) }, ...ORDRE.map((id) => ({ id, nom: THEMES[id].nom, dark: palette('dark', id), light: palette('light', id) }))] },
     reactions: re ? { ...publique(re), liste: REACTIONS } : null,
     mur: mur ? { couche: mur.couche, total: mur.total, cases: mur.cases.map((c) => ({ k: c.case, couleur: c.couleur, le: c.le })), pays } : null,
   });
 }
+

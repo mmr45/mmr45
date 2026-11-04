@@ -91,3 +91,19 @@ Avant de dire qu'une image est corrigée, ouvre le SVG servi par camo dans un vr
 - Il veut un profil « full animé » qui pousse GitHub à ses limites : les animations bouclent, et les cartes affichent des données en direct.
 - Il préfère des liens et boutons visibles, et des réponses courtes en français.
 - Il juge sur ce qu'il voit sur github.com depuis la France. Quand il dit que quelque chose ne marche pas, vérifie le rendu réel avant de soupçonner son navigateur.
+
+
+## Évolutions proposées par Codex — 4 novembre 2026
+
+- PR #32 : README avec raccourcis visibles, une seule carte animée pour la fresque, liens absolus des thèmes et atelier enrichi dans `serveur/fresque.html`. Le replay reconstitue les dernières touches visibles de la couche, pas l’historique des couleurs recouvertes. La sélection et le choix d’une couleur ne modifient pas le mur ; le bouton « Peindre » utilise l’endpoint existant.
+- Tableau de bord : filtres 7/30/90 jours, CSV des agrégats quotidiens, réactions, mode Auto dans la liste des thèmes, application des couleurs sans recharger la page, états de panne et pause de l’actualisation quand l’onglet est masqué.
+- `serveur/dashboard-metrics.js` calcule les séries de jours de Paris et l’export. Les jours précédant le début du suivi sont `null`, exportés sans valeur, jamais présentés comme de vrais zéros.
+- Tests sans dépendance : `node --test serveur/tests/*.test.js`. Les tests couvrent les changements d’heure, les jours sans suivi, le CSV et la réponse publique de `/api/stats` (Auto, palettes et absence des limites par IP).
+- Vérification visuelle locale avec des données de démonstration et les écritures bloquées. Aucune migration de stockage ; Redis/Upstash reste utilisé. Aucun ajout de fonction Vercel.
+- Pistes de suite : `docs/EVOLUTIONS.md` dans la PR #32. Priorité technique avant un afflux de visiteurs : rendre atomiques les lectures/modifications/écritures Redis, qui peuvent actuellement perdre des mises à jour concurrentes.
+
+### Suite : thèmes, langues et fiches de livraison
+
+La PR #32 a été enrichie : 24 nouvelles palettes (36 choix avec Auto), galerie `/ambiances`, menu `/langues` (190 langues et variantes), et `/lecture` pour la version textuelle traduisible via Google. Le menu est dans une page liée, car le README GitHub ne permet pas une interface JavaScript intégrée. Les textes intégrés aux SVG restent en français/anglais. Les nouvelles palettes utilisent `lib/theme-images.js` et le gabarit Chantier ; l’aperçu `?apercu=<id>` ne modifie pas le thème partagé. Le PNG social de ces palettes conserve Chantier.
+
+Osman demande une fiche claire après chaque livraison : changements visibles, liens de PR/aperçus, gestes pour tester, vérifications, limites et validation attendue. Voir `AGENTS.md` et `docs/FICHE-LIVRAISON-THEMES-LANGUES.md` dans la PR #32. Les tests du tableau de bord déduisent le nombre de thèmes de `themes.json` pour rester compatibles avec cette extension.

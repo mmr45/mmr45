@@ -87,31 +87,47 @@
   .themes i { display: inline-block; width: 14px; height: 14px; border-radius: 50%; margin-right: 6px; }
   .themes small { display: block; margin-top: 8px; font-family: var(--mono); font-size: 12px; opacity: .75; }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  .point {transform-box:fill-box;transform-origin:center;animation:pulse-point 2s ease-in-out infinite;} @keyframes pulse-point {50%{transform:scale(1.5);opacity:.6;}}
+  .outils { display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap; }
+  nav.outils { justify-content:flex-start; } .outils a, button { font:inherit; color:var(--text);background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 14px;text-decoration:none;min-height:44px; }
+  button { cursor:pointer; } button:disabled { opacity:.5;cursor:wait; } .periodes { display:flex;gap:6px; } button[aria-pressed="true"] { background:var(--orange);color:var(--bg);font-weight:700; }
+  :focus-visible { outline:3px solid var(--orange);outline-offset:4px; } html { scroll-behavior:smooth;scroll-padding-top:24px; }
+  .reactions { display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px; }
+  .reaction { display:grid;gap:12px;padding:16px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--text);background:var(--panel2); }
+  .reaction b { font:700 32px var(--mono); } .rail { height:6px;background:var(--line);border-radius:8px;overflow:hidden; } .rail i { display:block;height:100%;background:var(--orange);transition:width .6s; }
+  .feed { max-height:none; } .feed li { font-size:14px;gap:8px; } .grid2 { align-items:start; } .pots a { width:44px;height:44px; } .lab { color:var(--muted);font-size:12px;font-weight:500; } .heat { color:var(--muted); }
+  @media(max-width:480px) { .card {padding:16px;} .kpi {padding:12px;} .kpi .v {font-size:26px;} .live {letter-spacing:1px;font-size:11px;flex-wrap:wrap;} .feed li {font-size:12px;} .big {font-size:56px;} .reactions {grid-template-columns:1fr 1fr;} }
+
 </style>
 </head>
 <body>
 <main>
+  <h1 style="margin:0;font-size:clamp(28px,5vw,48px);letter-spacing:-1px">Dans les coulisses du profil.</h1>
+  <p class="note" style="margin:0">Les traces laissées par les visiteurs, les couleurs du mur et les thèmes que vous choisissez.</p>
   <header>
-    <div class="live"><span class="dot"></span>EN DIRECT · TABLEAU DE BORD DU PROFIL <span id="maj"></span></div>
+    <div class="live"><span class="dot"></span>EN DIRECT · TABLEAU DE BORD DU PROFIL <span id="maj" role="status" aria-live="polite">Chargement…</span></div>
     <a href="https://github.com/mmr45">← retour au profil</a>
   </header>
 
-  <section class="card hero">
+  <nav class="outils" aria-label="Explorer le profil"><a href="#audience">Audience</a><a href="#atelier">Atelier collectif</a><a href="#reactions">Réactions</a><a href="#apparence">Thèmes</a><a href="/fresque">Ouvrir la fresque ↗</a></nav>
+  <div class="outils"><p class="note" id="etat" role="status">Connexion aux données…</p><button type="button" id="actualiser">Actualiser</button></div>
+  <section class="card hero" id="audience">
     <div>
-      <p class="lab">Visites du profil, depuis toujours</p>
-      <div class="big" id="total">0</div>
+      <p class="lab">Chargements de la carte du profil</p>
+      <div class="big" id="total">—</div>
       <div class="sous">Dernière visite <b id="derniere">…</b></div>
     </div>
     <div class="kpis">
-      <div class="kpi"><div class="v" id="k-auj">0</div><div class="l">aujourd’hui</div></div>
-      <div class="kpi"><div class="v" id="k-7">0</div><div class="l">sur 7 jours</div></div>
-      <div class="kpi"><div class="v" id="k-30">0</div><div class="l">sur 30 jours</div></div>
-      <div class="kpi"><div class="v" id="k-rec">0</div><div class="l" id="k-rec-l">record sur une journée</div></div>
+      <div class="kpi"><div class="v" id="k-auj">—</div><div class="l">aujourd’hui</div></div>
+      <div class="kpi"><div class="v" id="k-7">—</div><div class="l">sur 7 jours</div></div>
+      <div class="kpi"><div class="v" id="k-30">—</div><div class="l">sur 30 jours</div></div>
+      <div class="kpi"><div class="v" id="k-rec">—</div><div class="l" id="k-rec-l">record sur une journée</div></div>
     </div>
   </section>
 
   <section class="grid2">
-    <div class="card"><p class="lab">30 derniers jours</p><svg id="courbe" viewBox="0 0 700 300" role="img" aria-label="Visites par jour sur 30 jours"></svg></div>
+    <div class="card"><div class="outils"><h2 class="lab" id="titre-courbe">30 derniers jours</h2><div class="periodes" role="group" aria-label="Période du graphique"><button type="button" data-periode="7" aria-pressed="false">7 j</button><button type="button" data-periode="30" aria-pressed="true">30 j</button><button type="button" data-periode="90" aria-pressed="false">90 j</button></div></div><p class="note" id="resume-periode"></p><svg id="courbe" viewBox="0 0 700 300" role="img" aria-label="Chargements par jour sur 30 jours"></svg><div class="outils"><span class="note">Les jours avant le suivi restent sans valeur.</span><button type="button" id="exporter" disabled>Exporter en CSV ↓</button></div></div>
     <div class="card"><p class="lab">Dernières visites · en direct</p><ul class="feed" id="feed"></ul></div>
   </section>
 
@@ -126,31 +142,33 @@
     </div>
   </section>
 
-  <section class="grid3">
+  <section class="grid3" id="atelier">
     <div class="card">
       <p class="lab">Le mur de peinture</p>
-      <div class="mur" id="mur"></div>
+      <a href="/fresque" aria-label="Ouvrir la fresque et peindre une case"><div class="mur" id="mur"></div></a>
       <div class="row" style="margin-bottom:12px"><span id="mur-n">…</span></div><div class="pots" id="pots" aria-label="Peindre une case"></div>
     </div>
     <div class="card"><p class="lab">D’où viennent les peintres</p><div class="pays" id="pays"><span class="vide">…</span></div></div>
     <div class="card"><p class="lab">Ils suivent le profil</p><div class="abos" id="abos"><span class="vide">…</span></div></div>
   </section>
 
-  <section class="card">
-    <p class="lab">Thème du profil · choisi par les visiteurs</p>
+  <section class="card" id="reactions"><h2 class="lab">Vos réactions</h2><div id="reactions-liste" class="reactions"><p class="note">Chargement des réactions…</p></div><p class="note">Un clic par réaction et par jour. Chaque bouton ouvre la confirmation de ton geste.</p></section>
+  <section class="card" id="apparence">
+    <h2 class="lab">Thème du profil · choisi par les visiteurs</h2>
     <div class="sous" id="th-actuel" style="margin:0 0 16px">…</div>
     <div class="themes" id="themes"></div>
   </section>
 
   <section class="card note">
     <p class="lab">Comment ça marche</p>
-    Chaque fois que quelqu’un ouvre le profil, GitHub charge la carte « visites » depuis ce serveur : c’est ce chargement qui est compté, en direct.
-    <b>GitHub cache volontairement l’identité des visiteurs</b> (les images passent par son proxy), donc personne, ni moi ni GitHub, ne peut savoir qui regarde un profil.
-    Ce tableau ne garde que l’heure de chaque visite et le thème clair ou sombre du navigateur. Pour les peintres du mur, seul le pays est retenu.
+    Ce compteur mesure les <b>chargements de la carte « visites »</b>, pas des personnes uniques. Le proxy d’images de GitHub peut garder une image en cache, et les rechargements peuvent compter plusieurs fois.
+    <b>Ce serveur ne reçoit pas l’identité du visiteur GitHub</b> : il conserve l’heure du chargement et la variante claire ou sombre de l’image. Le total inclut un ancien compteur ; les graphiques commencent à la date de début du suivi détaillé.
+    Pour les coups de pinceau, seul le pays peut apparaître publiquement. L’actualisation se met en pause quand cet onglet est masqué.
   </section>
 </main>
 
-<script>
+<script type="module">
+  import { serie, csv } from './dashboard-metrics.js';
   const $ = (id) => document.getElementById(id);
   const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
   const fmt = (n) => Number(n).toLocaleString('fr-FR');
@@ -175,38 +193,37 @@
   }
 
   // compteur qui roule jusqu'à sa valeur
-  let affiche = 0;
+  let affiche = 0, animation = null;
   function rouler(el, cible, dur = 1400) {
+    cancelAnimationFrame(animation);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = fmt(cible); affiche = cible; return; }
     const de = affiche, t0 = performance.now();
     if (de && cible > de) { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
     const pas = (t) => {
       const k = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - k, 4);
       el.textContent = fmt(Math.round(de + (cible - de) * e));
-      if (k < 1) requestAnimationFrame(pas); else affiche = cible;
+      if (k < 1) animation = requestAnimationFrame(pas); else affiche = cible;
     };
-    requestAnimationFrame(pas);
+    animation = requestAnimationFrame(pas);
   }
 
-  function serie(jours, auj, n = 30) {
-    const base = new Date(`${auj}T12:00:00Z`), out = [];
-    for (let i = n - 1; i >= 0; i--) { const k = new Date(base - i * 864e5).toISOString().slice(0, 10); out.push([k, jours[k] || 0]); }
-    return out;
-  }
 
   function courbe(s) {
-    const W = 700, H = 300, pad = 28, gh = H - pad - 20, bw = (W - 10) / s.length, max = Math.max(...s.map(([, n]) => n), 1);
+    const W = 700, H = 300, pad = 28, gh = H - pad - 20, bw = (W - 10) / s.length, max = Math.max(...s.map(([, n]) => n ?? 0), 1);
     const pts = s.map(([, n], i) => [5 + i * bw + bw / 2, 10 + gh - (gh * n) / max]);
-    const ligne = pts.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join('');
-    const aire = `${ligne}L${pts.at(-1)[0].toFixed(1)} ${10 + gh}L${pts[0][0].toFixed(1)} ${10 + gh}Z`;
+    const connus = pts.filter((_, i) => s[i][1] !== null);
+    const ligne = connus.map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join('');
+    const aire = connus.length ? `${ligne}L${connus.at(-1)[0].toFixed(1)} ${10 + gh}L${connus[0][0].toFixed(1)} ${10 + gh}Z` : '';
     const o = css('--orange'), b = css('--blue'), f = css('--faint'), l = css('--line');
     $('courbe').innerHTML = `<defs><linearGradient id="ga" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${b}" stop-opacity=".35"/><stop offset="1" stop-color="${b}" stop-opacity="0"/></linearGradient></defs>
       ${[0, .5, 1].map((r) => `<line x1="5" x2="${W - 5}" y1="${10 + gh * r}" y2="${10 + gh * r}" stroke="${l}" stroke-dasharray="${r === 1 ? '' : '3 5'}"/>`).join('')}
       <text x="${W - 5}" y="8" fill="${f}" font-size="12" font-family="monospace" text-anchor="end">max ${max}</text>
       ${s.map(([k, n], i) => { const h = Math.max((gh * n) / max, n ? 3 : 1.5); const auj = i === s.length - 1;
+        if (n === null) return `<text x="${5+i*bw+bw/2}" y="${10+gh-4}" fill="${f}" text-anchor="middle" font-size="10">·</text>`;
         return `<rect class="bar" style="animation-delay:${i * 25}ms" x="${(5 + i * bw + 3).toFixed(1)}" y="${(10 + gh - h).toFixed(1)}" width="${(bw - 6).toFixed(1)}" height="${h.toFixed(1)}" rx="3" fill="${auj ? o : b}" fill-opacity="${auj ? 1 : .28}"><title>${jourCourt(k)} : ${n} visite${n > 1 ? 's' : ''}</title></rect>`; }).join('')}
       <path d="${aire}" fill="url(#ga)"/><path d="${ligne}" fill="none" stroke="${b}" stroke-width="2.5" stroke-linejoin="round"/>
-      <circle cx="${pts.at(-1)[0]}" cy="${pts.at(-1)[1]}" r="5" fill="${o}"><animate attributeName="r" values="5;9;5" dur="2s" repeatCount="indefinite"/></circle>
-      ${s.map(([k], i) => (i % 5 === 4 || i === s.length - 1) ? `<text x="${5 + i * bw + bw / 2}" y="${H - 4}" fill="${f}" font-size="12" font-family="monospace" text-anchor="middle">${i === s.length - 1 ? 'auj.' : jourCourt(k)}</text>` : '').join('')}`;
+      <circle class="point" cx="${pts.at(-1)[0]}" cy="${pts.at(-1)[1]}" r="5" fill="${o}"></circle>
+      ${s.map(([k], i) => (i % Math.max(1,Math.floor(s.length / 6)) === 0 || i === s.length - 1) ? `<text x="${5 + i * bw + bw / 2}" y="${H - 4}" fill="${f}" font-size="12" font-family="monospace" text-anchor="middle">${i === s.length - 1 ? 'auj.' : jourCourt(k)}</text>` : '').join('')}`;
   }
 
   function heat(g) {
@@ -244,10 +261,16 @@
     $('pays').innerHTML = p.length ? p.map(([cc, n]) => `<span>${drapeau(cc)} ${nomPays(cc)} · ${n}</span>`).join('') : '<span class="vide">Les prochains coups de pinceau afficheront leur pays ici.</span>';
   }
 
+  let derniereDonnee = null, periode = 30, enCours = false, prochain = null, echecs = 0;
   async function charge() {
+    clearTimeout(prochain);
+    if (enCours || document.hidden) return;
+    enCours = true; $('actualiser').disabled = true;
     try {
-      const r = await fetch('/api/stats', { cache: 'no-store' });
+      const r = await fetch('/api/stats', { cache: 'no-store', signal: AbortSignal.timeout(10000) });
+      if (!r.ok) throw Error(`stats ${r.status}`);
       const d = await r.json();
+      derniereDonnee = d; echecs = 0;
       decalage = new Date(d.maintenant) - Date.now();
       const v = d.visites, s = serie(v.jours, d.aujourdhui);
       rouler($('total'), v.total);
@@ -257,8 +280,9 @@
       $('k-rec').textContent = fmt(v.record.n);
       if (v.record.jour) $('k-rec-l').textContent = `record, le ${jourCourt(v.record.jour)}`;
       $('derniere').dataset.le = v.dernieres[0]?.le || '';
-      courbeCache = s; heatCache = v.grille;
-      courbe(s); heat(v.grille); feed(v.dernieres);
+      heatCache = v.grille;
+      dessinePeriode(); heat(v.grille); feed(v.dernieres);
+      dessineReactions(d.reactions);
       const td = v.theme.dark || 0, tl = v.theme.light || 0, tt = Math.max(td + tl, 1);
       $('split').style.width = `${(td * 100) / tt}%`;
       $('t-dark').textContent = `☾ ${Math.round((td * 100) / tt)} % sombre`;
@@ -266,30 +290,77 @@
       mur(d.mur);
       appliqueTheme(d.theme);
       premier = false;
-    } catch (e) { console.error(e); }
+      $('maj').textContent = 'À JOUR';
+      $('etat').textContent = `Données reçues à ${heureParis(d.maintenant)} · actualisation toutes les 20 s · suivi depuis le ${new Intl.DateTimeFormat('fr-FR', {timeZone:'Europe/Paris',dateStyle:'medium'}).format(new Date(v.depuis))}`;
+      document.querySelector('.dot').style.background = css('--green');
+    } catch (e) {
+      echecs++; console.error(e); $('maj').textContent = 'CONNEXION INTERROMPUE';
+      $('etat').textContent = derniereDonnee ? 'Actualisation indisponible. Les dernières données reçues restent affichées ; réessaie avec Actualiser.' : 'Impossible de charger les données. Réessaie avec Actualiser.';
+      document.querySelector('.dot').style.background = css('--red');
+    } finally {
+      enCours = false; $('actualiser').disabled = false;
+      if (!document.hidden) prochain = setTimeout(charge, Math.min(20000 * 2 ** echecs, 120000));
+    }
   }
 
-  let themeAffiche = '';
+  let themeAffiche = '', dernierTheme = null;
   function appliqueTheme(t) {
     if (!t) return;
+    dernierTheme = t;
     const clair = matchMedia('(prefers-color-scheme: light)').matches;
     const cur = t.liste.find((x) => x.id === t.actuel);
-    if (themeAffiche && t.actuel !== themeAffiche) { location.reload(); return; }
-    if (cur && !themeAffiche) {
+    const cle = `${t.actuel}:${t.effectif}:${clair}`;
+    if (cur && themeAffiche !== cle) {
       const pal = clair ? cur.light : cur.dark;
-      const r = document.documentElement.style;
-      for (const k of ['bg', 'panel', 'panel2', 'line', 'grid', 'text', 'muted', 'faint', 'orange', 'blue', 'green', 'red']) if (pal[k]) r.setProperty(`--${k}`, pal[k]);
-      themeAffiche = t.actuel;
+      const style = document.documentElement.style;
+      for (const k of ['bg','panel','panel2','line','grid','text','muted','faint','orange','blue','green','red']) if (pal[k]) style.setProperty(`--${k}`, pal[k]);
+      themeAffiche = cle;
       courbeCache && courbe(courbeCache); heatCache && heat(heatCache);
     }
-    $('th-actuel').innerHTML = `En ce moment : <b>${cur ? cur.nom : t.actuel}</b>${t.le ? `, choisi ${ilya(t.le)}` : ''} · ${fmt(t.changements)} changement${t.changements > 1 ? 's' : ''} au total`;
+    $('th-actuel').textContent = `En ce moment : ${cur?.nom || t.actuel}${t.actuel === 'auto' ? ` · ${t.effectif}` : ''} · ${fmt(t.changements)} changements. Un choix ici change le profil pour tous les visiteurs.`;
+    const signature = JSON.stringify([t.actuel,t.votes,t.effectif]);
+    if ($('themes').dataset.signature === signature) return;
+    $('themes').dataset.signature = signature;
     $('themes').innerHTML = t.liste.map((x) => {
       const p = x.dark;
-      return `<a href="/theme/${x.id}" class="${x.id === t.actuel ? 'on' : ''}" style="background:${p.bg};color:${p.text};border-color:${p.line}">
-        <b>${x.nom}</b>${['orange', 'blue', 'green', 'text'].map((k) => `<i style="background:${p[k]}"></i>`).join('')}
+      return `<a href="/theme/${x.id}" class="${x.id === t.actuel ? 'on' : ''}" ${x.id === t.actuel ? 'aria-current="true"' : ''} style="background:${p.bg};color:${p.text};border-color:${p.line}">
+        <b>${x.nom}</b>${['orange','blue','green','text'].map((k) => `<i style="background:${p[k]}"></i>`).join('')}
         <small style="color:${p.orange}">${x.id === t.actuel ? 'actif' : 'choisir →'} · ${t.votes[x.id] || 0} vote${(t.votes[x.id] || 0) > 1 ? 's' : ''}</small></a>`;
     }).join('');
   }
+  function dessinePeriode() {
+    if (!derniereDonnee) return;
+    const d = derniereDonnee;
+    courbeCache = serie(d.visites.jours, d.aujourdhui, periode, d.visites.depuis);
+    courbe(courbeCache);
+    const connus = courbeCache.filter(([, n]) => n !== null);
+    const total = connus.reduce((a,[,n]) => a+n,0);
+    $('titre-courbe').textContent = `${periode} derniers jours`;
+    $('courbe').setAttribute('aria-label', `${fmt(total)} chargements sur ${connus.length} jours de suivi, dans une fenêtre de ${periode} jours`);
+    $('resume-periode').textContent = `${fmt(total)} chargements · ${connus.length} jours suivis sur ${periode} · le jour en cours reste partiel`;
+    $('exporter').disabled = false;
+  }
+  function dessineReactions(r) {
+    if (!r) { delete $('reactions-liste').dataset.signature; $('reactions-liste').textContent = 'Réactions momentanément indisponibles.'; return; }
+    const signature = JSON.stringify(r.compte);
+    if ($('reactions-liste').dataset.signature === signature) return;
+    $('reactions-liste').dataset.signature = signature;
+    const max = Math.max(...Object.values(r.compte),1);
+    $('reactions-liste').innerHTML = Object.entries(r.liste).map(([id,x]) => `<a href="/reagir/${id}" class="reaction"><span>${x.e} ${x.nom}</span><b>${fmt(r.compte[id] || 0)}</b><span class="rail"><i style="width:${(r.compte[id] || 0)*100/max}%"></i></span></a>`).join('');
+  }
+  document.querySelectorAll('[data-periode]').forEach((b) => b.onclick = () => {
+    periode = Number(b.dataset.periode);
+    document.querySelectorAll('[data-periode]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    dessinePeriode();
+  });
+  $('exporter').onclick = () => {
+    if (!courbeCache) return;
+    const url = URL.createObjectURL(new Blob([csv(courbeCache)], {type:'text/csv;charset=utf-8'}));
+    const a = document.createElement('a'); a.href=url; a.download=`profil-${periode}j-${derniereDonnee.aujourdhui}.csv`; a.click(); setTimeout(() => URL.revokeObjectURL(url),1000);
+  };
+  $('actualiser').onclick = charge;
+  matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => appliqueTheme(dernierTheme));
+  document.addEventListener('visibilitychange', () => { clearTimeout(prochain); if (!document.hidden) charge(); });
 
   function tic() {
     const le = $('derniere').dataset.le;
@@ -306,7 +377,8 @@
   }).catch(() => { $('abos').innerHTML = '<span class="vide">Indisponible pour le moment.</span>'; });
 
   $('pots').innerHTML = Object.entries(COULEURS).map(([n, h]) => `<a href="/peindre/${n}" title="Peindre en ${n}" aria-label="Peindre en ${n}" style="background:${h}"></a>`).join('');
-  charge(); setInterval(charge, 8000); setInterval(tic, 1000);
+  charge(); setInterval(() => { if (!document.hidden) tic(); }, 1000);
 </script>
 </body>
 </html>
+
