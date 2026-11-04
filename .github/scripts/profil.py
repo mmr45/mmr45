@@ -777,6 +777,9 @@ def ecrit_themes(titres):
     n = 0
     for tid in cfg["ordre"]:
         info = cfg["themes"][tid]
+        # Les variantes de palette réutilisent le SVG Chantier, recoloré par /img.
+        if info.get("gabarit"):
+            continue
         for mode in base:
             PAL[mode] = {**base[mode], **{k: v for k, v in info[mode].items() if k in base[mode]}}
         global LANG, GABARIT
@@ -850,3 +853,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

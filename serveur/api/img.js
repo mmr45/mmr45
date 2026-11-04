@@ -4,7 +4,7 @@
 // Ici la réponse elle-même n'est jamais mise en cache, comme le compteur de visites.
 // « stats », « ville », « rouleau » et « feuille » sont dessinées à la volée à partir des vraies données GitHub ;
 // « succes » aussi, « partage.png » est l'image de partage (og:image) du thème actif.
-import { themeActuel } from '../lib/theme.js';
+import { themeActuel, THEMES } from '../lib/theme.js';
 import { donneesGitHub } from '../lib/github.js';
 import { renderStats, renderVille, renderRouleau } from '../lib/gh-cartes.js';
 import { renderSucces, renderFeuille } from '../lib/extras.js';
@@ -12,6 +12,7 @@ import { stats as statsVues } from '../lib/vues.js';
 import { charge as chargeMur, chargeMemo } from '../lib/etat.js';
 import { renderPixel, CASES } from '../lib/rendu.js';
 import { litReactions } from '../lib/reactions.js';
+import { gabaritTheme, recoloreSvg } from '../lib/theme-images.js';
 
 const NOMS = new Set(['hero', 'archi', 'parcours', 'pied', 'projet-batipro', 'projet-mywattup',
   'titre-01', 'titre-02', 'titre-03', 'titre-04', 'titre-05', 'titre-06',
@@ -52,11 +53,12 @@ export default async function handler(req, res) {
     res.setHeader('Vercel-CDN-Cache-Control', 'max-age=5, stale-while-revalidate=86400'); // toujours une version prête, même après une longue pause
     return res.status(200).send(renderPixel(etat, Number(px[1])));
   }
-  const theme = await themeActuel().catch(() => 'chantier');
+  const apercu = String(req.query.apercu || '');
+  const theme = Object.hasOwn(THEMES, apercu) ? apercu : await themeActuel().catch(() => 'chantier');
   res.setHeader('X-Theme', theme);
   if (nom === 'partage.png') {
     // image de partage (og:image) du thème actif, en PNG pour X, Discord, WhatsApp…
-    const r = await fetch(`https://${req.headers.host}/themes/${theme}/partage.png?v=${VERSION}`, { signal: AbortSignal.timeout(5000) }).catch(() => null);
+    const r = await fetch(`https://${req.headers.host}/themes/${gabaritTheme(theme)}/partage.png?v=${VERSION}`, { signal: AbortSignal.timeout(5000) }).catch(() => null);
     if (!r?.ok) return res.status(503).send('image momentanément indisponible');
     res.setHeader('Content-Type', 'image/png');
     res.setHeader('Vercel-CDN-Cache-Control', 'max-age=300');
@@ -72,12 +74,12 @@ export default async function handler(req, res) {
     return res.status(200).send(DYN[nom](d, mode, theme, lang, new Date()));
   }
   if (!NOMS.has(nom)) return res.status(404).send('image inconnue');
-  const chemin = `/themes/${theme}/${lang === 'en' ? 'en/' : ''}${nom}-${mode}.svg?v=${VERSION}`;
+  const chemin = `/themes/${gabaritTheme(theme)}/${lang === 'en' ? 'en/' : ''}${nom}-${mode}.svg?v=${VERSION}`;
   try {
     // le fichier statique est servi (et mis en cache) par le CDN de Vercel
     const r = await fetch(`https://${req.headers.host}${chemin}`, { signal: AbortSignal.timeout(5000) });
     if (!r.ok) throw new Error(`image ${r.status}`);
-    let svg = await r.text();
+    let svg = recoloreSvg(await r.text(), theme, mode);
     const trous = [...new Set([...svg.matchAll(/__CAPTURE:([\w.-]+)__/g)].map((m) => m[1]))];
     for (const f of trous) svg = svg.split(`__CAPTURE:${f}__`).join(await capture(req.headers.host, f));
     res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');
@@ -89,3 +91,4 @@ export default async function handler(req, res) {
     return res.status(503).send('image momentanément indisponible');
   }
 }
+
