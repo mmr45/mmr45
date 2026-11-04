@@ -50,8 +50,8 @@
 
 <p align="center">
   <a href="https://batipro-ten.vercel.app"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/projet-batipro.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/projet-batipro.svg?mode=light&amp;v=2" alt="Bâtipro — créer son entreprise du bâtiment sans se noyer dans la paperasse : test de qualification, statut juridique, dossier INPI, devis BTP en PDF." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/projet-batipro.svg?mode=dark&amp;v=3" />
+  <img src="https://mmr45-profil.vercel.app/img/projet-batipro.svg?mode=light&amp;v=3" alt="Bâtipro — créer son entreprise du bâtiment sans se noyer dans la paperasse : test de qualification, statut juridique, dossier INPI, devis BTP en PDF." width="100%" />
 </picture></a>
 </p>
 
@@ -59,8 +59,8 @@
 
 <p align="center">
   <a href="https://my-watt-up.vercel.app"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/projet-mywattup.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/projet-mywattup.svg?mode=light&amp;v=2" alt="MyWattUp — le coach qui croise sommeil, sport et alimentation : score d'énergie, repas adaptés, scanner de produits." width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/projet-mywattup.svg?mode=dark&amp;v=3" />
+  <img src="https://mmr45-profil.vercel.app/img/projet-mywattup.svg?mode=light&amp;v=3" alt="MyWattUp — le coach qui croise sommeil, sport et alimentation : score d'énergie, repas adaptés, scanner de produits." width="100%" />
 </picture></a>
 </p>
 

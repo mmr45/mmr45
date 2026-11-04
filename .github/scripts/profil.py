@@ -282,6 +282,17 @@ def capture(path):
         return "data:image/png;base64," + base64.b64encode(open(path, "rb").read()).decode()
 
 
+def image_brute(path, largeur):
+    """Image déjà optimisée (JPEG des captures) : intégrée telle quelle, renvoie (data-uri, hauteur à cette largeur)."""
+    data = open(path, "rb").read()
+    try:
+        from PIL import Image
+        w, h = Image.open(io.BytesIO(data)).size
+    except ImportError:
+        w, h = 1, 1
+    return "data:image/jpeg;base64," + base64.b64encode(data).decode(), largeur * h / w
+
+
 PROJETS = {
     "batipro": dict(
         nom="Bâtipro", tag="SAAS · BTP", url="batipro-ten.vercel.app", img="batipro.png",
@@ -289,7 +300,6 @@ PROJETS = {
         feats=["Test de qualification du projet", "Simulation du statut juridique",
                "Dossier INPI généré tout seul", "Devis BTP conformes en PDF"],
         stack=["JavaScript", "Supabase", "Stripe", "Vercel"],
-        clics=[(.12, .70), (.30, .33), (.70, .45), (.80, .90)],
     ),
     "mywattup": dict(
         nom="MyWattUp", tag="SAAS · SANTÉ", url="my-watt-up.vercel.app", img="mywattup.png",
@@ -297,7 +307,6 @@ PROJETS = {
         feats=["Score d'énergie + conseil IA du jour", "Repas selon objectif et allergies",
                "Scanner de produits (code-barres)", "Offre gratuite et offre Pro"],
         stack=["JavaScript", "Supabase", "IA", "PWA"],
-        clics=[(.62, .27), (.20, .67), (.86, .50), (.58, .76)],
     ),
 }
 
@@ -312,36 +321,70 @@ def projet(mode, key, flip=False):
     bx = 36 if not flip else W - 36 - bw
     by = (H - bh) // 2
     tx = bx + bw + 52 if not flip else 56
-    img = capture(os.path.join(OUT, "captures", d["img"]))
+    vw, vh = bw, bh - 44  # zone visible du site dans la fenêtre
+    scroll = os.path.join(OUT, "captures", f"{key}-scroll.jpg")
+    mobile = os.path.join(OUT, "captures", f"{key}-mobile.jpg")
+    if os.path.exists(scroll):
+        img, ih = image_brute(scroll, vw)
+    else:  # ancienne capture fixe
+        img, ih = capture(os.path.join(OUT, "captures", d["img"])), vh
+    dist = max(ih - vh, 0)
     defs += f"""
   <clipPath id="shot"><path d="M{bx} {by + 44}h{bw}v{bh - 44 - 14}a14 14 0 0 1-14 14H{bx + 14}a14 14 0 0 1-14-14z"/></clipPath>
-  <linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>"""
-    # curseur de souris qui « teste » l'appli en boucle, synchronisé avec la liste
-    pts = [(bx + fx * bw, by + 44 + fy * (bh - 44)) for fx, fy in d["clics"]]
-    seq = [pts[-1]] + [q for pt in pts for q in (pt, pt)]
-    vals = ";".join(f"{x:.0f},{y_:.0f}" for x, y_ in seq)
-    souris = f"""<g class="rm">
-    <circle r="0" fill="none" stroke="{p['orange']}" stroke-width="3">
-      <animate attributeName="r" values="4;24;24" keyTimes="0;.3;1" dur="2s" begin=".6s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values=".95;0;0" keyTimes="0;.3;1" dur="2s" begin=".6s" repeatCount="indefinite"/>
-    </circle>
-    <path d="M0 0V24l6.5-5.5 4.5 9.5 4.5-2-4.5-9.5H19z" fill="#fff" stroke="#0B1220" stroke-width="1.6" stroke-linejoin="round"/>
-    <animateMotion dur="8s" repeatCount="indefinite" values="{vals}" keyTimes="0;.075;.25;.325;.5;.575;.75;.825;1"
-      calcMode="spline" keySplines="{';'.join(['.5 0 .2 1', '0 0 1 1'] * 4)}"/>
-  </g>"""
+  <linearGradient id="sh" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <linearGradient id="bas" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></linearGradient>
+  <filter id="ombre" x="-30%" y="-20%" width="160%" height="150%"><feGaussianBlur stdDeviation="14"/></filter>"""
+    # barre de défilement qui suit la page
+    pouce = max(vh * vh / ih, 40) if dist else 0
+    barre = (f'<rect x="{bx + bw - 9}" y="{by + 50}" width="4" height="{pouce:.0f}" rx="2" fill="{p["muted"]}" fill-opacity=".55" class="defile rm"/>'
+             if dist else "")
+    tel = ""
+    if os.path.exists(mobile):
+        mimg, mih_ = image_brute(mobile, 160)
+        pw_, ph_ = 176, 362
+        px = bx + bw - 150 if not flip else bx - 20
+        py = H - ph_ - 14
+        sx, sy, sw, sh_ = px + 8, py + 8, pw_ - 16, ph_ - 16
+        mdist = max(mih_ - sh_, 0)
+        defs += f"""
+  <clipPath id="ecran"><rect x="{sx}" y="{sy}" width="{sw}" height="{sh_}" rx="24"/></clipPath>"""
+        tel = f"""
+<g class="float2">
+  <rect x="{px + 6}" y="{py + 18}" width="{pw_}" height="{ph_}" rx="32" fill="#000" fill-opacity=".45" filter="url(#ombre)"/>
+  <rect x="{px}" y="{py}" width="{pw_}" height="{ph_}" rx="32" fill="#0B0F17" stroke="{p['line']}" stroke-width="2"/>
+  <g clip-path="url(#ecran)">
+    <rect x="{sx}" y="{sy}" width="{sw}" height="{sh_}" fill="#111"/>
+    <image class="{'mdefile' if mdist else ''}" x="{sx}" y="{sy}" width="{sw}" height="{mih_}" preserveAspectRatio="xMidYMin slice" xlink:href="{mimg}"/>
+  </g>
+  <rect x="{px + pw_ / 2 - 30}" y="{py + 15}" width="60" height="17" rx="8.5" fill="#000"/>
+  <rect x="{px + pw_ / 2 - 40}" y="{py + ph_ - 17}" width="80" height="4" rx="2" fill="#fff" fill-opacity=".55"/>
+</g>"""
     browser = f"""
 <g class="float">
+  <rect x="{bx + 8}" y="{by + 24}" width="{bw}" height="{bh}" rx="14" fill="#000" fill-opacity=".3" filter="url(#ombre)"/>
   <rect x="{bx}" y="{by}" width="{bw}" height="{bh}" rx="14" fill="{p['panel']}" stroke="{p['line']}"/>
   <circle cx="{bx + 22}" cy="{by + 22}" r="5.5" fill="#FF5F57"/><circle cx="{bx + 40}" cy="{by + 22}" r="5.5" fill="#FEBC2E"/><circle cx="{bx + 58}" cy="{by + 22}" r="5.5" fill="#28C840"/>
   <rect x="{bx + 84}" y="{by + 9}" width="{bw - 108}" height="26" rx="13" fill="{p['panel2']}" stroke="{p['line']}"/>
   <path d="M{bx + 102} {by + 19}v-2a4 4 0 0 1 8 0v2m-9 0h10v8h-10z" fill="none" stroke="{p['green']}" stroke-width="1.6"/>
   {t(bx + 120, by + 27, d['url'], 15, p['muted'], 400, MONO)}
   <g clip-path="url(#shot)">
-    <image x="{bx}" y="{by + 44}" width="{bw}" height="{bh - 44}" preserveAspectRatio="xMidYMid slice" xlink:href="{img}"/>
+    <rect x="{bx}" y="{by + 44}" width="{vw}" height="{vh}" fill="#fff"/>
+    <image class="{'defile' if dist else ''}" x="{bx}" y="{by + 44}" width="{vw}" height="{ih:.0f}" preserveAspectRatio="xMidYMin slice" xlink:href="{img}"/>
+    <rect x="{bx}" y="{by + bh - 60}" width="{vw}" height="60" fill="url(#bas)"/>
     <rect class="shine rm" x="{bx - 300}" y="{by + 44}" width="260" height="{bh}" fill="url(#sh)" transform="skewX(-18)"/>
   </g>
-  {souris}
-</g>"""
+  {barre}
+</g>{tel}"""
+    # défilement : pauses sur le haut, le milieu et le bas de la page, puis remontée
+    def cles(dd, nom):
+        if not dd:
+            return ""
+        return (f"@keyframes {nom}{{0%,10%{{transform:translateY(0)}}28%,38%{{transform:translateY(-{dd * .36:.0f}px)}}"
+                f"56%,66%{{transform:translateY(-{dd * .7:.0f}px)}}80%,90%{{transform:translateY(-{dd:.0f}px)}}100%{{transform:translateY(0)}}}}")
+    trajet_barre = (vh - pouce - 12) if dist else 0
+    style_defile = (cles(dist, "def") + cles(mdist if tel else 0, "mdef")
+                    + (f"@keyframes barre{{0%,10%{{transform:translateY(0)}}28%,38%{{transform:translateY({trajet_barre * .36:.0f}px)}}"
+                       f"56%,66%{{transform:translateY({trajet_barre * .7:.0f}px)}}80%,90%{{transform:translateY({trajet_barre:.0f}px)}}100%{{transform:translateY(0)}}}}" if dist else ""))
     y = 92
     chips, cx = [], tx
     for s in d["stack"]:
@@ -379,8 +422,12 @@ def projet(mode, key, flip=False):
 .shine{animation:shine 6s 1.2s ease-in-out infinite}
 @keyframes shine{0%{transform:skewX(-18deg) translateX(0)}35%,100%{transform:skewX(-18deg) translateX(1300px)}}
 .hl{animation:hl 8s infinite}
+.defile{animation:def 16s cubic-bezier(.65,0,.35,1) infinite}
+image.defile{animation-name:def}rect.defile{animation-name:barre}
+.mdefile{animation:mdef 16s 1.5s cubic-bezier(.65,0,.35,1) infinite}
+.float2{animation:float 6s 1s ease-in-out infinite alternate-reverse}
 @keyframes hl{0%{transform:translateY(120px)}7.5%,25%{transform:translateY(0)}32.5%,50%{transform:translateY(40px)}57.5%,75%{transform:translateY(80px)}82.5%,100%{transform:translateY(120px)}}
-"""
+""" + style_defile
     label = f"{d['nom']} — {' '.join(d['pitch'])} " + ", ".join(d['feats']) + f". En ligne sur {d['url']}."
     return svg(W, H, label, bg + browser + text, style, defs)
 

@@ -1,0 +1,54 @@
+name: Captures des projets
+
+# Ouvre Bâtipro et MyWattUp dans un vrai navigateur, prend des captures fraîches
+# (bureau + mobile) puis régénère toutes les images du profil avec. Chaque lundi,
+# à la main, ou quand ce script change. Le commit sur main redéploie Vercel.
+
+on:
+  schedule:
+    - cron: "23 4 * * 1"
+  workflow_dispatch: {}
+  push:
+    paths:
+      - ".github/scripts/captures.py"
+      - ".github/workflows/captures.yml"
+
+concurrency:
+  group: captures-${{ github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  captures:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installe le navigateur
+        run: |
+          pip install playwright==1.48.0 pillow
+          python -m playwright install --with-deps chromium
+
+      - name: Prend les captures
+        run: python .github/scripts/captures.py
+
+      - name: Régénère les images du profil
+        run: python .github/scripts/profil.py
+
+      - name: Publie
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets serveur/themes
+          git diff --cached --quiet && exit 0
+          git commit -m "Captures des projets mises à jour"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
