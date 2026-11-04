@@ -21,6 +21,7 @@
   h1 { font-size: clamp(30px, 6vw, 52px); margin: 8px 0; letter-spacing: -1px; }
   h1 span { color: var(--c); }
   p.sous { color: var(--muted); font-size: 18px; margin: 0 0 24px; }
+  .emoji { font-size: 110px; line-height: 1; margin: 0 auto 8px; animation: splash .7s cubic-bezier(.3,1.6,.5,1) both; }
   .mur { width: 100%; border-radius: 22px; box-shadow: 0 30px 80px -30px #000; }
   .pots { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 22px 0; }
   .pots a { width: 46px; height: 46px; border-radius: 50%; border: 3px solid var(--panel); outline: 2px solid var(--line);
@@ -53,6 +54,8 @@
   document.documentElement.style.setProperty('--c', hex);
   const titre = document.getElementById('titre'), sous = document.getElementById('sous');
   const th = q.get('theme');
+  const re = q.get('reaction');
+  const REACTIONS = { feu: ['🔥', 'Ça claque'], bravo: ['👏', 'Bravo'], wow: ['🤯', 'Impressionnant'], idee: ['💡', 'Inspirant'], peinture: ['🎨', 'Beau boulot'] };
   const NOMS_THEMES = { chantier: 'Chantier', neon: 'Néon', ocean: 'Océan', matrix: 'Matrix', sunset: 'Coucher de soleil' };
   if (th) {
     fetch('/api/stats').then((r) => r.json()).then((d) => {
@@ -64,7 +67,15 @@
       r.setProperty('--text', pal.text); r.setProperty('--muted', pal.muted); r.setProperty('--orange', pal.orange); r.setProperty('--c', pal.orange);
     }).catch(() => {});
   }
-  if (th && err === 'limite') { titre.textContent = 'Doucement !'; sous.textContent = 'Tu as déjà changé le thème 20 fois aujourd’hui. Reviens demain.'; }
+  if (re && REACTIONS[re]) {
+    const [emo, nom] = REACTIONS[re];
+    document.title = 'Merci pour ta réaction';
+    document.querySelector('.splash').outerHTML = `<div class="emoji" aria-hidden="true">${emo}</div>`;
+    if (err === 'deja') { titre.textContent = 'Déjà compté !'; sous.textContent = `Tu as déjà donné « ${nom} » aujourd’hui. Essaie un autre emoji, ou reviens demain.`; }
+    else if (err) { titre.textContent = 'Oups'; sous.textContent = 'La réaction n’a pas été comptée. Réessaie dans un instant.'; }
+    else { titre.innerHTML = 'Merci pour ton <span></span> !'; titre.querySelector('span').textContent = emo; sous.textContent = `« ${nom} » ajouté au profil` + (n ? `, c’est le n°${n}.` : '.') + ' Il apparaît déjà sur la carte des réactions.'; }
+  }
+  else if (th && err === 'limite') { titre.textContent = 'Doucement !'; sous.textContent = 'Tu as déjà changé le thème 20 fois aujourd’hui. Reviens demain.'; }
   else if (th && err) { titre.textContent = 'Oups'; sous.textContent = 'Le thème n’a pas pu changer. Réessaie dans un instant.'; }
   else if (th) {
     document.title = 'Nouveau thème pour le profil';
@@ -81,7 +92,7 @@
   }
   const dark = !matchMedia('(prefers-color-scheme: light)').matches;
   const mur = document.getElementById('mur');
-  const recharge = () => { mur.src = `/mur.svg?theme=${dark ? 'dark' : 'light'}&t=${Date.now()}`; };
+  const recharge = () => { mur.src = `/${re ? 'reactions' : 'mur'}.svg?theme=${dark ? 'dark' : 'light'}&t=${Date.now()}`; };
   recharge();
   const pots = document.getElementById('pots');
   for (const [nom, h] of Object.entries(COULEURS)) {
@@ -90,7 +101,8 @@
     pots.append(a);
   }
   // retour automatique au profil, annulable
-  let s = q.get('theme') ? 5 : 8;
+  if (re) document.getElementById('pots').hidden = true;
+  let s = q.get('theme') || re ? 5 : 8;
   const compte = document.getElementById('compte');
   const tick = () => {
     compte.innerHTML = `Retour automatique au profil dans ${s} s · <button type="button">rester ici</button>`;
@@ -99,7 +111,7 @@
   tick();
   const iv = setInterval(() => { s -= 1; if (s <= 0) { clearInterval(iv); location.href = 'https://github.com/mmr45'; } else tick(); }, 1000);
   // confettis de peinture
-  if (!err && (c || th) && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!err && (c || th || re) && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const cv = document.getElementById('confetti'), ctx = cv.getContext('2d');
     const fit = () => { cv.width = innerWidth; cv.height = innerHeight; }; fit(); addEventListener('resize', fit);
     const P = Array.from({ length: 140 }, () => ({ x: innerWidth / 2, y: innerHeight * .25, vx: (Math.random() - .5) * 14, vy: -Math.random() * 12 - 4,
