@@ -21,8 +21,10 @@
   </a>
 </p>
 
+<a href="https://mmr45-profil.vercel.app/dashboard"><img src="https://mmr45-profil.vercel.app/theme-actuel.svg?v=3" alt="Thème actuel du profil." width="100%" /></a>
+
 <details>
-<summary><img src="https://mmr45-profil.vercel.app/theme-actuel.svg" alt="Thème actuel du profil. Clique pour ouvrir le menu et en choisir un autre, pour tous les visiteurs." width="100%" /></summary>
+<summary><b>🎨 Changer le thème du profil</b> : clique ici pour ouvrir le menu (11 thèmes)</summary>
 <br />
 <p align="center">
   <a href="https://mmr45-profil.vercel.app/theme/chantier"><img src="./assets/theme-chantier.svg" width="170" alt="Thème Chantier" /></a>

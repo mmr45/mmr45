@@ -218,9 +218,9 @@ export function renderThemeActuel(th, themes, ordre, now = new Date()) {
 </g>
 <g class="up" style="animation-delay:.2s">
   <rect x="${W - 344}" y="22" width="312" height="36" rx="18" fill="${p.orange}" fill-opacity=".14" stroke="${p.orange}" stroke-opacity=".5"/>
-  <g class="nudge">${t(W - 188, 46, `▾ ouvrir le menu · ${ordre.length} thèmes`, 15, p.orange, 800, MONO, 'middle')}</g>
+  <g class="nudge">${t(W - 188, 46, `${ordre.length} thèmes · menu en dessous ▾`, 15, p.orange, 800, MONO, 'middle')}</g>
   ${mini}
 </g>`;
   const style = `.nudge{animation:nudge 2.4s ease-in-out infinite}@keyframes nudge{0%,60%,100%{transform:none}75%{transform:translateY(3px)}}`;
-  return svg(W, H, `Thème actuel du profil : ${themes[id].nom}. Ouvre le menu pour en choisir un autre.`, body, style, defs);
+  return svg(W, H, `Thème actuel du profil : ${themes[id].nom}. Le menu juste en dessous permet d’en choisir un autre.`, body, style, defs);
 }
