@@ -252,10 +252,12 @@
     document.querySelectorAll('.feed .t').forEach((el) => { el.innerHTML = `${heureParis(el.dataset.le)}<br>${ilya(el.dataset.le)}`; });
   }
 
-  fetch('/api/abonnes').then((r) => r.json()).then(({ abonnes }) => {
+  fetch('/api/abonnes').then((r) => r.json()).then(({ abonnes, erreur }) => {
     $('abos').innerHTML = abonnes.length
       ? abonnes.slice(-24).reverse().map((u) => `<a href="${u.url}" title="${u.login}"><img src="${u.avatar}" alt="${u.login}" loading="lazy" width="46" height="46"></a>`).join('')
-      : '<span class="vide">Indisponible pour le moment.</span>';
+        + '<a href="https://github.com/mmr45" title="Suivre le profil" style="display:grid;place-items:center;font-size:22px;color:var(--orange);text-decoration:none">+</a>'
+      : erreur ? '<span class="vide">Indisponible pour le moment.</span>'
+        : '<span class="vide">Personne pour l’instant. <a href="https://github.com/mmr45" style="color:var(--orange);width:auto;height:auto;border:0;border-radius:0">Sois le premier à suivre le profil →</a></span>';
   }).catch(() => { $('abos').innerHTML = '<span class="vide">Indisponible pour le moment.</span>'; });
 
   $('pots').innerHTML = Object.entries(COULEURS).map(([n, h]) => `<a href="/peindre/${n}" title="Peindre en ${n}" aria-label="Peindre en ${n}" style="background:${h}"></a>`).join('');

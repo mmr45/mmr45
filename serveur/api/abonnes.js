@@ -8,8 +8,9 @@ export default async function handler(req, res) {
     const liste = (await r.json()).map((u) => ({ login: u.login, avatar: `${u.avatar_url}&s=96`, url: u.html_url }));
     res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=3600, stale-while-revalidate=86400');
     res.status(200).json({ abonnes: liste });
-  } catch {
+  } catch (e) {
+    console.error('[abonnes]', e.message);
     res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=300');
-    res.status(200).json({ abonnes: [] });
+    res.status(200).json({ abonnes: [], erreur: true });
   }
 }
