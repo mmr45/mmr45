@@ -122,15 +122,15 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/stats.svg?mode=dark&amp;lang=en" />
-    <img src="https://mmr45-profil.vercel.app/img/stats.svg?mode=light&amp;lang=en" alt="My GitHub stats over 12 months: contributions, commits, pull requests, active days, streak and languages, in the theme's colours" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/stats.svg?mode=dark&amp;v=5&amp;lang=en" />
+    <img src="https://mmr45-profil.vercel.app/img/stats.svg?mode=light&amp;v=5&amp;lang=en" alt="My GitHub stats over 12 months: contributions, commits, pull requests, active days, streak and languages, in the theme's colours" width="100%" />
   </picture>
 </p>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/ville.svg?mode=dark&amp;lang=en" />
-    <img src="https://mmr45-profil.vercel.app/img/ville.svg?mode=light&amp;lang=en" alt="My contributions over the last 12 months as an animated 3D city: one tower per day, the taller it is, the more I coded" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/ville.svg?mode=dark&amp;v=5&amp;lang=en" />
+    <img src="https://mmr45-profil.vercel.app/img/ville.svg?mode=light&amp;v=5&amp;lang=en" alt="My contributions over the last 12 months as an animated 3D city: one tower per day, the taller it is, the more I coded" width="100%" />
   </picture>
 </p>
 
