@@ -1,12 +1,5 @@
 <p align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/avatar.svg?mode=dark&amp;v=2" />
-  <img src="https://mmr45-profil.vercel.app/img/avatar.svg?mode=light&amp;v=2" alt="Avatar animé : un O peint au rouleau autour du symbole du code" width="170" />
-</picture>
-</p>
-
-<p align="center">
-<picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/hero.svg?mode=dark&amp;v=2" />
   <img src="https://mmr45-profil.vercel.app/img/hero.svg?mode=light&amp;v=2" alt="Osman — peintre en bâtiment, développeur et fondateur de deux SaaS en production. Du chantier au code." width="100%" />
 </picture>
