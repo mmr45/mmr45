@@ -1,4 +1,4 @@
-<p align="right"><sub><b>🇫🇷 Français</b> · <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md">🇬🇧 English version</a></sub></p>
+<p align="center"><sub><b>🇫🇷 Français</b> · <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md">🇬🇧 English version</a></sub></p>
 
 <p align="center">
 <picture>
