@@ -19,6 +19,8 @@ const TXT = {
     mois: ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'],
     maj: (m) => (m < 60 ? `mis à jour il y a ${m} min` : m < 1440 ? `mis à jour il y a ${Math.floor(m / 60)} h` : `mis à jour il y a ${Math.floor(m / 1440)} j`),
     autres: 'Autres',
+    titreRouleau: '🎨 MON MUR DE CODE', sousRouleau: 'un coup de rouleau sur mes 12 derniers mois · une case = un jour',
+    moins: 'moins', plus: 'plus',
   },
   en: {
     titreStats: '📊 GITHUB STATS · LAST 12 MONTHS', contributions: 'contributions', commits: 'commits', prs: 'pull requests',
@@ -29,6 +31,8 @@ const TXT = {
     mois: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     maj: (m) => (m < 60 ? `updated ${m} min ago` : m < 1440 ? `updated ${Math.floor(m / 60)} h ago` : `updated ${Math.floor(m / 1440)} d ago`),
     autres: 'Other',
+    titreRouleau: '🎨 MY CODE WALL', sousRouleau: 'one roller stroke over my last 12 months · one square = one day',
+    moins: 'less', plus: 'more',
   },
 };
 
@@ -209,4 +213,75 @@ ${balise}`;
     ? `My contributions over 12 months as an animated 3D city: one tower per day, ${d.total} contributions in total.`
     : `Mes contributions sur 12 mois en ville 3D animée : une tour par jour, ${d.total} contributions au total.`;
   return svg(W, H, label, body, style, defs0);
+}
+
+// ─────────────────────────────────────────────────────────── rouleau ──
+// La grille des contributions, repeinte d'un coup de rouleau aux couleurs du thème.
+export function renderRouleau(d, mode, theme, lang = 'fr') {
+  const p = palette(mode, theme);
+  const L = TXT[lang] || TXT.fr;
+  const W = 1200, H = 360;
+  if (!d || !d.jours?.length) return vide(p, W, H, L, L.titreRouleau);
+  const [defs0, bg] = cardBg(p, W, H, '30%', '60%');
+  const jours = d.jours;
+  const premier = new Date(`${jours[0][0]}T12:00:00Z`).getUTCDay();
+  const nbSem = Math.floor((jours.length - 1 + premier) / 7) + 1;
+  const max = Math.max(...jours.map((j) => j[1]), 1);
+  const C = 17, G = 4, S = C + G;
+  const gw = nbSem * S - G, gh = 7 * S - G;
+  const ox = Math.round((W - gw) / 2), oy = 118;
+  const sous = mix(p.panel2, p.blue, 0.2);              // jour sans contribution : simple sous-couche
+  const niveaux = [sous, ...[0.25, 0.5, 0.75].map((k) => mix(mix(p.panel2, p.blue, 0.35), p.blue, k)), p.orange];
+  const niveau = (n) => (n ? Math.min(4, 1 + Math.floor(Math.sqrt(n / max) * 4)) : 0);
+  let brut = '', peint = '';
+  jours.forEach(([, n], i) => {
+    const x = ox + Math.floor((i + premier) / 7) * S, y = oy + ((i + premier) % 7) * S;
+    brut += `<rect x="${x + 0.5}" y="${y + 0.5}" width="${C - 1}" height="${C - 1}" rx="4" fill="none" stroke="${p.line}" stroke-dasharray="3 2"/>`;
+    peint += `<rect x="${x}" y="${y}" width="${C}" height="${C}" rx="4" fill="${niveaux[niveau(n)]}"/>`;
+  });
+
+  // mois sous la grille
+  let moisPrec = -1, reperes = '';
+  for (let w = 1; w < nbSem; w++) {
+    const c = jours[w * 7 - premier];
+    if (!c) continue;
+    const m = Number(c[0].slice(5, 7)) - 1;
+    if (m !== moisPrec && moisPrec !== -1) reperes += t(ox + w * S, oy + gh + 26, L.mois[m], 13, p.faint, 400, MONO);
+    moisPrec = m;
+  }
+  const legende = niveaux.map((c, i) => `<rect x="${W - 40 - 44 - (5 - i) * S}" y="${H - 44}" width="${C}" height="${C}" rx="4" fill="${c}"/>`).join('');
+
+  // le rouleau : manchon vertical sur toute la hauteur, monture et manche en dessous
+  const rh = gh + 16, rx0 = ox - 26;
+  const rouleau = `<g class="rouleau rm">
+  <path d="M${rx0 + 11} ${oy - 8 + rh / 2}h20v${rh / 2 + 34}" fill="none" stroke="${p.muted}" stroke-width="4" stroke-linejoin="round"/>
+  <rect x="${rx0 + 24}" y="${oy + gh + 42}" width="14" height="44" rx="7" fill="${p.text}"/>
+  <rect x="${rx0}" y="${oy - 8}" width="22" height="${rh}" rx="10" fill="${p.orange}"/>
+  <rect x="${rx0 + 4}" y="${oy - 2}" width="5" height="${rh - 12}" rx="2.5" fill="#fff" opacity=".35"/>
+</g>`;
+
+  const defs = defs0 + `<clipPath id="frais"><rect class="frais" x="${ox - 6}" y="${oy - 6}" width="${gw + 12}" height="${gh + 12}"/></clipPath>`;
+  const body = `${bg}
+<g class="up">
+  ${t(40, 58, L.titreRouleau, 15, p.orange, 800, MONO, 'start', ' letter-spacing="1.5"')}
+  ${t(40, 86, L.sousRouleau, 16, p.muted, 400, SANS)}
+  ${t(W - 40, 58, `${milliers(d.total ?? 0)} contributions`, 22, p.text, 800, SANS, 'end')}
+</g>
+<g>${brut}</g>
+<g class="peint" clip-path="url(#frais)">${peint}</g>
+${reperes}
+${t(W - 40 - 44 - 5 * S - 8, H - 31, L.moins, 13, p.faint, 400, MONO, 'end')}${legende}${t(W - 40 - 44 + 4, H - 31, L.plus, 13, p.faint, 400, MONO)}
+${rouleau}`;
+  // même durée et même courbe pour le masque et le rouleau : le bord peint suit le manchon
+  const style = `.frais{transform-box:fill-box;transform-origin:left;animation:frais 12s linear infinite}
+@keyframes frais{0%{transform:scaleX(0)}55%,100%{transform:scaleX(1)}}
+.peint{animation:seche 12s linear infinite}
+@keyframes seche{0%,88%{opacity:1}97%,100%{opacity:0}}
+.rouleau{animation:roule 12s linear infinite}
+@keyframes roule{0%{transform:translateX(0);opacity:1}55%{transform:translateX(${gw + 12}px);opacity:1}62%,100%{transform:translateX(${gw + 60}px);opacity:0}}
+@media (prefers-reduced-motion: reduce){.frais{transform:none}}`;
+  const label = lang === 'en'
+    ? `My contributions over 12 months as a wall repainted by a paint roller: one square per day, ${d.total} contributions in total.`
+    : `Mes contributions sur 12 mois en mur repeint au rouleau : une case par jour, ${d.total} contributions au total.`;
+  return svg(W, H, label, body, style, defs);
 }

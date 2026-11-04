@@ -10,6 +10,7 @@ Usage : python activite.py <dossier_de_sortie>
 import datetime as dt
 import json
 import os
+import re
 import sys
 import urllib.request
 
@@ -63,6 +64,41 @@ def fetch():
     if payload.get("errors"):
         raise SystemExit(f"Erreur GraphQL : {payload['errors']}")
     return payload["data"]["user"]
+
+
+# Feuille de route : PR fusionnées (livré) et ouvertes (en cours) des deux SaaS.
+# Les titres liés à la sécurité ou à l'outillage ne sont jamais publiés.
+SAAS = [("Bâtipro", "Batipro"), ("MyWattUp", "MyWattUp-")]
+CACHE = re.compile(r"(?i)s[ée]curit|secret|rls|verrou|claude|plugin|\.env|token|cl[ée] api")
+
+
+def api(chemin):
+    req = urllib.request.Request(f"https://api.github.com/{chemin}", headers={
+        "Authorization": f"bearer {os.environ['GH_TOKEN']}", "User-Agent": "mmr45-profil",
+        "Accept": "application/vnd.github+json"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.load(r)
+
+
+def feuille():
+    out = []
+    for nom, depot in SAAS:
+        try:
+            fermees = api(f"repos/{LOGIN}/{depot}/pulls?state=closed&sort=updated&direction=desc&per_page=100")
+            ouvertes = api(f"repos/{LOGIN}/{depot}/pulls?state=open&per_page=30")
+        except Exception as e:  # dépôt privé sans STATS_TOKEN : on passe
+            print(f"feuille {depot} : {e}", file=sys.stderr)
+            continue
+        livrees = sorted((p for p in fermees if p.get("merged_at")), key=lambda p: p["merged_at"], reverse=True)
+        mois = {}
+        for p in livrees:
+            mois[p["merged_at"][:7]] = mois.get(p["merged_at"][:7], 0) + 1
+        out.append(dict(
+            nom=nom, total=len(livrees), mois=mois,
+            livre=[dict(titre=p["title"], le=p["merged_at"]) for p in livrees if not CACHE.search(p["title"])][:4],
+            en_cours=[p["title"] for p in ouvertes if not p.get("draft") and not CACHE.search(p["title"])][:3],
+        ))
+    return out
 
 
 def analyse(user):
@@ -254,6 +290,7 @@ def main():
         meilleur=dict(date=meilleur["date"], n=meilleur["contributionCount"]) if meilleur else None,
         langages=[dict(nom=n, couleur=c, part=round(p, 4)) for n, c, p in stats["langs"]],
         jours=[[d["date"], d["contributionCount"]] for d in annee],
+        feuille=[] if "--donnees" in sys.argv else feuille(),
     )
     with open(os.path.join(out, "donnees.json"), "w", encoding="utf-8") as f:
         json.dump(donnees, f, ensure_ascii=False, separators=(",", ":"))
