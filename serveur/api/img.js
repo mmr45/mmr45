@@ -7,7 +7,8 @@
 import { themeActuel } from '../lib/theme.js';
 import { donneesGitHub } from '../lib/github.js';
 import { renderStats, renderVille, renderRouleau } from '../lib/gh-cartes.js';
-import { renderSucces, renderFeuille, renderConseil } from '../lib/extras.js';
+import { renderSucces, renderFeuille, renderConseil, renderMorpion, renderCase, renderSondage, renderVote } from '../lib/extras.js';
+import { litMorpion, litSondage, SONDAGE } from '../lib/jeux.js';
 import { stats as statsVues } from '../lib/vues.js';
 import { charge as chargeMur } from '../lib/etat.js';
 import { litReactions } from '../lib/reactions.js';
@@ -52,6 +53,18 @@ export default async function handler(req, res) {
     res.setHeader('Content-Type', 'image/png');
     res.setHeader('Vercel-CDN-Cache-Control', 'max-age=300');
     return res.status(200).send(Buffer.from(await r.arrayBuffer()));
+  }
+  // morpion (en-tête + 9 cases cliquables) et sondage (résultats + boutons)
+  const kCase = /^case-([0-8])$/.exec(nom), choix = /^vote-([\w-]+)$/.exec(nom);
+  if (nom === 'morpion' || kCase || nom === 'sondage' || choix) {
+    res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');
+    if (choix) {
+      const c = SONDAGE.choix.find((x) => x.id === choix[1]);
+      return c ? res.status(200).send(renderVote(c, mode, theme, lang)) : res.status(404).send('choix inconnu');
+    }
+    if (nom === 'sondage') return res.status(200).send(renderSondage(await litSondage().catch(rien) || {}, SONDAGE, mode, theme, lang));
+    const e = await litMorpion().catch(rien) || { grille: [], score: {} };
+    return res.status(200).send(kCase ? renderCase(e, Number(kCase[1]), mode, theme) : renderMorpion(e, mode, theme, lang));
   }
   if (nom === 'conseil' || nom === 'succes') {
     res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');

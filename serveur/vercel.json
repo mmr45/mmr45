@@ -30,6 +30,14 @@
       "destination": "/api/reagir?r=:r"
     },
     {
+      "source": "/jouer/:k",
+      "destination": "/api/reagir?jeu=:k"
+    },
+    {
+      "source": "/voter/:v",
+      "destination": "/api/reagir?vote=:v"
+    },
+    {
       "source": "/reactions.svg",
       "destination": "/api/reactions"
     },

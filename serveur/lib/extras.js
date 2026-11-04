@@ -251,3 +251,90 @@ ${t(80, 372, '& développeur', 36, p.muted, 600)}
 ${t(80, 556, 'Du chantier au code · deux SaaS en production', 22, p.faint, 400, MONO)}`;
   return svg(W, H, 'Osman, peintre en bâtiment et développeur, fondateur de Bâtipro et MyWattUp', body, '', defs0);
 }
+
+// ─────────────────────────────────────────────────────────── morpion ──
+const TM = {
+  fr: { titre: '🎮 MORPION · VISITEURS CONTRE OSMAN', sous: 'tu joues ✕ pour tous les visiteurs, mon IA répond ◯ aussitôt',
+    vis: 'visiteurs', osm: 'Osman', nul: 'nuls', tour: 'à toi de jouer : clique une case ↓', gagne: 'les visiteurs ont gagné ! clique une case pour rejouer',
+    perdu: 'Osman gagne cette manche… clique une case pour la revanche', egal: 'match nul ! clique une case pour rejouer', parties: (n) => `${n} partie${n > 1 ? 's' : ''} jouée${n > 1 ? 's' : ''}` },
+  en: { titre: '🎮 TIC-TAC-TOE · VISITORS VS OSMAN', sous: 'you play ✕ for all visitors, my AI answers ◯ right away',
+    vis: 'visitors', osm: 'Osman', nul: 'draws', tour: 'your move: click a square ↓', gagne: 'visitors win! click a square to play again',
+    perdu: 'Osman wins this round… click a square for a rematch', egal: 'draw! click a square to play again', parties: (n) => `${n} game${n > 1 ? 's' : ''} played` },
+};
+
+export function renderMorpion(e, mode, theme, lang = 'fr') {
+  const p = palette(mode, theme);
+  const L = TM[lang] || TM.fr;
+  const W = 1200, H = 190;
+  const [defs, bg] = cardBg(p, W, H, '50%', '0%');
+  const s = e.score || {};
+  const etat = !e.fin ? L.tour : e.fin.qui === 'X' ? L.gagne : e.fin.qui === 'O' ? L.perdu : L.egal;
+  const coul = !e.fin ? p.muted : e.fin.qui === 'X' ? p.green : e.fin.qui === 'O' ? p.orange : p.blue;
+  const bloc = (x, n, lab, c) => `<g class="up">${t(x, 128, milliers(n || 0), 44, c, 800, SANS, 'middle')}${t(x, 154, lab, 14, p.muted, 400, MONO, 'middle')}</g>`;
+  const body = `${bg}
+<g class="up">${t(40, 54, L.titre, 15, p.orange, 800, MONO, 'start', ' letter-spacing="1.5"')}${t(40, 80, L.sous, 16, p.muted)}</g>
+${bloc(W - 340, s.visiteurs, L.vis, p.green)}${t(W - 265, 126, ':', 36, p.faint, 800, SANS, 'middle')}${bloc(W - 190, s.osman, L.osm, p.orange)}${bloc(W - 80, s.nul, L.nul, p.blue)}
+<g class="up" style="animation-delay:.2s"><circle class="pulse" cx="48" cy="${130}" r="6" fill="${coul}"/>${t(64, 136, etat, 20, p.text, 700)}
+${t(64, 162, L.parties(e.parties || 0), 13, p.faint, 400, MONO)}</g>`;
+  return svg(W, H, `${L.titre.replace('🎮 ', '')} : ${s.visiteurs || 0} - ${s.osman || 0}. ${etat}`, body, '', defs);
+}
+
+// une case cliquable du plateau (160 × 160)
+export function renderCase(e, k, mode, theme) {
+  const p = palette(mode, theme);
+  const W = 160, v = e.grille?.[k] || '';
+  const ligne = e.fin?.ligne?.includes(k);
+  const neuf = e.dernier && (e.dernier.k === k || e.dernier.osman === k) && Date.now() - new Date(e.dernier.le) < 10 * 60000;
+  const fond = ligne ? mix(p.panel, v === 'X' ? p.green : p.orange, 0.25) : p.panel;
+  const signe = v === 'X'
+    ? `<g class="trace" stroke="${p.green}" stroke-width="12" stroke-linecap="round"><path pathLength="1" d="M52 52L108 108"/><path pathLength="1" d="M108 52L52 108" style="animation-delay:.25s"/></g>`
+    : v === 'O' ? `<circle class="trace" pathLength="1" cx="80" cy="80" r="30" fill="none" stroke="${p.orange}" stroke-width="12" transform="rotate(-90 80 80)"/>`
+      : `<text class="vide" x="80" y="94" font-family="${MONO}" font-size="40" fill="${p.faint}" text-anchor="middle">${k + 1}</text>`;
+  const body = `<rect x="4" y="4" width="152" height="152" rx="22" fill="${fond}" stroke="${ligne ? p.text : p.line}" stroke-width="${ligne ? 3 : 2}"/>
+${neuf && v ? `<rect class="halo" x="4" y="4" width="152" height="152" rx="22" fill="none" stroke="${v === 'X' ? p.green : p.orange}" stroke-width="3"/>` : ''}
+${signe}`;
+  const style = `.trace path,.trace{stroke-dasharray:1 1;animation:tr .5s ease-out both}.trace path:nth-child(2){animation-delay:.25s}
+@keyframes tr{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.vide{opacity:.5;animation:vide 3s ease-in-out infinite}@keyframes vide{50%{opacity:.15}}
+.halo{transform-box:fill-box;transform-origin:center;animation:halo 2s ease-out infinite}@keyframes halo{from{transform:scale(1);opacity:.9}to{transform:scale(1.15);opacity:0}}`;
+  return svg(W, W, v ? (v === 'X' ? '✕' : '◯') : `Jouer en case ${k + 1}`, body, style);
+}
+
+// ─────────────────────────────────────────────────────────── sondage ──
+export function renderSondage(e, sondage, mode, theme, lang = 'fr') {
+  const p = palette(mode, theme);
+  const en = lang === 'en';
+  const W = 1200, H = 120 + sondage.choix.length * 58 + 30;
+  const [defs, bg] = cardBg(p, W, H, '80%', '0%');
+  const total = e.total || 0;
+  const max = Math.max(1, ...sondage.choix.map((c) => e.votes?.[c.id] || 0));
+  const lignesS = sondage.choix.map((c, i) => {
+    const n = e.votes?.[c.id] || 0, part = total ? n / total : 0;
+    const y = 120 + i * 58, bw = W - 80 - 360;
+    const tete = n > 0 && n === max;
+    return `<g class="up" style="animation-delay:${(0.1 + i * 0.08).toFixed(2)}s">
+  <text x="40" y="${y + 26}" font-size="26" font-family="${EMOJI}">${c.e}</text>
+  ${t(82, y + 26, en ? c.en : c.fr, 20, p.text, 700)}
+  <rect x="340" y="${y + 6}" width="${bw}" height="28" rx="14" fill="${p.panel2}" stroke="${p.line}"/>
+  <rect class="bar" style="animation-delay:${(0.3 + i * 0.1).toFixed(2)}s" x="340" y="${y + 6}" width="${Math.max(bw * part, n ? 28 : 0).toFixed(1)}" height="28" rx="14" fill="${tete ? p.orange : p.blue}"/>
+  ${t(W - 40, y + 27, `${Math.round(part * 100)} % · ${n}`, 17, tete ? p.orange : p.muted, 800, MONO, 'end')}
+</g>`;
+  }).join('');
+  const body = `${bg}
+<g class="up">${t(40, 54, en ? '🗳️ POLL OF THE WEEK · LIVE RESULTS' : '🗳️ SONDAGE DE LA SEMAINE · RÉSULTATS EN DIRECT', 15, p.orange, 800, MONO, 'start', ' letter-spacing="1.5"')}
+${t(40, 90, sondage.question[en ? 1 : 0], 28, p.text, 800)}
+${t(W - 40, 90, en ? `${total} vote${total > 1 ? 's' : ''} · click below ↓` : `${total} vote${total > 1 ? 's' : ''} · clique en dessous ↓`, 15, p.faint, 400, MONO, 'end')}</g>
+${lignesS}`;
+  const style = `.bar{transform-box:fill-box;transform-origin:left;animation:bar 10s cubic-bezier(.6,0,.2,1) infinite both}
+@keyframes bar{0%{transform:scaleX(0)}15%,90%{transform:scaleX(1)}100%{transform:scaleX(0)}}`;
+  return svg(W, H, `${sondage.question[en ? 1 : 0]} ${total} votes.`, body, style, defs);
+}
+
+// bouton de vote (280 × 64)
+export function renderVote(c, mode, theme, lang = 'fr') {
+  const p = palette(mode, theme);
+  const W = 280, H = 64;
+  const body = `<rect x="2" y="2" width="${W - 4}" height="${H - 4}" rx="30" fill="${p.panel}" stroke="${p.orange}" stroke-width="2"/>
+<text x="26" y="42" font-size="26" font-family="${EMOJI}">${c.e}</text>${t(66, 40, lang === 'en' ? c.en : c.fr, 19, p.text, 700)}`;
+  return svg(W, H, (lang === 'en' ? 'Vote: ' : 'Voter : ') + (lang === 'en' ? c.en : c.fr), body);
+}
