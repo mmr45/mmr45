@@ -209,6 +209,43 @@
 
 <br />
 
+<p align="center">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/morpion.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/morpion.svg?mode=light&amp;v=1" width="100%" alt="Morpion visiteurs contre Osman : score et partie en cours, en direct" /></picture>
+</p>
+
+<p align="center">
+  <a href="https://mmr45-profil.vercel.app/jouer/1"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/case-0.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/case-0.svg?mode=light&amp;v=1" width="120" alt="Morpion : jouer en case 1" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/jouer/2"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/case-1.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/case-1.svg?mode=light&amp;v=1" width="120" alt="Morpion : jouer en case 2" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/jouer/3"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/case-2.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/case-2.svg?mode=light&amp;v=1" width="120" alt="Morpion : jouer en case 3" /></picture></a>
+  <br />
+  <a href="https://mmr45-profil.vercel.app/jouer/4"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/case-3.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/case-3.svg?mode=light&amp;v=1" width="120" alt="Morpion : jouer en case 4" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/jouer/5"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/case-4.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/case-4.svg?mode=light&amp;v=1" width="120" alt="Morpion : jouer en case 5" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/jouer/6"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/case-5.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/case-5.svg?mode=light&amp;v=1" width="120" alt="Morpion : jouer en case 6" /></picture></a>
+  <br />
+  <a href="https://mmr45-profil.vercel.app/jouer/7"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/case-6.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/case-6.svg?mode=light&amp;v=1" width="120" alt="Morpion : jouer en case 7" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/jouer/8"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/case-7.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/case-7.svg?mode=light&amp;v=1" width="120" alt="Morpion : jouer en case 8" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/jouer/9"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/case-8.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/case-8.svg?mode=light&amp;v=1" width="120" alt="Morpion : jouer en case 9" /></picture></a>
+</p>
+
+<p align="center">
+  <b>Un clic sur une case = ton coup.</b> Tu joues pour tous les visiteurs, mon IA répond aussitôt.
+</p>
+
+<br />
+
+<p align="center">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/sondage.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/sondage.svg?mode=light&amp;v=1" width="100%" alt="Sondage de la semaine : tu es venu pour quoi ? Résultats en direct" /></picture>
+</p>
+
+<p align="center">
+  <a href="https://mmr45-profil.vercel.app/voter/design"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/vote-design.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/vote-design.svg?mode=light&amp;v=1" width="220" alt="Voter : Le design du profil" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/voter/code"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/vote-code.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/vote-code.svg?mode=light&amp;v=1" width="220" alt="Voter : Le code" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/voter/batipro"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/vote-batipro.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/vote-batipro.svg?mode=light&amp;v=1" width="220" alt="Voter : Bâtipro" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/voter/mywattup"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/vote-mywattup.svg?mode=dark&amp;v=1" /><img src="https://mmr45-profil.vercel.app/img/vote-mywattup.svg?mode=light&amp;v=1" width="220" alt="Voter : MyWattUp" /></picture></a>
+</p>
+
+<br />
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/titre-06.svg?mode=dark&amp;v=4" />
   <img src="https://mmr45-profil.vercel.app/img/titre-06.svg?mode=light&amp;v=4" alt="On en parle ?" width="100%" />
