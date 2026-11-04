@@ -10,6 +10,8 @@ import re
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 TEXTES = [
+    ('Fresque collective animée : 144 cases, une seule image. Ouvre la fresque pour choisir une case et la peindre.',
+     'Animated community mural: 144 squares in one image. Open the mural to choose a square and paint it.'),
     ('>Aurore boréale</a>', '>Northern Lights</a>'),
     ('>Volcan</a>', '>Volcano</a>'),
     ('>Abysses</a>', '>Abyss</a>'),
@@ -35,16 +37,8 @@ TEXTES = [
     ('>Ardoise</a>', '>Slate</a>'),
     ('>Contraste net</a>', '>High Contrast</a>'),
 
-    ('Lire dans ta langue / Read in your language — 190 langues et variantes', 'Read in your language — 190 languages and variants'),
-    ('Menu avec recherche et liste défilante. Traduction automatique de la version textuelle du profil ; les images restent en français ou en anglais.', 'Searchable, scrollable language menu. Automatic translation of the text version; image artwork stays in French or English.'),
-    ('Explorer les 36 ambiances — aperçu clair / sombre avant activation', 'Explore all 36 themes — preview light / dark before applying'),
     ('24 nouveaux univers · activation pour tous les visiteurs', '24 new worlds · applies to all visitors'),
-    ('Comparer toutes les ambiances avant de choisir →', 'Compare all themes before choosing →'),
 
-    ('Découvrir Bâtipro', 'Discover Bâtipro'), ('Tester MyWattUp', 'Try MyWattUp'),
-    ('Explorer le tableau de bord', 'Explore the dashboard'), ('Peindre la fresque', 'Paint the mural'),
-    ('Fresque collective animée : 144 cases, une seule image. Ouvre la fresque pour choisir une case et la peindre.',
-     'Animated community mural: 144 squares in one image. Open the mural to choose a square and paint it.'),
 
     ('<p align="center"><a href="https://github.com/mmr45"><img src="https://img.shields.io/badge/Fran%C3%A7ais-%E2%9C%93-E8B04B?style=for-the-badge" alt="Français (langue actuelle)" /></a> <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md"><img src="https://img.shields.io/badge/English-version-2F81F7?style=for-the-badge" alt="English version" /></a></p>',
      '<p align="center"><a href="https://github.com/mmr45"><img src="https://img.shields.io/badge/Version-fran%C3%A7aise-2F81F7?style=for-the-badge" alt="Version française" /></a> <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md"><img src="https://img.shields.io/badge/English-%E2%9C%93-E8B04B?style=for-the-badge" alt="English (current language)" /></a></p>'),
@@ -55,8 +49,8 @@ TEXTES = [
     ("Visites du profil en direct : ton numéro de visite, les 30 derniers jours et les dernières visites. Clique pour le tableau de bord complet.",
      "Live profile visits: your visitor number, the last 30 days and the latest visits. Click for the full dashboard."),
     ("Thème actuel du profil.", "Current profile theme."),
-    ("<b>🎨 Changer le thème du profil</b> : 36 choix : classiques, nouveaux univers et mode automatique",
-     "<b>🎨 Change the profile theme</b>: 36 choices: classics, new worlds and automatic mode"),
+    ("🎨 Changer d’ambiance",
+     "🎨 Change theme"),
     ("Thème automatique : suit l'heure et la saison", "Automatic theme: follows the time and season"),
     ('alt="Thème ', 'alt="Theme '),
     ('Theme Néon"', 'Theme Neon"'), ('Theme Océan"', 'Theme Ocean"'), ('Theme Forêt"', 'Theme Forest"'),
