@@ -1,4 +1,4 @@
-<p align="center"><sub><b>🇫🇷 Français</b> · <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md">🇬🇧 English version</a></sub></p>
+<p align="center"><a href="https://github.com/mmr45"><img src="https://img.shields.io/badge/Fran%C3%A7ais-%E2%9C%93-E8B04B?style=for-the-badge" alt="Français (langue actuelle)" /></a> <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md"><img src="https://img.shields.io/badge/English-version-2F81F7?style=for-the-badge" alt="English version" /></a></p>
 
 <p align="center">
 <picture>
