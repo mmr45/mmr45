@@ -3,86 +3,196 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Choisis ta couleur · la fresque</title>
-<meta name="robots" content="noindex" />
+<title>L’atelier collectif · Osman</title>
+<meta name="description" content="144 cases, 7 couleurs, une œuvre collective. Choisis ta case et laisse ta trace sur le profil GitHub d’Osman." />
 <style>
-  :root { --bg:#0B1220; --panel:#0F1729; --line:#22304D; --text:#EEF3FA; --muted:#8A9BB8; --orange:#FF6A13; }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text);
-    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif; }
-  body { display: grid; place-items: center; min-height: 100vh; padding: 24px 16px;
-    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 32px 32px; background-position: center; }
-  body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(circle at 50% 30%, transparent, var(--bg) 70%); pointer-events: none; }
-  main { position: relative; width: min(960px, 100%); text-align: center; }
-  h1 { font-size: clamp(28px, 5.5vw, 48px); margin: 0 0 8px; letter-spacing: -1px; }
-  h1 span { color: var(--orange); }
-  p.sous { color: var(--muted); font-size: 18px; margin: 0 0 24px; }
-  .grille { display: grid; grid-template-columns: repeat(24, 1fr); gap: 4px; padding: 14px; background: var(--panel);
-    border: 1px solid var(--line); border-radius: 22px; }
-  .grille button { aspect-ratio: 1; border-radius: 6px; border: 1.5px dashed #8A9BB899; background: #8A9BB814; cursor: pointer; padding: 0; }
-  .grille button.peinte { border: 0; }
-  .grille button:hover { transform: scale(1.15); }
-  .grille button.choisie { outline: 3px solid var(--text); outline-offset: 2px; animation: vise 1s ease-in-out infinite alternate; }
-  @keyframes vise { to { outline-color: var(--orange); } }
-  .pots { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin: 26px 0 18px; }
-  .pots a { width: 64px; height: 64px; border-radius: 50%; border: 4px solid var(--panel); outline: 2px solid var(--line);
-    transition: transform .15s; display: block; }
-  .pots a:hover, .pots a:focus-visible { transform: translateY(-5px) scale(1.1); outline-color: var(--text); }
-  .retour { color: var(--muted); font-size: 15px; }
-  .retour a { color: var(--muted); }
-  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+:root{color-scheme:dark;--bg:#0B1220;--panel:#0F1729;--line:#283853;--text:#EEF3FA;--muted:#ACBAD0;--orange:#FF6A13}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;background-image:linear-gradient(#ffffff05 1px,transparent 1px),linear-gradient(90deg,#ffffff05 1px,transparent 1px);background-size:32px 32px}main{max-width:1280px;margin:auto;padding:32px 20px 64px}a{color:var(--text)}header,.ligne,.outils,.pots{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.retour{font-size:14px;color:var(--muted)}.surtitre{color:var(--orange);letter-spacing:3px;font:12px monospace}h1{font-size:clamp(36px,7vw,80px);letter-spacing:-3px;line-height:1;margin:24px 0 16px}h1 span{color:var(--orange)}.sous{color:var(--muted);max-width:650px;font-size:18px;line-height:1.6}.compteurs{display:flex;gap:24px}.compteurs b{display:block;font:700 28px monospace}.compteurs small{color:var(--muted)}.atelier{margin-top:28px;border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:20px}.ligne{margin-bottom:16px}.ligne h2{margin:0;font-size:18px}.jauge{height:6px;background:#ffffff12;border-radius:8px;overflow:hidden;margin:16px 0}.jauge i{display:block;background:var(--orange);height:100%;width:0;transition:width .6s}.grille{display:grid;grid-template-columns:repeat(24,minmax(0,1fr));gap:4px}.grille button{aspect-ratio:1;border-radius:5px;border:1px dashed #8A9BB866;background:#8A9BB810;cursor:pointer;padding:0;transition:transform .15s,background .2s;position:relative}.grille button.peinte{border-style:solid;border-color:#ffffff22}.grille button:hover{transform:scale(1.12);z-index:1}.grille button.choisie{outline:3px solid var(--text);outline-offset:1px;z-index:2}.grille button.choisie::after{content:'+';color:#fff;position:absolute;inset:0;display:grid;place-items:center;font-size:22px;text-shadow:0 1px 3px #000}.outils{margin:20px 0 0}.outils>div{display:flex;gap:8px;flex-wrap:wrap}button,.bouton{font:inherit;border:1px solid var(--line);border-radius:10px;padding:12px 16px;color:var(--text);background:var(--panel);cursor:pointer;text-decoration:none;min-height:44px}button:hover,.bouton:hover{border-color:var(--orange)}:focus-visible{outline:3px solid var(--orange);outline-offset:4px}button:disabled{opacity:.5;cursor:wait}.studio{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}.panneau{border:1px solid var(--line);background:var(--panel);padding:24px;border-radius:20px}.panneau h2{margin:0 0 12px}.pots{justify-content:flex-start;gap:12px;margin:20px 0}.pots button{width:48px;height:48px;border:3px solid var(--panel);outline:1px solid var(--line);border-radius:50%;padding:0}.pots button[aria-pressed=true]{outline:3px solid var(--text);transform:translateY(-4px)}.pots button[aria-pressed=true]::after{content:'✓';color:#fff;font-size:24px;text-shadow:0 1px 4px #000}.action{background:var(--orange);color:#0B1220;font-weight:750;display:inline-flex;align-items:center;gap:12px}.action[aria-disabled=true]{opacity:.5;pointer-events:none}.preview{width:20px;height:20px;border-radius:4px;background:#FF6A13}.note{color:var(--muted);font-size:14px;line-height:1.6}.repartition{display:grid;gap:12px}.couleur{display:grid;grid-template-columns:70px 1fr 28px;align-items:center;gap:12px;font:13px monospace}.rail{background:#ffffff0c;height:10px;border-radius:6px;overflow:hidden}.rail i{display:block;height:100%;min-width:0;transition:width .4s}.etat{min-height:24px;color:var(--muted);font-size:14px}.etat.erreur{color:#FFAD9D}.aide{margin-top:24px;color:var(--muted);font-size:14px;line-height:1.7}.aide summary{cursor:pointer;min-height:44px}.frais{animation:fraiche 2s ease-in-out infinite}@keyframes fraiche{50%{box-shadow:0 0 0 3px #ffffff44}}@media(max-width:1100px){.grille{grid-template-columns:repeat(12,minmax(0,1fr))}}@media(max-width:560px){main{padding:24px 12px}.atelier{padding:12px}.grille{grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}.studio{grid-template-columns:1fr}h1{letter-spacing:-2px}.compteurs{gap:16px}.outils{align-items:stretch}.outils>div{width:100%}.outils button{flex:1}.panneau{padding:20px}.pots{gap:10px}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <main>
-  <h1>Case <span id="num">?</span> : choisis ta couleur</h1>
-  <p class="sous" id="sous">Un clic sur un pot peint cette case de la fresque, pour tous les visiteurs.</p>
-  <div class="pots" id="pots"></div>
-  <div class="grille" id="grille" aria-label="La fresque : clique une autre case pour changer"></div>
-  <p class="retour">Tu peux aussi choisir une autre case ci-dessus. · <a href="https://github.com/mmr45">retour au profil</a></p>
+<header><span class="surtitre">OSMAN / LE PROFIL SE CONSTRUIT À PLUSIEURS</span><a class="retour" href="https://github.com/mmr45">← Retour au profil</a></header>
+<div class="ligne"><div><h1>Un mur.<br><span>Toutes vos couleurs.</span></h1><p class="sous">Choisis une case, prépare ta couleur, puis laisse ta trace. Chaque touche rejoint le profil GitHub, pour tous les visiteurs.</p></div><div class="compteurs"><div><b id="total">—</b><small>coups de pinceau</small></div><div><b id="couche">—</b><small>couche en cours</small></div></div></div>
+<section class="atelier" aria-labelledby="titre-mur">
+<div class="ligne"><h2 id="titre-mur">La fresque collective</h2><span class="note" id="remplissage">Chargement du mur…</span></div>
+<div class="jauge" aria-hidden="true"><i id="progression"></i></div>
+<div class="grille" id="grille" aria-label="Choisir une case de la fresque"></div>
+<div class="outils"><div><button id="libre" type="button">Trouver une case libre</button><button id="rejouer" type="button" aria-pressed="false">▶ Rejouer la couche</button></div><button id="actualiser" type="button">Actualiser</button></div>
+<p class="etat" id="etat" role="status" aria-live="polite">Lecture du mur…</p>
+</section>
+<div class="studio">
+<section class="panneau" aria-labelledby="titre-choix"><p class="surtitre">TA TOUCHE</p><h2 id="titre-choix">Case <span id="num">1</span></h2><p class="note" id="sous">Choisis une couleur avant de peindre.</p><div class="pots" id="pots" role="group" aria-label="Couleur de peinture"></div><a class="bouton action" id="peindre" aria-disabled="true"><span class="preview" id="preview" aria-hidden="true"></span><span id="action-texte">Peindre cette case en orange</span></a><p class="note">Ce bouton peint vraiment le mur partagé. Jusqu’à 10 touches par jour et par connexion.</p><button type="button" id="partager">Copier le lien de cette case</button></section>
+<section class="panneau" aria-labelledby="titre-palette"><p class="surtitre">LA PALETTE COLLECTIVE</p><h2 id="titre-palette">Les couleurs de cette couche</h2><div class="repartition" id="repartition"></div><p class="note">Le replay montre les dernières touches encore visibles dans la couche, par ordre de pose. Les anciennes couleurs recouvertes ne sont pas conservées.</p><a href="/dashboard">Explorer les visites, réactions et thèmes →</a></section>
+</div>
+<details class="aide"><summary>Clavier, confidentialité et fonctionnement</summary>Tab parcourt les cases et les couleurs. Les flèches déplacent la sélection dans le mur ; Entrée sélectionne une case. Choisir une case ou une couleur ne peint rien. Aucune inscription. Le pays du coup de pinceau peut être affiché ; l’adresse IP n’est pas enregistrée en clair. Les images GitHub peuvent se mettre à jour avec un délai lié à leur cache.</details>
 </main>
-<script>
-  const COULEURS = { orange:'#FF6A13', bleu:'#2F7BEA', vert:'#3FB950', jaune:'#F2CC60', rose:'#F778BA', violet:'#A371F7', blanc:'#EFE9DD' };
-  const CASES = 144;
-  let k = Number(new URLSearchParams(location.search).get('case')) - 1;
-  if (!(Number.isInteger(k) && k >= 0 && k < CASES)) k = 0;
-  const grille = document.getElementById('grille'), pots = document.getElementById('pots');
-  const boutons = Array.from({ length: CASES }, (_, i) => {
-    const b = document.createElement('button');
-    b.type = 'button'; b.setAttribute('aria-label', `Case ${i + 1}`);
-    b.onclick = () => choisir(i);
-    grille.append(b);
-    return b;
-  });
-  for (const [nom, h] of Object.entries(COULEURS)) {
-    const a = document.createElement('a');
-    a.style.background = h; a.title = `Peindre en ${nom}`; a.setAttribute('aria-label', `Peindre en ${nom}`);
-    a.dataset.c = nom;
-    pots.append(a);
-  }
-  const peintes = new Map();
-  const SOUS = 'Un clic sur un pot peint cette case de la fresque, pour tous les visiteurs.';
-  function choisir(i) {
-    k = i;
-    const deja = peintes.get(i);
-    document.getElementById('sous').textContent = deja ? `Elle est déjà en ${deja} : ta couleur la recouvrira, pour tous les visiteurs.` : SOUS;
-    document.getElementById('num').textContent = i + 1;
-    boutons.forEach((b, j) => b.classList.toggle('choisie', j === i));
-    for (const a of pots.children) a.href = `/peindre/${a.dataset.c}?case=${i}`;
-    history.replaceState(null, '', `?case=${i + 1}`);
-  }
-  choisir(k);
-  fetch('/api/stats').then((r) => r.json()).then((d) => {
-    for (const c of d.mur?.cases || []) {
-      const b = boutons[c.k];
-      if (!b) continue;
-      b.style.background = COULEURS[c.couleur]; b.classList.add('peinte');
-      b.setAttribute('aria-label', `Case ${c.k + 1} : ${c.couleur}`);
-      peintes.set(c.k, c.couleur);
+<script type="module">
+const $ = (id) => document.getElementById(id);
+const COULEURS = {
+  orange:'#FF6A13',bleu:'#2F7BEA',vert:'#3FB950',jaune:'#F2CC60',rose:'#F778BA',violet:'#A371F7',blanc:'#EFE9DD'
+};
+const CASES = 144;
+let k = Number(new URLSearchParams(location.search).get('case')) - 1;
+if (!Number.isInteger(k) || k < 0 || k >= CASES) k = 0;
+let couleur = 'orange', donnees = null, replay = null, occupe = false;
+$('rejouer').disabled = true;
+const boutons = Array.from({
+  length:CASES
+}, (_,i) => {
+  const b=document.createElement('button');
+  b.type='button';
+  b.setAttribute('aria-label',`Case ${i+1}`);
+  b.onclick=()=>choisir(i);
+  b.onkeydown=(e)=>{
+    const cols=getComputedStyle($('grille')).gridTemplateColumns.split(' ').length;
+    const delta={
+      ArrowRight:1,ArrowLeft:-1,ArrowDown:cols,ArrowUp:-cols
+    }[e.key];
+    if(delta){
+      e.preventDefault();
+      choisir(Math.max(0,Math.min(CASES-1,i+delta)));
+      boutons[k].focus();
     }
+  };
+  $('grille').append(b);
+  return b;
+});
+function choisir(i){
+  k=i;
+  const c=donnees?.cases.find(c=>c.k===k);
+  $('num').textContent=k+1;
+  $('sous').textContent=c?`Cette case est en ${c.couleur}. Ta touche la recouvrira pour tous les visiteurs.`:'Cette case attend sa première touche.';
+  boutons.forEach((b,j)=>{
+    b.classList.toggle('choisie',j===k);
+    b.setAttribute('aria-pressed',String(j===k));
+  });
+  $('peindre').href=`/peindre/${couleur}?case=${k}`;
+  $('action-texte').textContent=`Peindre cette case en ${couleur}`;
+  $('preview').style.background=COULEURS[couleur];
+  history.replaceState(null,'',`?case=${k+1}`);
+}
+for(const [nom,hex] of Object.entries(COULEURS)){
+  const b=document.createElement('button');
+  b.type='button';
+  b.style.background=hex;
+  b.title=nom;
+  b.setAttribute('aria-label',`Peindre en ${nom}`);
+  b.setAttribute('aria-pressed',String(nom===couleur));
+  b.onclick=()=>{
+    couleur=nom;
+    for(const p of $('pots').children)p.setAttribute('aria-pressed',String(p===b));
     choisir(k);
-  }).catch(() => {});
+  };
+  $('pots').append(b);
+}
+function dessine(cases){
+  const map=new Map(cases.map(c=>[c.k,c]));
+  boutons.forEach((b,i)=>{
+    const c=map.get(i);
+    b.style.background=COULEURS[c?.couleur]||'';
+    b.classList.toggle('peinte',Boolean(c));
+    b.classList.toggle('frais',Boolean(c&&Date.now()-Date.parse(c.le)<600000));
+    b.setAttribute('aria-label',`Case ${i+1}${c?` : ${
+      c.couleur
+    }`:' : libre'}`);
+  });
+}
+function stop(){
+  clearInterval(replay);
+  replay=null;
+  $('rejouer').textContent='▶ Rejouer la couche';
+  $('rejouer').setAttribute('aria-pressed','false');
+  if(donnees)dessine(donnees.cases);
+}
+function statut(texte,erreur=false){
+  $('etat').textContent=texte;
+  $('etat').classList.toggle('erreur',erreur);
+}
+async function charge(){
+  if(occupe||replay||document.hidden)return;
+  occupe=true;
+  $('actualiser').disabled=true;
+  try{
+    const r=await fetch('/api/stats',{
+      cache:'no-store',signal:AbortSignal.timeout(10000)
+    });
+    if(!r.ok)throw Error(r.status);
+    const d=await r.json();
+    if(!d.mur)throw Error('mur indisponible');
+    donnees=d.mur;
+    dessine(donnees.cases);
+    $('total').textContent=donnees.total.toLocaleString('fr-FR');
+    $('couche').textContent=donnees.couche;
+    $('remplissage').textContent=`${donnees.cases.length} / ${CASES} cases peintes`;
+    $('progression').style.width=`${donnees.cases.length/CASES*100}%`;
+    $('peindre').setAttribute('aria-disabled','false');
+    $('rejouer').disabled=!donnees.cases.length;
+    $('repartition').replaceChildren();
+    for(const [nom,hex]of Object.entries(COULEURS)){
+      const n=donnees.cases.filter(c=>c.couleur===nom).length;
+      const ligne=document.createElement('div');
+      ligne.className='couleur';
+      ligne.innerHTML=`<span>${nom}</span><span class="rail"><i style="background:${hex};width:${n/Math.max(donnees.cases.length,1)*100}%"></i></span><span>${n}</span>`;
+      $('repartition').append(ligne);
+    }choisir(k);
+    statut(`Mur actualisé à ${new Date().toLocaleTimeString('fr-FR')} · partagé avec tous les visiteurs.`);
+  }catch{
+    statut(donnees?'Actualisation indisponible. Le dernier mur reçu reste affiché.':'Le mur ne répond pas. Réessaie avec Actualiser.',true);
+  }finally{
+    occupe=false;
+    $('actualiser').disabled=false;
+  }
+}
+$('actualiser').onclick=()=>{
+  stop();
+  charge();
+};
+$('libre').onclick=()=>{
+  if(!donnees)return;
+  stop();
+  const libres=boutons.map((_,i)=>i).filter(i=>!donnees.cases.some(c=>c.k===i));
+  choisir(libres.length?libres[Math.floor(Math.random()*libres.length)]:Math.floor(Math.random()*CASES));
+  boutons[k].focus();
+};
+$('rejouer').onclick=()=>{
+  if(replay){
+    stop();
+    statut('Retour au mur actuel.');
+    return;
+  }if(!donnees?.cases.length)return;
+  const cases=[...donnees.cases].sort((a,b)=>Date.parse(a.le)-Date.parse(b.le));
+  let i=0;
+  dessine([]);
+  $('rejouer').textContent='■ Arrêter le replay';
+  $('rejouer').setAttribute('aria-pressed','true');
+  replay=setInterval(()=>{
+    dessine(cases.slice(0,++i));
+    statut(`Replay de la couche · touche ${i} / ${cases.length}`);
+    if(i===cases.length){
+      stop();
+      statut('Replay terminé · retour au mur actuel.');
+    }
+  },Math.max(100,Math.min(500,8000/cases.length)));
+};
+$('partager').onclick=async()=>{
+  try{
+    await navigator.clipboard.writeText(location.href);
+    statut(`Lien de la case ${k+1} copié.`);
+  }catch{
+    statut('Copie indisponible : copie l’adresse de cette page.',true);
+  }
+};
+$('peindre').onclick=(e)=>{
+  if(!donnees)e.preventDefault();
+};
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden)stop();
+  else charge();
+});
+choisir(k);
+charge();
+setInterval(charge,30000);
 </script>
 </body>
 </html>

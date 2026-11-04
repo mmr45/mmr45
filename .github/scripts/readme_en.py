@@ -10,6 +10,11 @@ import re
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 TEXTES = [
+    ('Découvrir Bâtipro', 'Discover Bâtipro'), ('Tester MyWattUp', 'Try MyWattUp'),
+    ('Explorer le tableau de bord', 'Explore the dashboard'), ('Peindre la fresque', 'Paint the mural'),
+    ('Fresque collective animée : 144 cases, une seule image. Ouvre la fresque pour choisir une case et la peindre.',
+     'Animated community mural: 144 squares in one image. Open the mural to choose a square and paint it.'),
+
     ('<p align="center"><a href="https://github.com/mmr45"><img src="https://img.shields.io/badge/Fran%C3%A7ais-%E2%9C%93-E8B04B?style=for-the-badge" alt="Français (langue actuelle)" /></a> <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md"><img src="https://img.shields.io/badge/English-version-2F81F7?style=for-the-badge" alt="English version" /></a></p>',
      '<p align="center"><a href="https://github.com/mmr45"><img src="https://img.shields.io/badge/Version-fran%C3%A7aise-2F81F7?style=for-the-badge" alt="Version française" /></a> <a href="https://github.com/mmr45/mmr45/blob/main/README.en.md"><img src="https://img.shields.io/badge/English-%E2%9C%93-E8B04B?style=for-the-badge" alt="English (current language)" /></a></p>'),
     ("Osman — peintre en bâtiment, développeur et fondateur de deux SaaS en production. Du chantier au code.",
@@ -47,8 +52,7 @@ TEXTES = [
      "Roadmap: my latest releases on Bâtipro and MyWattUp, and what is in progress, collected every night"),
     ("Succès débloqués : ils s'allument tout seuls quand je passe un cap (commits, contributions, visites, coups de pinceau…)",
      "Achievements: they light up on their own when I reach a milestone (commits, contributions, visits, brush strokes…)"),
-    ('<b>La fresque : clique une case, choisis ta couleur.</b> Ou clique un pot pour peindre une case au hasard. Pas de compte, tout se met à jour en direct.', '<b>The mural: click a square, pick your colour.</b> Or click a paint can to paint a random square. No account, everything updates live.'),
-    ('alt="Case ', 'alt="Square '),
+    ('<b>La fresque : ouvre le mur, choisis une case et ta couleur.</b> Ou clique un pot pour peindre la prochaine case libre. Pas de compte ; le mur est partagé entre tous les visiteurs.', '<b>The mural: open the wall, choose a square and your colour.</b> Or click a paint can to paint the next empty square. No account; everyone shares the wall.'),
     ("Mon mur de code : un rouleau de peinture repeint mes contributions des 12 derniers mois, une case par jour",
      "My code wall: a paint roller repaints my contributions of the last 12 months, one square per day"),
     ("Mes contributions des 12 derniers mois en ville 3D animée : une tour par jour, plus elle est haute, plus j'ai codé",
@@ -86,3 +90,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
