@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import cfg from '../lib/themes.json' with { type: 'json' };
 
 test('le tableau de bord propose Auto et ne publie aucune limite par IP', async () => {
   process.env.KV_REST_API_URL = 'https://redis.example.test';
@@ -23,7 +24,7 @@ test('le tableau de bord propose Auto et ne publie aucune limite par IP', async 
     const res = { setHeader() {}, status(n) { assert.equal(n, 200); return this; }, json(d) { resultat = d; } };
     await handler({}, res);
     assert.equal(resultat.theme.actuel, 'auto');
-    assert.equal(resultat.theme.liste.length, 12);
+    assert.equal(resultat.theme.liste.length, cfg.ordre.length + 1);
     assert.ok(resultat.theme.liste.some(t => t.id === resultat.theme.effectif));
     assert.equal(resultat.theme.liste[0].id, 'auto');
     assert.deepEqual(resultat.mur.cases[0], { k: 0, couleur: 'bleu', le: '2026-11-04T00:00:00Z' });
