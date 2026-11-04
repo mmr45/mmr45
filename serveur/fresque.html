@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Choisis ta couleur · la fresque</title>
+<meta name="robots" content="noindex" />
+<style>
+  :root { --bg:#0B1220; --panel:#0F1729; --line:#22304D; --text:#EEF3FA; --muted:#8A9BB8; --orange:#FF6A13; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif; }
+  body { display: grid; place-items: center; min-height: 100vh; padding: 24px 16px;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px; background-position: center; }
+  body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(circle at 50% 30%, transparent, var(--bg) 70%); pointer-events: none; }
+  main { position: relative; width: min(960px, 100%); text-align: center; }
+  h1 { font-size: clamp(28px, 5.5vw, 48px); margin: 0 0 8px; letter-spacing: -1px; }
+  h1 span { color: var(--orange); }
+  p.sous { color: var(--muted); font-size: 18px; margin: 0 0 24px; }
+  .grille { display: grid; grid-template-columns: repeat(24, 1fr); gap: 4px; padding: 14px; background: var(--panel);
+    border: 1px solid var(--line); border-radius: 22px; }
+  .grille button { aspect-ratio: 1; border-radius: 6px; border: 1.5px dashed #8A9BB899; background: #8A9BB814; cursor: pointer; padding: 0; }
+  .grille button.peinte { border: 0; }
+  .grille button:hover { transform: scale(1.15); }
+  .grille button.choisie { outline: 3px solid var(--text); outline-offset: 2px; animation: vise 1s ease-in-out infinite alternate; }
+  @keyframes vise { to { outline-color: var(--orange); } }
+  .pots { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin: 26px 0 18px; }
+  .pots a { width: 64px; height: 64px; border-radius: 50%; border: 4px solid var(--panel); outline: 2px solid var(--line);
+    transition: transform .15s; display: block; }
+  .pots a:hover, .pots a:focus-visible { transform: translateY(-5px) scale(1.1); outline-color: var(--text); }
+  .retour { color: var(--muted); font-size: 15px; }
+  .retour a { color: var(--muted); }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Case <span id="num">?</span> : choisis ta couleur</h1>
+  <p class="sous" id="sous">Un clic sur un pot peint cette case de la fresque, pour tous les visiteurs.</p>
+  <div class="pots" id="pots"></div>
+  <div class="grille" id="grille" aria-label="La fresque : clique une autre case pour changer"></div>
+  <p class="retour">Tu peux aussi choisir une autre case ci-dessus. · <a href="https://github.com/mmr45">retour au profil</a></p>
+</main>
+<script>
+  const COULEURS = { orange:'#FF6A13', bleu:'#2F7BEA', vert:'#3FB950', jaune:'#F2CC60', rose:'#F778BA', violet:'#A371F7', blanc:'#EFE9DD' };
+  const CASES = 144;
+  let k = Number(new URLSearchParams(location.search).get('case')) - 1;
+  if (!(Number.isInteger(k) && k >= 0 && k < CASES)) k = 0;
+  const grille = document.getElementById('grille'), pots = document.getElementById('pots');
+  const boutons = Array.from({ length: CASES }, (_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.setAttribute('aria-label', `Case ${i + 1}`);
+    b.onclick = () => choisir(i);
+    grille.append(b);
+    return b;
+  });
+  for (const [nom, h] of Object.entries(COULEURS)) {
+    const a = document.createElement('a');
+    a.style.background = h; a.title = `Peindre en ${nom}`; a.setAttribute('aria-label', `Peindre en ${nom}`);
+    a.dataset.c = nom;
+    pots.append(a);
+  }
+  const peintes = new Map();
+  const SOUS = 'Un clic sur un pot peint cette case de la fresque, pour tous les visiteurs.';
+  function choisir(i) {
+    k = i;
+    const deja = peintes.get(i);
+    document.getElementById('sous').textContent = deja ? `Elle est déjà en ${deja} : ta couleur la recouvrira, pour tous les visiteurs.` : SOUS;
+    document.getElementById('num').textContent = i + 1;
+    boutons.forEach((b, j) => b.classList.toggle('choisie', j === i));
+    for (const a of pots.children) a.href = `/peindre/${a.dataset.c}?case=${i}`;
+    history.replaceState(null, '', `?case=${i + 1}`);
+  }
+  choisir(k);
+  fetch('/api/stats').then((r) => r.json()).then((d) => {
+    for (const c of d.mur?.cases || []) {
+      const b = boutons[c.k];
+      if (!b) continue;
+      b.style.background = COULEURS[c.couleur]; b.classList.add('peinte');
+      b.setAttribute('aria-label', `Case ${c.k + 1} : ${c.couleur}`);
+      peintes.set(c.k, c.couleur);
+    }
+    choisir(k);
+  }).catch(() => {});
+</script>
+</body>
+</html>
