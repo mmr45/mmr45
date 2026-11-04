@@ -2,15 +2,15 @@
 // Pas de redirection : le proxy d'images de GitHub (camo) suit les redirections puis met en cache
 // la cible avec ses propres en-têtes (figée un an), ce qui bloquait le changement de thème.
 // Ici la réponse elle-même n'est jamais mise en cache, comme le compteur de visites.
-// « stats » et « ville » sont dessinées à la volée à partir des vraies données GitHub.
+// « stats », « ville » et « rouleau » sont dessinées à la volée à partir des vraies données GitHub.
 import { themeActuel } from '../lib/theme.js';
 import { donneesGitHub } from '../lib/github.js';
-import { renderStats, renderVille } from '../lib/gh-cartes.js';
+import { renderStats, renderVille, renderRouleau } from '../lib/gh-cartes.js';
 
 const NOMS = new Set(['hero', 'archi', 'parcours', 'pied', 'projet-batipro', 'projet-mywattup',
   'titre-01', 'titre-02', 'titre-03', 'titre-04', 'titre-05', 'titre-06',
   'reaction-feu', 'reaction-bravo', 'reaction-wow', 'reaction-idee', 'reaction-peinture']);
-const DYN = { stats: renderStats, ville: renderVille };
+const DYN = { stats: renderStats, ville: renderVille, rouleau: renderRouleau };
 const VERSION = (process.env.VERCEL_GIT_COMMIT_SHA || process.env.VERCEL_DEPLOYMENT_ID || 'local').slice(0, 10);
 
 // captures des sites, insérées dans les cartes projet (une seule copie au lieu d'une par thème)

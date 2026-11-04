@@ -134,6 +134,13 @@
   </picture>
 </p>
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/rouleau.svg?mode=dark&amp;v=1" />
+    <img src="https://mmr45-profil.vercel.app/img/rouleau.svg?mode=light&amp;v=1" alt="Mon mur de code : un rouleau de peinture repeint mes contributions des 12 derniers mois, une case par jour" width="100%" />
+  </picture>
+</p>
+
 <br />
 
 <picture>

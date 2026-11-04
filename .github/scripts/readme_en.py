@@ -43,6 +43,8 @@ TEXTES = [
     ('alt="Activité"', 'alt="Activity"'),
     ("Mes stats GitHub sur 12 mois : contributions, commits, pull requests, jours actifs, série de jours et langages, aux couleurs du thème",
      "My GitHub stats over 12 months: contributions, commits, pull requests, active days, streak and languages, in the theme's colours"),
+    ("Mon mur de code : un rouleau de peinture repeint mes contributions des 12 derniers mois, une case par jour",
+     "My code wall: a paint roller repaints my contributions of the last 12 months, one square per day"),
     ("Mes contributions des 12 derniers mois en ville 3D animée : une tour par jour, plus elle est haute, plus j'ai codé",
      "My contributions over the last 12 months as an animated 3D city: one tower per day, the taller it is, the more I coded"),
     ("Laisse ta trace", "Leave your mark"),
