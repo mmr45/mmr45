@@ -656,9 +656,9 @@ REACTIONS = [("feu", "🔥", "Ça claque"), ("bravo", "👏", "Bravo"), ("wow", 
              ("idee", "💡", "Inspirant"), ("peinture", "🎨", "Beau boulot")]
 
 
-def bouton_reaction(rid, emoji, nom):
+def bouton_reaction(rid, emoji, nom, mode="dark"):
     """Bouton cliquable du README : un emoji qui sautille, comme un pot de peinture."""
-    p = PAL["dark"]
+    p = PAL[mode]
     W, H = 132, 132
     body = f"""<rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="30" fill="{p['panel']}" stroke="{p['line']}" stroke-width="2"/>
 <rect x="1" y="1" width="{W - 2}" height="{H - 2}" rx="30" fill="url(#gl)"/>
@@ -700,6 +700,8 @@ def ecrit_themes(titres):
             files[f"parcours-{mode}.svg"] = parcours(mode)
             files[f"pied-{mode}.svg"] = pied(mode)
             files[f"avatar-{mode}.svg"] = avatar(mode)
+            for rid, emoji, nom in REACTIONS:
+                files[f"reaction-{rid}-{mode}.svg"] = bouton_reaction(rid, emoji, nom, mode)
         with open(os.path.join(OUT, f"theme-{tid}.svg"), "w", encoding="utf-8") as f:
             f.write(pastille(tid, info))
         for name, content in files.items():

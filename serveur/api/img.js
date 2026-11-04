@@ -5,7 +5,8 @@
 import { themeActuel } from '../lib/theme.js';
 
 const NOMS = new Set(['hero', 'avatar', 'archi', 'parcours', 'pied', 'projet-batipro', 'projet-mywattup',
-  'titre-01', 'titre-02', 'titre-03', 'titre-04', 'titre-05', 'titre-06']);
+  'titre-01', 'titre-02', 'titre-03', 'titre-04', 'titre-05', 'titre-06',
+  'reaction-feu', 'reaction-bravo', 'reaction-wow', 'reaction-idee', 'reaction-peinture']);
 const VERSION = (process.env.VERCEL_GIT_COMMIT_SHA || process.env.VERCEL_DEPLOYMENT_ID || 'local').slice(0, 10);
 
 export default async function handler(req, res) {

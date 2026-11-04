@@ -146,11 +146,11 @@
 </p>
 
 <p align="center">
-  <a href="https://mmr45-profil.vercel.app/reagir/feu"><img src="./assets/reaction-feu.svg" width="96" alt="Réagir : Ça claque" /></a>
-  <a href="https://mmr45-profil.vercel.app/reagir/bravo"><img src="./assets/reaction-bravo.svg" width="96" alt="Réagir : Bravo" /></a>
-  <a href="https://mmr45-profil.vercel.app/reagir/wow"><img src="./assets/reaction-wow.svg" width="96" alt="Réagir : Impressionnant" /></a>
-  <a href="https://mmr45-profil.vercel.app/reagir/idee"><img src="./assets/reaction-idee.svg" width="96" alt="Réagir : Inspirant" /></a>
-  <a href="https://mmr45-profil.vercel.app/reagir/peinture"><img src="./assets/reaction-peinture.svg" width="96" alt="Réagir : Beau boulot" /></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/feu"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-feu.svg?mode=dark&amp;v=3" /><img src="https://mmr45-profil.vercel.app/img/reaction-feu.svg?mode=light&amp;v=3" width="96" alt="Réagir : Ça claque" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/bravo"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-bravo.svg?mode=dark&amp;v=3" /><img src="https://mmr45-profil.vercel.app/img/reaction-bravo.svg?mode=light&amp;v=3" width="96" alt="Réagir : Bravo" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/wow"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-wow.svg?mode=dark&amp;v=3" /><img src="https://mmr45-profil.vercel.app/img/reaction-wow.svg?mode=light&amp;v=3" width="96" alt="Réagir : Impressionnant" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/idee"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-idee.svg?mode=dark&amp;v=3" /><img src="https://mmr45-profil.vercel.app/img/reaction-idee.svg?mode=light&amp;v=3" width="96" alt="Réagir : Inspirant" /></picture></a>
+  <a href="https://mmr45-profil.vercel.app/reagir/peinture"><picture><source media="(prefers-color-scheme: dark)" srcset="https://mmr45-profil.vercel.app/img/reaction-peinture.svg?mode=dark&amp;v=3" /><img src="https://mmr45-profil.vercel.app/img/reaction-peinture.svg?mode=light&amp;v=3" width="96" alt="Réagir : Beau boulot" /></picture></a>
 </p>
 
 <br />

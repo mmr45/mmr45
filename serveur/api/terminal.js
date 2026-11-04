@@ -28,6 +28,7 @@ export default async function handler(req, res) {
   const date = new Intl.DateTimeFormat('fr-FR', { timeZone: 'Europe/Paris', weekday: 'long', day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(now);
   const h = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', hour: 'numeric', hourCycle: 'h23' }).formatToParts(now).find((x) => x.type === 'hour').value);
   res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');
-  res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=20, stale-while-revalidate=5');
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0'); // camo de GitHub garde sinon une vieille couleur
+  res.setHeader('Vercel-CDN-Cache-Control', 'max-age=20');
   res.status(200).send(renderTerminal({ date, sites, salut: salut(h) }, req.query.theme === 'light' ? 'light' : 'dark', await themeActuel().catch(() => 'chantier')));
 }

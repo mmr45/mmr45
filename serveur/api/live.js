@@ -8,6 +8,7 @@ export default async function handler(req, res) {
   const now = new Date();
   const [hist, theme] = await Promise.all([mesure(now).catch(() => ({})), themeActuel().catch(() => 'chantier')]);
   res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');
-  res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=20, stale-while-revalidate=5');
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0'); // camo de GitHub garde sinon une vieille couleur
+  res.setHeader('Vercel-CDN-Cache-Control', 'max-age=20');
   res.status(200).send(renderLive(hist, req.query.theme === 'light' ? 'light' : 'dark', now, theme));
 }
