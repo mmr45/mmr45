@@ -36,7 +36,9 @@ serveur/           projet Vercel « mmr45-profil » → https://mmr45-profil.ver
 
 ### Données et stockage
 
-- **Vercel Blob** (`BLOB_READ_WRITE_TOKEN`) stocke le thème choisi, le mur, les visites, les réactions et l'historique « en direct ». L'état JSON est versionné : chaque écriture crée un nouveau fichier (voir `lib/versions.js`).
+- **Redis (Upstash, offre gratuite via le Marketplace Vercel)** stocke le thème choisi, le mur, les visites, les réactions et l'historique « en direct » (`lib/store.js`, variables `KV_REST_API_URL` / `KV_REST_API_TOKEN`). Clés `mmr45:<nom>`.
+- **Vercel Blob n'est plus utilisé** : son quota gratuit d'opérations a été dépassé le 2026-11-04 (fresque de 144 cases + relectures du thème) et le store a été suspendu, ce qui a figé tout le profil. Le code garde Blob en secours seulement si Redis n'est pas configuré.
+- Chaque image du README déclenche une requête : garde les lectures en mémoire (memo de quelques secondes, une seule lecture partagée par instance) et compte le coût avant d'ajouter des dizaines d'images dynamiques.
 - Le thème est **le même pour tout le monde** : un clic sur `/theme/<id>` le change pour tous les visiteurs. Le thème `auto` suit l'heure de Paris et la saison (`lib/theme.js` → `themeAuto`).
 - Les vraies stats GitHub sont calculées chaque nuit par `activite.py` et publiées dans `donnees.json`, sur la branche `stats`. Vercel les lit sans jeton.
 
