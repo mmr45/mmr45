@@ -25,6 +25,9 @@ jobs:
           GH_LOGIN: mmr45
         run: python3 .github/scripts/activite.py dist
 
+      - name: Pas de déploiement Vercel pour cette branche de données
+        run: mkdir -p dist/serveur && echo '{"git":{"deploymentEnabled":false}}' > dist/serveur/vercel.json
+
       - name: Publie sur la branche "stats"
         uses: crazy-max/ghaction-github-pages@v4
         with:

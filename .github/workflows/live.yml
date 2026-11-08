@@ -43,6 +43,8 @@ jobs:
       - name: Publie sur la branche « live »
         working-directory: live
         run: |
+          # pas de déploiement Vercel pour cette branche de données (sinon : e-mail « Preview deployment failed »)
+          mkdir -p serveur && echo '{"git":{"deploymentEnabled":false}}' > serveur/vercel.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A

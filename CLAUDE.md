@@ -51,7 +51,7 @@ serveur/           projet Vercel « mmr45-profil » → https://mmr45-profil.ver
 | `live.yml` | toutes les 30 min | mesure des deux SaaS, branche `live` |
 | `snake.yml` | chaque nuit | animation snake (sortie sur la branche `output`) |
 
-Les builds Vercel de preview échouent sur les branches `output` et `stats` : c'est normal et sans conséquence.
+Les branches de données (`live`, `stats`, `output`) reçoivent un `serveur/vercel.json` avec `git.deploymentEnabled: false`, posé par leur workflow. Sans lui, Vercel tente un build de preview à chaque push et envoie un e-mail « Preview deployment failed » (dossier `serveur` absent). Garde cette étape si tu modifies ces workflows.
 
 ## Pièges connus (déjà rencontrés)
 
