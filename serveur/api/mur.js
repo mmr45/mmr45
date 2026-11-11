@@ -2,10 +2,10 @@
 import { themeActuel } from '../lib/theme.js';
 import { avecLangue } from '../lib/langue.js';
 import { renderMur } from '../lib/rendu.js';
-import { charge } from '../lib/etat.js';
+import { chargeMemo } from '../lib/etat.js';
 
 export default async function handler(req, res) {
-  const etat = await charge().catch(() => ({ couche: 1, total: 0, cases: [] }));
+  const etat = await chargeMemo().catch(() => ({ couche: 1, total: 0, cases: [] }));
   res.setHeader('Content-Type', 'image/svg+xml; charset=utf-8');
   // court cache CDN : le mur reste « en direct » sans relire le stockage à chaque vue
   res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0'); // camo de GitHub garde sinon une vieille couleur

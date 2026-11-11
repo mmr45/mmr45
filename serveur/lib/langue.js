@@ -34,7 +34,7 @@ const MOIS = {
   'sept.': 'Sep', 'oct.': 'Oct', 'nov.': 'Nov', 'déc.': 'Dec',
 };
 const COUL = { bleu: 'blue', vert: 'green', jaune: 'yellow', rose: 'pink', violet: 'purple', blanc: 'white' };
-const MOMENTS = { jour: 'day', nuit: 'night', soir: 'evening', matin: 'morning' };
+const MOMENTS = { jour: 'day', nuit: 'night', soir: 'evening', matin: 'morning', aube: 'dawn' };
 const s = (n) => (Number(n) > 1 ? 's' : '');
 
 const REGLES = [
