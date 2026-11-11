@@ -3,6 +3,7 @@
 // toutes les 15 min (96 points = 24 h). Repart de l'ancien historique tenu par GitHub Actions.
 import { readFile, writeFile } from 'node:fs/promises';
 import { REDIS, rget, rset } from './store.js';
+import { donneesGitHub } from './github.js';
 
 export const SITES = { batipro: 'https://batipro-ten.vercel.app', mywattup: 'https://my-watt-up.vercel.app' };
 const CHEMIN = 'stats/live.json';
@@ -57,19 +58,27 @@ async function ecrit(h) {
   await put(CHEMIN, json, { access: 'public', contentType: 'application/json', addRandomSuffix: false, allowOverwrite: true, cacheControlMaxAge: 60 });
 }
 
+// Dernier commit public. L'API Events ne donne plus le message des commits (les PushEvent n'ont
+// plus de liste `commits`) et elle limite les appels sans jeton depuis les IP partagées de Vercel :
+// la carte affichait donc toujours « aucun récemment ». On garde l'API Events si elle répond
+// encore avec un message, sinon on prend celui calculé chaque nuit par activite.py (donnees.json).
 async function dernierCommit() {
+  let ev = null;
   try {
     const r = await fetch('https://api.github.com/users/mmr45/events/public?per_page=50', {
       signal: AbortSignal.timeout(4000), headers: { 'User-Agent': 'mmr45-profil', Accept: 'application/vnd.github+json' },
     });
-    if (!r.ok) return null;
-    for (const ev of await r.json()) {
-      if (ev.type !== 'PushEvent') continue;
-      const msg = (ev.payload?.commits?.at(-1)?.message || '').split('\n')[0];
-      if (msg) return { repo: ev.repo.name, msg, le: ev.created_at };
+    if (r.ok) {
+      for (const e of await r.json()) {
+        if (e.type !== 'PushEvent') continue;
+        const msg = (e.payload?.commits?.at(-1)?.message || '').split('\n')[0];
+        if (msg) { ev = { repo: e.repo.name, msg, le: e.created_at }; break; }
+      }
     }
   } catch { /* rien */ }
-  return null;
+  const nuit = await donneesGitHub().then((d) => d?.dernier_commit || null).catch(() => null);
+  if (ev && nuit) return Date.parse(ev.le) >= Date.parse(nuit.le) ? ev : nuit;
+  return ev || nuit;
 }
 
 let memo = null, memoAt = 0, enCours = null;
