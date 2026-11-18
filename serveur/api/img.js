@@ -9,7 +9,7 @@ import { donneesGitHub } from '../lib/github.js';
 import { renderStats, renderVille, renderRouleau } from '../lib/gh-cartes.js';
 import { renderSucces, renderFeuille } from '../lib/extras.js';
 import { stats as statsVues } from '../lib/vues.js';
-import { charge as chargeMur, chargeMemo } from '../lib/etat.js';
+import { chargeMemo } from '../lib/etat.js';
 import { renderPixel, CASES } from '../lib/rendu.js';
 import { litReactions } from '../lib/reactions.js';
 import { gabaritTheme, recoloreSvg } from '../lib/theme-images.js';
@@ -20,10 +20,18 @@ const NOMS = new Set(['hero', 'archi', 'parcours', 'pied', 'projet-batipro', 'pr
 const DYN = { stats: renderStats, ville: renderVille, rouleau: renderRouleau, feuille: renderFeuille };
 const rien = (e) => { console.error('[img]', e); return null; };
 
-// chiffres des succès : stats GitHub + compteurs du profil (visites, mur, réactions)
-async function chiffresSucces() {
-  const [d, v, mur, re] = await Promise.all([donneesGitHub().catch(rien), statsVues().catch(rien), chargeMur().catch(rien), litReactions().catch(rien)]);
+// chiffres des succès : stats GitHub + compteurs du profil (visites, mur, réactions).
+// 3 lectures Redis : gardées 30 s par instance (et une seule lecture en cours partagée),
+// sinon chaque affichage du README coûtait 3 commandes de plus.
+let succesMemo = null, succesAt = 0, succesEnCours = null;
+async function litSucces() {
+  const [d, v, mur, re] = await Promise.all([donneesGitHub().catch(rien), statsVues().catch(rien), chargeMemo().catch(rien), litReactions().catch(rien)]);
   return { saas: 2, commits: d?.commits, total: d?.total, prs: d?.prs, record: d?.record, visites: v?.total, mur: mur?.total, reactions: re?.total };
+}
+function chiffresSucces() {
+  if (succesMemo && Date.now() - succesAt < 30000) return Promise.resolve(succesMemo);
+  succesEnCours ||= litSucces().then((c) => { succesMemo = c; succesAt = Date.now(); return c; }).finally(() => { succesEnCours = null; });
+  return succesEnCours;
 }
 const VERSION = (process.env.VERCEL_GIT_COMMIT_SHA || process.env.VERCEL_DEPLOYMENT_ID || 'local').slice(0, 10);
 

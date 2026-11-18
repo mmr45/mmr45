@@ -41,6 +41,7 @@ serveur/           projet Vercel « mmr45-profil » → https://mmr45-profil.ver
 - Chaque image du README déclenche une requête : garde les lectures en mémoire (memo de quelques secondes, une seule lecture partagée par instance) et compte le coût avant d'ajouter des dizaines d'images dynamiques.
 - Le thème est **le même pour tout le monde** : un clic sur `/theme/<id>` le change pour tous les visiteurs. Le thème `auto` suit l'heure de Paris et la saison (`lib/theme.js` → `themeAuto`).
 - Les vraies stats GitHub sont calculées chaque nuit par `activite.py` et publiées dans `donnees.json`, sur la branche `stats`. Vercel les lit sans jeton.
+- L'API Events de GitHub ne donne plus le message des commits : le « dernier commit public » de la carte en direct vient de `donnees.json` (`dernier_commit`, recherche de commits publics faite par `activite.py`).
 
 ### Actions
 

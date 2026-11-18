@@ -80,6 +80,23 @@ def api(chemin):
         return json.load(r)
 
 
+def dernier_commit():
+    """Dernier commit public d'Osman, pour la carte « En direct » du serveur Vercel.
+    L'API Events de GitHub ne donne plus le message des commits (PushEvent sans `commits`),
+    on passe donc par la recherche de commits, limitée aux dépôts publics."""
+    try:
+        r = api(f"search/commits?q=author:{LOGIN}+is:public&sort=author-date&order=desc&per_page=10")
+    except Exception as e:
+        print(f"dernier commit : {e}", file=sys.stderr)
+        return None
+    for c in r.get("items", []):
+        msg = (c["commit"]["message"] or "").split("\n")[0].strip()
+        if not msg or CACHE.search(msg) or msg.startswith("Merge "):
+            continue
+        return dict(repo=c["repository"]["full_name"], msg=msg, le=c["commit"]["author"]["date"])
+    return None
+
+
 def feuille():
     out = []
     for nom, depot in SAAS:
@@ -291,6 +308,7 @@ def main():
         langages=[dict(nom=n, couleur=c, part=round(p, 4)) for n, c, p in stats["langs"]],
         jours=[[d["date"], d["contributionCount"]] for d in annee],
         feuille=[] if "--donnees" in sys.argv else feuille(),
+        dernier_commit=None if "--donnees" in sys.argv else dernier_commit(),
     )
     with open(os.path.join(out, "donnees.json"), "w", encoding="utf-8") as f:
         json.dump(donnees, f, ensure_ascii=False, separators=(",", ":"))

@@ -65,17 +65,23 @@ const FMT = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', hour: '
 const WD = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 };
 function paris(d) {
   const o = Object.fromEntries(FMT.formatToParts(d).map((x) => [x.type, x.value]));
-  return { h: Number(o.hour), hm: `${o.hour}:${o.minute}`, dm: `${o.day}/${o.month}`, wd: WD[o.weekday] };
+  return { h: Number(o.hour), m: Number(o.month), hm: `${o.hour}:${o.minute}`, dm: `${o.day}/${o.month}`, wd: WD[o.weekday] };
 }
 
 function graine(s) {
   return () => ((s = (s * 1103515245 + 12345) % 2147483648) / 2147483648);
 }
 
-function ciel(p, heure, x, y, w, h) {
+// Heures de Paris (heure locale) par mois : [aube, jour, soir, nuit]. Avant, le ciel restait
+// au coucher de soleil jusqu'à 21 h toute l'année, même en hiver où il fait nuit vers 18 h.
+const CIEL_MOIS = [[8, 9, 17, 18], [7, 8, 17, 19], [7, 8, 18, 20], [6, 7, 19, 21], [6, 7, 20, 22], [5, 6, 21, 22],
+  [6, 7, 21, 22], [6, 7, 20, 22], [7, 8, 19, 21], [7, 8, 18, 20], [7, 8, 17, 18], [8, 9, 16, 18]];
+
+function ciel(p, heure, x, y, w, h, mois = 6) {
   let moment, haut, jour;
-  if (heure >= 7 && heure < 18) [moment, haut, jour] = ['jour', ['#4A92FF', '#BFDBFF'], true];
-  else if ([6, 18, 19, 20].includes(heure)) [moment, haut, jour] = [heure === 6 ? 'aube' : 'soir', ['#3B2A5C', '#FF8A4C'], true];
+  const [aube, matin, soir, nuit] = CIEL_MOIS[(mois - 1 + 12) % 12];
+  if (heure >= matin && heure < soir) [moment, haut, jour] = ['jour', ['#4A92FF', '#BFDBFF'], true];
+  else if (heure === aube || (heure >= soir && heure < nuit)) [moment, haut, jour] = [heure === aube ? 'aube' : 'soir', ['#3B2A5C', '#FF8A4C'], true];
   else [moment, haut, jour] = ['nuit', ['#070C18', '#1A2742'], false];
   const defs = `<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${haut[0]}"/><stop offset="1" stop-color="${haut[1]}"/></linearGradient>
 <clipPath id="skyc"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="16"/></clipPath>`;
@@ -92,7 +98,7 @@ function ciel(p, heure, x, y, w, h) {
   } else {
     const rays = Array.from({ length: 12 }, (_, i) => `<rect x="-2" y="-40" width="4" height="12" rx="2" fill="#FFD36B" transform="rotate(${i * 30})"/>`).join('');
     parts.push(`<g transform="translate(${ax.toFixed(0)} ${ay.toFixed(0)})"><g class="spin">${rays}</g><circle r="20" fill="#FFD36B"/></g>`);
-    parts.push(`<g class="cloud"><ellipse cx="${x + 60}" cy="${y + 50}" rx="30" ry="10" fill="#fff" fill-opacity=".7"/><ellipse cx="${x + 80}" cy="${y + 44}" rx="20" ry="11" fill="#fff" fill-opacity=".7"/></g>`);
+    parts.push(`<g class="cloud"><ellipse cx="${x + 60}" cy="${y + 132}" rx="30" ry="10" fill="#fff" fill-opacity=".7"/><ellipse cx="${x + 80}" cy="${y + 126}" rx="20" ry="11" fill="#fff" fill-opacity=".7"/></g>`);
   }
   const by = y + h - 120, bat = jour ? '#22304D' : '#0B1220';
   parts.push(`<rect x="${x + 40}" y="${by}" width="110" height="120" fill="${bat}"/><rect x="${x + 170}" y="${by + 36}" width="90" height="84" fill="${bat}"/>
@@ -133,7 +139,7 @@ export function renderLive(hist, mode, now = new Date(), theme) {
   const W = 1200, H = 480;
   let [defs, bg] = cardBg(p, W, H, '70%', '30%');
   const pa = paris(now);
-  const [cd, cb, moment] = ciel(p, pa.h, 32, 84, 330, 300);
+  const [cd, cb, moment] = ciel(p, pa.h, 32, 84, 330, 300, pa.m);
   defs += cd;
   const clock = `<g class="up">
   <text x="56" y="152" font-family="${SANS}" font-size="64" font-weight="800" fill="#fff" letter-spacing="-2">${pa.hm}</text>
